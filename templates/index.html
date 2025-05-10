@@ -63,10 +63,11 @@
         }
         
         .bg4 {
-            background-color: #333;
+            background-image:url('/static/contest-bg.png');
             padding: 10px;
             margin: 15px 0;
             border-radius: 5px;
+            display: flex; align-items: center; justify-content: center; gap: 20px;
         }
         
         .matka_result {
@@ -75,8 +76,12 @@
         }
         
         .matka_result_box {
-            background-color: #222;
+background-image: url('https://img.freepik.com/free-vector/flat-design-poker-table-background_23-2151016818.jpg?t=st=1746854753~exp=1746858353~hmac=8ad2ff750508b4c5425c98b0e91e814007de54ec88f52b15edd4c194c89d3123&w=1380');
+background-repeat: no-repeat;
+background-size: cover;
+background-position: center;
             padding: 15px;
+            padding-bottom: 30px;
             border-radius: 5px;
             text-align: center;
         }
@@ -244,36 +249,131 @@
 
 </head>
 <body>
-    <div class="logo-container">
-        <img src="https://mainfatafat.org/mff/logo2.jpg" alt="Main Fatafat Logo matka guru Result" height="300px" width="20%">
+<style>
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.hero {
+  font-family: 'Patrick Hand', cursive;
+  background: url('/static/css/f65db821-6a22-483e-bee1-f302b1f8219b.png') no-repeat center center/cover;
+  color: white;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.lang-switch a {
+  color: white;
+  text-decoration: none;
+  margin: 0 5px;
+}
+
+.hero-inner {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 50px;
+  background: linear-gradient(to bottom, rgba(118, 10, 10, 0.2), rgba(8, 25, 48, 0.6));
+}
+
+
+
+.image-slider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.image-track {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 15px;
+}
+
+.image-track img {
+  width: 150px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.image-track img:hover {
+  transform: scale(1.05);
+}
+
+.slider-nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #ddd;
+}
+
+.slider-nav .line {
+  width: 80px;
+  height: 1px;
+  background-color: #ccc;
+}
+
+.arrows button {
+  background: rgba(255,255,255,0.1);
+  border: none;
+  color: white;
+  margin-left: 10px;
+  padding: 5px 10px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+
+.logo-img{
+    height: 200px;
+    width: 400px;
+    display: flex;
+
+    justify-self: center;
+}
+
+
+</style>
+
+
+
+  <section class="hero">
+<div class="hero-inner">
+        <div class="hero-text">
+<img src="/static/css/logo2-removebg-preview.png" alt="" class="logo-img">
     </div>
-    <div class="logo3">
-        <p class="satka"><b><a href="https://mainfatafat.org">Main Fatafat Official Website | Matka Guru</a></b></p>
-    </div>
-    <div>
-        <h2 style="color:#faab17">Main Fatafat Get Live Result Here</h2>
-        <h3>Our Main Fatafat Matka Site Always ready to help needy peoples and make them profitable</h3>
-        <p>WORLD'S FIRST 8th Baji Main Fatafat MATKA SITE mainfatafat.org . Get Fast Main Bazar &amp; Main Fatafat Result with live Latest Update We are Providing latest seven days chart &amp; old panel record also Kindly bookmark this official main fatafat website.</p>
-    </div>
+</div>
+
+
+  </section>
     
-    <div class="bg4">
-        <h2>Our Official Game Result</h2>
-    </div>
+<div class="bg4" >
+    <img src="/static/css/istockphoto-1365016893-612x612-removebg-preview.png" alt="" style="height: 60px;">
+    <h2 style="margin: 0;">Our Official Game Result</h2>
+    <img src="/static/css/istockphoto-1365016893-612x612-removebg-preview.png" alt="" style="height: 60px;">
+</div>
+
     
     <div class="matka_result">
         <div class="matka_result_box">
             <p class="matka_title">MAIN BAZAR</p>
             <p class="finak_ank">160-75-889</p>
-            <div class="result_now"><a href="#" class="chart_btn">Jodi</a></div>
-            <div class="result_now_right"><a href="#" class="chart_btn">Panel</a></div>
+            <div class="result_now" style="display: flex; float: left;"><a href="#" class="chart_btn" >Jodi</a></div>
+            <div class="result_now_right" style="display: flex; float: right;"><a href="#" class="chart_btn">Panel</a></div>
             <small>10:00 PM - 12:10AM</small>
         </div>
     </div>
-    
-    <hr>
+
     
     <div class="bg4" >
-        <h2>Dear Matka Result</h2>
+       <img src="/static/css/istockphoto-1365016893-612x612-removebg-preview.png" alt="" style="height: 60px;">  <h2>Dear Matka Result</h2>  <img src="/static/css/istockphoto-1365016893-612x612-removebg-preview.png" alt="" style="height: 60px;">
     </div>
     
     <table>
@@ -303,7 +403,12 @@
         </tbody>
     </table>
     
-    <div class="satta_result bg3"><a href="dear-matka-panel-chart.php" title="Dear Matka Panel Chart">Dear Matka Panel Chart</a></div>
+<div class="bg4" >
+    <img src="/static/css/istockphoto-1365016893-612x612-removebg-preview.png" alt="" style="height: 60px;">
+    <h2 style="margin: 0;">Our Official Game Result</h2>
+    <img src="/static/css/istockphoto-1365016893-612x612-removebg-preview.png" alt="" style="height: 60px;">
+</div>
+
     
     <br>
     
@@ -313,7 +418,7 @@
         </a>
     </center>
     
-    <hr>
+ 
     
     <table>
         <thead>
