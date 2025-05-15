@@ -1,658 +1,591 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main Fatafat | Matka Guru Result</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-        }
-        
-        body {
-            background-color: #072910;
-            color: #fff;
-            line-height: 1.6;
-            padding: 10px;
-        }
-        
-        .logo-container {
-            text-align: center;
-            margin-bottom: 15px;
-        }
-        
-        .logo-container img {
-            max-width: 100%;
-            height: auto;
-        }
-        
-        .logo3 {
-            background-color: #faab17;
-            /* padding: 10px; */
-            height: 50px;
-            text-align: center;
-   
+{% extends 'layout.html' %}
+{% block title %} About Us {% endblock title %}
+{% block body %}
 
-        }
-
-
-        .satka{
-          text-align: center;
-         
-       padding-top: 13px;
-        }
-        
-        .logo3 a {
-            color: #000;
-            text-decoration: none;
-            font-size: 16px;
-        }
-        
-        h2, h3 {
-            color: #faab17;
-            text-align: center;
-            margin: 15px 0;
-        }
-        
-        p {
-            margin-bottom: 15px;
-            padding: 0 10px;
-        }
-        
-        .bg4 {
-            background-image:url('/static/contest-bg.png');
-            padding: 10px;
-            margin: 15px 0;
-            border-radius: 5px;
-            display: flex; align-items: center; justify-content: center; gap: 20px;
-        }
-        
-        .matka_result {
-            margin: 15px 0;
-            background-color: #072910;
-        }
-        
-        .matka_result_box {
-background-image: url('https://img.freepik.com/free-vector/flat-design-poker-table-background_23-2151016818.jpg?t=st=1746854753~exp=1746858353~hmac=8ad2ff750508b4c5425c98b0e91e814007de54ec88f52b15edd4c194c89d3123&w=1380');
-background-repeat: no-repeat;
-background-size: cover;
-background-position: center;
-            padding: 15px;
-            padding-bottom: 30px;
-            border-radius: 5px;
-            text-align: center;
-        }
-        
-        .matka_title {
-            font-weight: bold;
-            font-size: 18px;
-            color: #faab17;
-            margin-bottom: 10px;
-        }
-        
-        .finak_ank {
-            font-size: 24px;
-            font-weight: bold;
-            color: #fff;
-            margin-bottom: 10px;
-        }
-        
-        .result_now, .result_now_right {
-            display: inline-block;
-            margin: 5px;
-        }
-        
-        .chart_btn {
-            background-color: #faab17;
-            color: #000;
-            padding: 5px 15px;
-            text-decoration: none;
-            border-radius: 3px;
-            font-weight: bold;
-        }
-        
-        table {
-            width: 40%;
-            border-collapse: collapse;
-            margin: 15px 0;
-            background-color: #222;
-            color: #fff;
-            justify-self: center;
-
-        }
-        
-        table, th, td {
-            border: 1px solid #444;
-        }
-        
-        th, td {
-            padding: 8px;
-            text-align: center;
-        }
-        
-        th {
-            background-color: #333;
-            color: red;
-        }
-        
-        .satta_result {
-            background-color: #333;
-            padding: 10px;
-            text-align: center;
-            margin: 15px 0;
-            border-radius: 5px;
-        }
-        
-        .satta_result a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        
-        .refresh-btn {
-            display: block;
-            background-color: #faab17;
-            color: #000;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            text-align: center;
-            margin: 20px auto;
-            width: 150px;  
-        }
-
-        
-        .footer {
-        
-            text-align: center;
-            padding: 20px 0;
-            font-size: 14px;
-            background-color: #4A043F;
-            margin: 0;
-            bottom: 0;
-        
-        }
-        
-        .vemo, .vemo2 {
-            margin: 10px 0;
-        }
-        
-        .vemo2 a {
-            color: #faab17;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        
- 
-        
-        /* Responsive adjustments */
-        @media (max-width: 600px) {
-            .matka_title {
-                font-size: 16px;
-            }
-            
-            .finak_ank {
-                font-size: 20px;
-            }
-            
-            .chart_btn {
-                padding: 3px 10px;
-                font-size: 14px;
-            }
-            
-            table {
-                font-size: 14px;
-                width: 80%;
-            }
-            
-            th, td {
-                padding: 5px;
-            }
-            
-            #example td {
-                padding: 3px;
-                font-size: 12px;
-            }
-            
-            .Rhead {
-                font-size: 12px;
-            }
-        }
-        
-        @media (max-width: 400px) {
-            .logo3 a {
-                font-size: 14px;
-            }
-            
-            h2 {
-                font-size: 18px;
-            }
-            
-            h3 {
-                font-size: 16px;
-            }
-            
-            table {
-                font-size: 12px;
-            }
-            
-            #example {
-                overflow-x: auto;
-                display: block;
-            }
-        }
-    </style>
-
-</head>
 <body>
+
+
+    <div class="background-image">
+
+        <div class="inner-background-image" style="background-color: #2b090981;">
+
+
+
+
+
+
+
+            <section class="hero">
+                <video autoplay muted loop class="background-video">
+                    <source src="/static/css/video-1.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+
+                <div class="hero-inner">
+                    <div class="hero-text">
+                        <img src="/static/css/logo.png" alt="Logo" class="logo-img">
+                    </div>
+                </div>
+            </section>
+
+
+            <div class="bg4">
+                <img src="/static/css/istockphoto-1365016893-612x612-removebg-preview.png" alt="" style="height: 60px;">
+                <h2 style="margin: 0;">Our Main Goa Official Game Result</h2>
+                <img src="/static/css/istockphoto-1365016893-612x612-removebg-preview.png" alt="" style="height: 60px;">
+            </div>
+
+
+ <div class="slider-container">
+      <button class="slider-arrow left" onclick="slideLeft()">&#8592;</button>
+  <button class="slider-arrow right" onclick="slideRight()">&#8594;</button>
+        <div class="slider-content" id="sliderContent">
+            <!-- First copy -->
+            <div class="matka_result">
+                <div class="matka_result_box">
+                    <div class="matka_result_box-inner">
+                        <div class="">
+                            <h2 class="">Goa Morning</h2>
+                            <p class="finak_ank">160-75-889</p>
+                            <p class="finak_ank-p">10:00 PM - 12:10 AM</p>
+                        </div>
+
+                        <div>
+                            <h2 class="">Main Goa</h2>
+                            <p class="finak_ank">160-75-889</p>
+                            <p class="finak_ank-p">10:00 PM - 12:10 AM</p>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 20px;">
+                        <div class="result_now" style="display: flex; float: left;">
+                            <a href="#" class="chart_btn">
+                                <img src="data:image/png;base64,R0lGODlhBwAHAPsAMQAAAP8zM/9mZv8AAN0AAMwAACIAAHcAAFUAAO4AAIgAAP+ZmQAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQJIwAAACwAAAAABwAHAAAEHRCAEYYEQYhAplgbcWTaUCBJoCaKARRE0V4H4gKRACH5BAUjAAAALAAAAAABAAEAAAICRIEAOw=="
+                                    alt="red dot" style="height: 10px; width: 10px; margin-right: 3px;"> Jodi
+                            </a>
+                        </div>
+
+                        <div class="result_now_right" style="display: flex; float: right;">
+                            <a href="#" class="chart_btn">
+                                <img src="data:image/png;base64,R0lGODlhBwAHAPsAMQAAAP8zM/9mZv8AAN0AAMwAACIAAHcAAFUAAO4AAIgAAP+ZmQAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQJIwAAACwAAAAABwAHAAAEHRCAEYYEQYhAplgbcWTaUCBJoCaKARRE0V4H4gKRACH5BAUjAAAALAAAAAABAAEAAAICRIEAOw=="
+                                    alt="red dot" style="height: 10px; width: 10px; margin-right: 3px;"> Panel
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Second copy -->
+            <div class="matka_result">
+                <div class="matka_result_box">
+                    <div class="matka_result_box-inner">
+                        <div class="">
+                        <h2 class="">Goa Morning</h2>
+                            <p class="finak_ank">160-75-889</p>
+                            <p class="finak_ank-p">10:00 PM - 12:10 AM</p>
+                        </div>
+
+                        <div>
+                       <h2 class="">Main Goa</h2> 
+                            <p class="finak_ank">160-75-889</p>
+                            <p class="finak_ank-p">10:00 PM - 12:10 AM</p>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 20px;">
+                        <div class="result_now" style="display: flex; float: left;">
+                            <a href="#" class="chart_btn">
+                                <img src="data:image/png;base64,R0lGODlhBwAHAPsAMQAAAP8zM/9mZv8AAN0AAMwAACIAAHcAAFUAAO4AAIgAAP+ZmQAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQJIwAAACwAAAAABwAHAAAEHRCAEYYEQYhAplgbcWTaUCBJoCaKARRE0V4H4gKRACH5BAUjAAAALAAAAAABAAEAAAICRIEAOw=="
+                                    alt="red dot" style="height: 10px; width: 10px; margin-right: 3px;"> Jodi
+                            </a>
+                        </div>
+
+                        <div class="result_now_right" style="display: flex; float: right;">
+                            <a href="#" class="chart_btn">
+                                <img src="data:image/png;base64,R0lGODlhBwAHAPsAMQAAAP8zM/9mZv8AAN0AAMwAACIAAHcAAFUAAO4AAIgAAP+ZmQAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQJIwAAACwAAAAABwAHAAAEHRCAEYYEQYhAplgbcWTaUCBJoCaKARRE0V4H4gKRACH5BAUjAAAALAAAAAABAAEAAAICRIEAOw=="
+                                    alt="red dot" style="height: 10px; width: 10px; margin-right: 3px;"> Panel
+                            </a>
+                        </div>
+                   
+                    </div>
+                    
+                </div>
+               
+            </div>
+
+
+           
+        </div>
+      
+</div>
+
+
+
+
 <style>
-    * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-.hero {
-  font-family: 'Patrick Hand', cursive;
-  background: url('/static/css/f65db821-6a22-483e-bee1-f302b1f8219b.png') no-repeat center center/cover;
-  color: white;
-  height: fit-content;
-  display: flex;
-  flex-direction: column;
-}
 
 
-.lang-switch a {
-  color: white;
-  text-decoration: none;
-  margin: 0 5px;
-}
-
-.hero-inner {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 50px;
-  background: linear-gradient(to bottom, rgba(118, 10, 10, 0.2), rgba(8, 25, 48, 0.6));
-}
-
-
-
-.image-slider {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.image-track {
-  display: flex;
-  gap: 20px;
-  margin-bottom: 15px;
-}
-
-.image-track img {
-  width: 150px;
-  height: 220px;
-  object-fit: cover;
-  border-radius: 10px;
-  transition: transform 0.3s ease;
-}
-
-.image-track img:hover {
-  transform: scale(1.05);
-}
-
-.slider-nav {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: #ddd;
-}
-
-.slider-nav .line {
-  width: 80px;
-  height: 1px;
-  background-color: #ccc;
-}
-
-.arrows button {
-  background: rgba(255,255,255,0.1);
-  border: none;
-  color: white;
-  margin-left: 10px;
-  padding: 5px 10px;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-
-.logo-img{
-    height: 200px;
-    width: 400px;
-    display: flex;
-
-    justify-self: center;
-}
-
-
-</style>
-
-
-
-  <section class="hero">
-<div class="hero-inner">
-        <div class="hero-text">
-<img src="/static/css/logo2-removebg-preview.png" alt="" class="logo-img">
-    </div>
-</div>
-
-
-  </section>
+  
+    .slider-container {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
     
-<div class="bg4" >
-    <img src="/static/css/istockphoto-1365016893-612x612-removebg-preview.png" alt="" style="height: 60px;">
-    <h2 style="margin: 0;">Our Official Game Result</h2>
-    <img src="/static/css/istockphoto-1365016893-612x612-removebg-preview.png" alt="" style="height: 60px;">
-</div>
+      margin: 50px auto;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    .slider-content {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .matka_result {
+      min-width: 100%;
+      padding: 20px;
+      background: #330404;
+    }
+
+
+
+    .matka_result_box-inner {
+      display: flex;
+      justify-content: space-evenly;
+      margin-bottom: 15px;
+      gap: 20px;
+    }
+
+
+    .matka_title {
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+
+
+
+
+
+
+    .finak_ank {
+      color: #ffffff;
+      margin-bottom: 20px;
+      line-height: 28px;
+      letter-spacing: 2px;
+    }
+    .finak_ank-p{
+      line-height: 28px;
+      letter-spacing: 1px;
+    }
+
+
+
 
     
-    <div class="matka_result">
-        <div class="matka_result_box">
-            <p class="matka_title">MAIN BAZAR</p>
-            <p class="finak_ank">160-75-889</p>
-            <div class="result_now" style="display: flex; float: left;"><a href="#" class="chart_btn" >Jodi</a></div>
-            <div class="result_now_right" style="display: flex; float: right;"><a href="#" class="chart_btn">Panel</a></div>
-            <small>10:00 PM - 12:10AM</small>
+
+    .chart_btn {
+      text-decoration: none;
+      color: #000;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+    }
+
+    .slider-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(5, 12, 87, 0.5);
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      z-index: 10;
+      border-radius: 50%;
+    }
+
+    .slider-arrow.left {
+      left: 10px;
+    }
+
+    .slider-arrow.right {
+      right: 10px;
+    }
+  </style>
+
+
+
+<script>
+  let currentIndex = 0;
+  const sliderContent = document.getElementById('sliderContent');
+  const items = document.querySelectorAll('.matka_result');
+  const totalItems = items.length;
+
+  function updateSlider() {
+    const slideWidth = items[0].offsetWidth;
+    sliderContent.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+  }
+
+  function slideRight() {
+    currentIndex = (currentIndex + 1) % totalItems;
+    updateSlider();
+  }
+
+  function slideLeft() {
+    currentIndex = (currentIndex - 1 + totalItems) % totalItems;
+    updateSlider();
+  }
+
+  // Auto slide every 4 seconds
+  setInterval(slideRight, 4000);
+
+  // Recalculate position on resize
+  window.addEventListener('resize', updateSlider);
+</script>
+
+
+            <div class="bg4">
+                <img src="/static/css/istockphoto-1365016893-612x612-removebg-preview.png" alt="" style="height: 60px;">
+                <h2>Dear Goa Morning Result</h2> <img
+                    src="/static/css/istockphoto-1365016893-612x612-removebg-preview.png" alt="" style="height: 60px;">
+            </div>
+
+
+            <table class="sub-table">
+                <thead>
+                    <tr>
+                        <th>
+                            <center>Game Round's</center>
+                        </th>
+                        <th>
+                            <center>Time</center>
+                        </th>
+                        <th>
+                            <center>Result</center>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1st Baji</td>
+                        <td>01:00 PM</td>
+                        <td>***-*</td>
+                    </tr>
+                    <tr>
+                        <td>2nd Baji</td>
+                        <td>06:00 PM</td>
+                        <td>***-*</td>
+                    </tr>
+                    <tr>
+                        <td>3rd Baji</td>
+                        <td>08:00 PM</td>
+                        <td>***-*</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="bg4">
+                <img src="/static/css/istockphoto-1365016893-612x612-removebg-preview.png" alt="" style="height: 60px;">
+                <h2 style="margin: 0;">Our Official Game Result</h2>
+                <img src="/static/css/istockphoto-1365016893-612x612-removebg-preview.png" alt="" style="height: 60px;">
+            </div>
+
+
+            <br>
+
+            <center>
+                <a href="https://whatsapp.com/channel/0029Va5YQv4GZNCoFDbNbB2N">
+                    <img src="https://mainfatafat.org/images/wt.jpg" alt="whatsapp matka"
+                        style="max-width: 160px; height: auto;">
+                </a>
+            </center>
+            <br>
+
+
+            <table class="sub-table">
+                <thead>
+                    <tr>
+                        <th>
+                            <center>Game Round's</center>
+                        </th>
+                        <th>
+                            <center>Time</center>
+                        </th>
+                        <th>
+                            <center>Result</center>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1st Baji</td>
+                        <td>11:00 AM</td>
+                        <td>467-7</td>
+                    </tr>
+                    <tr>
+                        <td>2nd Baji</td>
+                        <td>12:30 PM</td>
+                        <td>590-4</td>
+                    </tr>
+                    <tr>
+                        <td>3rd Baji</td>
+                        <td>02:00 PM</td>
+                        <td>670-3</td>
+                    </tr>
+                    <tr>
+                        <td>4th Baji</td>
+                        <td>03:30 PM</td>
+                        <td>***-*</td>
+                    </tr>
+                    <tr>
+                        <td>5th Baji</td>
+                        <td>05:00 PM</td>
+                        <td>***-*</td>
+                    </tr>
+                    <tr>
+                        <td>6th Baji</td>
+                        <td>06:30 PM</td>
+                        <td>***-*</td>
+                    </tr>
+                    <tr>
+                        <td>7th Baji</td>
+                        <td>08:00 PM</td>
+                        <td>***-*</td>
+                    </tr>
+                    <tr>
+                        <td>8th Baji</td>
+                        <td>09:30 PM</td>
+                        <td>***-*</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+
+            <div class="satta_result bg3"><a href="" title="Panel Chart" style="color: #faab17;">
+                    <span style="display: flex; flex-direction: column; margin-bottom: 10px;"> Full Panel Record </span>
+                    <span> Click Here </span></a>
+            </div>
+
+            <br>
+
+            <div class="bg4">
+                <img src="/static/css/istockphoto-1365016893-612x612-removebg-preview.png" alt="" style="height: 60px;">
+                <h2>Latest Last Seven Day Record Chart</h2>
+                <img src="/static/css/istockphoto-1365016893-612x612-removebg-preview.png" alt="" style="height: 60px;">
+            </div>
+
+
+
+            <div class="table-container">
+                <table class="main-table">
+                    <tbody>
+                        <tr style="padding: 0">
+                            <td colspan="13" style="padding:0">
+                                <div style="text-align: center; padding: 10px;">
+                                    <b>
+                                        <h3 class="main-table-heading" style="color: red;">LAST SEVEN DAYS LIVE RECORD
+                                            of Main Goa
+                                        </h3>
+                                    </b>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="table-header">
+                            <td>DATE</td>
+                            <td>11:00 AM</td>
+                            <td>12:30 PM</td>
+                            <td>02:00 PM</td>
+                            <td>03:30 PM</td>
+                            <td>05:00 PM</td>
+                            <td>06:30 PM</td>
+                            <td>08:00 PM</td>
+                            <td>09:30 PM</td>
+                        </tr>
+
+                        <!-- Sample Row -->
+                        <tr>
+                            <td><span class="main-table-spanGap">01-05-2025</span> <span class="">Thursday</span></td>
+                            <td><span class="main-table-spanGap">267</span><span class="">267</span></td>
+                            <td><span class="main-table-spanGap">127</span><span class="">127</span></td>
+                            <td><span class="main-table-spanGap">239</span><span class="">127</span></td>
+                            <td><span class="main-table-spanGap">350</span><span class="">127</span></td>
+                            <td><span class="main-table-spanGap">789</span><span class="">127</span></td>
+                            <td><span class="main-table-spanGap">369</span><span class="">127</span></td>
+                            <td><span class="main-table-spanGap">358</span><span class="">127</span></td>
+                            <td><span class="main-table-spanGap">567</span><span class="">127</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="main-table-spanGap">01-05-2025</span> <span class="">Thursday</span></td>
+                            <td><span class="main-table-spanGap">267</span><span class="">267</span></td>
+                            <td><span class="main-table-spanGap">127</span><span class="">127</span></td>
+                            <td><span class="main-table-spanGap">239</span><span class="">127</span></td>
+                            <td><span class="main-table-spanGap">350</span><span class="">127</span></td>
+                            <td><span class="main-table-spanGap">789</span><span class="">127</span></td>
+                            <td><span class="main-table-spanGap">369</span><span class="">127</span></td>
+                            <td><span class="main-table-spanGap">358</span><span class="">127</span></td>
+                            <td><span class="main-table-spanGap">567</span><span class="">127</span></td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="main-table-spanGap">01-05-2025</span> <span class="">Thursday</span></td>
+                            <td><span class="main-table-spanGap">267</span><span class="">267</span></td>
+                            <td><span class="main-table-spanGap">127</span><span class="">127</span></td>
+                            <td><span class="main-table-spanGap">239</span><span class="">127</span></td>
+                            <td><span class="main-table-spanGap">350</span><span class="">127</span></td>
+                            <td><span class="main-table-spanGap">789</span><span class="">127</span></td>
+                            <td><span class="main-table-spanGap">369</span><span class="">127</span></td>
+                            <td><span class="main-table-spanGap">358</span><span class="">127</span></td>
+                            <td><span class="main-table-spanGap">567</span><span class="">127</span></td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="main-table-spanGap">01-05-2025</span> <span class="">Thursday</span></td>
+                            <td><span class="main-table-spanGap">267</span><span class="">267</span></td>
+                            <td><span class="main-table-spanGap">127</span><span class="">127</span></td>
+                            <td><span class="main-table-spanGap">239</span><span class="">127</span></td>
+                            <td><span class="main-table-spanGap">350</span><span class="">127</span></td>
+                            <td><span class="main-table-spanGap">789</span><span class="">127</span></td>
+                            <td><span class="main-table-spanGap">369</span><span class="">127</span></td>
+                            <td><span class="main-table-spanGap">358</span><span class="">127</span></td>
+                            <td><span class="main-table-spanGap">567</span><span class="">127</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="main-table-spanGap">01-05-2025</span> <span class="">Thursday</span></td>
+                            <td><span class="main-table-spanGap">267</span><span class="">267</span></td>
+                            <td><span class="main-table-spanGap">127</span><span class="">127</span></td>
+                            <td><span class="main-table-spanGap">239</span><span class="">127</span></td>
+                            <td><span class="main-table-spanGap">350</span><span class="">127</span></td>
+                            <td><span class="main-table-spanGap">789</span><span class="">127</span></td>
+                            <td><span class="main-table-spanGap">369</span><span class="">127</span></td>
+                            <td><span class="main-table-spanGap">358</span><span class="">127</span></td>
+                            <td><span class="main-table-spanGap">567</span><span class="">127</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="main-table-spanGap">01-05-2025</span> <span class="">Thursday</span></td>
+                            <td><span class="main-table-spanGap">267</span><span class="">267</span></td>
+                            <td><span class="main-table-spanGap">127</span><span class="">127</span></td>
+                            <td><span class="main-table-spanGap">239</span><span class="">127</span></td>
+                            <td><span class="main-table-spanGap">350</span><span class="">127</span></td>
+                            <td><span class="main-table-spanGap">789</span><span class="">127</span></td>
+                            <td><span class="main-table-spanGap">369</span><span class="">127</span></td>
+                            <td><span class="main-table-spanGap">358</span><span class="">127</span></td>
+                            <td><span class="main-table-spanGap">567</span><span class="">127</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="main-table-spanGap">01-05-2025</span> <span class="">Thursday</span></td>
+                            <td><span class="main-table-spanGap">267</span><span class="">267</span></td>
+                            <td><span class="main-table-spanGap">127</span><span class="">127</span></td>
+                            <td><span class="main-table-spanGap">239</span><span class="">127</span></td>
+                            <td><span class="main-table-spanGap">350</span><span class="">127</span></td>
+                            <td><span class="main-table-spanGap">789</span><span class="">127</span></td>
+                            <td><span class="main-table-spanGap">369</span><span class="">127</span></td>
+                            <td><span class="main-table-spanGap">358</span><span class="">127</span></td>
+                            <td><span class="main-table-spanGap">567</span><span class="">127</span></td>
+                        </tr>
+
+                        <!-- Add remaining rows the same way -->
+                    </tbody>
+                </table>
+            </div>
+
+
+
+
+
+
+
+
+            <div class="bg4">
+                <img src="/static/css/istockphoto-1365016893-612x612-removebg-preview.png" alt="" style="height: 60px;">
+                <h2>Main Goa Time Table</h2>
+                <img src="/static/css/istockphoto-1365016893-612x612-removebg-preview.png" alt="" style="height: 60px;">
+            </div>
+            <br>
+            <table class="sub-table">
+                <tbody>
+                    <tr>
+                        <th>Game Round</th>
+                        <th>Game Time</th>
+                        <th>Result Time</th>
+                    </tr>
+                    <tr>
+                        <td>1st Baji</td>
+                        <td>10.30am</td>
+                        <td>11.00am</td>
+                    </tr>
+                    <tr>
+                        <td>2nd Baji</td>
+                        <td>12.00am</td>
+                        <td>12.30pm</td>
+                    </tr>
+                    <tr>
+                        <td>3rd Baji</td>
+                        <td>01.30pm</td>
+                        <td>02.00pm</td>
+                    </tr>
+                    <tr>
+                        <td>4th Baji</td>
+                        <td>02.30pm</td>
+                        <td>03.30pm</td>
+                    </tr>
+                    <tr>
+                        <td>5th Baji</td>
+                        <td>04.30pm</td>
+                        <td>05.00pm</td>
+                    </tr>
+                    <tr>
+                        <td>6th Baji</td>
+                        <td>06.00pm</td>
+                        <td>06.30pm</td>
+                    </tr>
+                    <tr>
+                        <td>7th Baji</td>
+                        <td>07.30pm</td>
+                        <td>08.00pm</td>
+                    </tr>
+                    <tr>
+                        <td>8th Baji</td>
+                        <td>09.00pm</td>
+                        <td>09.30pm</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
         </div>
     </div>
-
-    
-    <div class="bg4" >
-       <img src="/static/css/istockphoto-1365016893-612x612-removebg-preview.png" alt="" style="height: 60px;">  <h2>Dear Matka Result</h2>  <img src="/static/css/istockphoto-1365016893-612x612-removebg-preview.png" alt="" style="height: 60px;">
-    </div>
-    
-    <table>
-        <thead>
-            <tr>
-                <th><center>Game Round's</center></th>
-                <th><center>TIME</center></th>
-                <th><center>RESULT</center></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>1st Baji</td>
-                <td>01:00 PM</td>
-                <td>***-*</td>
-            </tr>
-            <tr>
-                <td>2nd Baji</td>
-                <td>06:00 PM</td>
-                <td>***-*</td>
-            </tr>
-            <tr>
-                <td>3rd Baji</td>
-                <td>08:00 PM</td>
-                <td>***-*</td>
-            </tr>
-        </tbody>
-    </table>
-    
-<div class="bg4" >
-    <img src="/static/css/istockphoto-1365016893-612x612-removebg-preview.png" alt="" style="height: 60px;">
-    <h2 style="margin: 0;">Our Official Game Result</h2>
-    <img src="/static/css/istockphoto-1365016893-612x612-removebg-preview.png" alt="" style="height: 60px;">
-</div>
-
-    
-    <br>
-    
-    <center>
-        <a href="https://whatsapp.com/channel/0029Va5YQv4GZNCoFDbNbB2N">
-            <img src="https://mainfatafat.org/images/wt.jpg" alt="whatsapp matka" style="max-width: 160px; height: auto;">
-        </a>
-    </center>
-    
- 
-    
-    <table>
-        <thead>
-            <tr>
-                <th><center>Game Round's</center></th>
-                <th><center>TIME</center></th>
-                <th><center>RESULT</center></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>1st Baji</td>
-                <td>11:00 AM</td>
-                <td>467-7</td>
-            </tr>
-            <tr>
-                <td>2nd Baji</td>
-                <td>12:30 PM</td>
-                <td>590-4</td>
-            </tr>
-            <tr>
-                <td>3rd Baji</td>
-                <td>02:00 PM</td>
-                <td>670-3</td>
-            </tr>
-            <tr>
-                <td>4th Baji</td>
-                <td>03:30 PM</td>
-                <td>***-*</td>
-            </tr>
-            <tr>
-                <td>5th Baji</td>
-                <td>05:00 PM</td>
-                <td>***-*</td>
-            </tr>
-            <tr>
-                <td>6th Baji</td>
-                <td>06:30 PM</td>
-                <td>***-*</td>
-            </tr>
-            <tr>
-                <td>7th Baji</td>
-                <td>08:00 PM</td>
-                <td>***-*</td>
-            </tr>
-            <tr>
-                <td>8th Baji</td>
-                <td>09:30 PM</td>
-                <td>***-*</td>
-            </tr>
-        </tbody>
-    </table>
-    
-    <div class="satta_result bg3"><a href="main-fatafat-panel-chart.php" title="Panel Chart">Full Panel Record<br>Click Here</a></div>
-    
-    <br>
-    
-    <div class="bg4">
-        <h2>Latest Last Seven Day Record Chart</h2>
-    </div>
-    
-    <div style="overflow-x: auto;">
-        <table border="1" bgcolor="white" style="width: 100%;">
-            <tbody>
-                <tr style="padding: 0">
-                    <td colspan="13" style="padding:0">
-                        <div style="text-align: center; padding: 5px;">
-                            <font size="5" color="#181ff2">LAST SEVEN DAYS LIVE RECORD</font>
-                        </div>
-                    </td>
-                </tr>
-                <tr style="background-color:rgba(242,247,37, 0.4)">
-                    <td><p align="center" class="Rhead">DATE</p></td>
-                    <td valign="middle" align="center" class="Rhead">11:00AM</td>
-                    <td valign="middle" align="center" class="Rhead">12:30PM</td>
-                    <td valign="middle" align="center" class="Rhead">02:00PM</td>
-                    <td valign="middle" align="center" class="Rhead">03:30PM</td>
-                    <td valign="middle" align="center" class="Rhead">05:00PM</td>
-                    <td valign="middle" align="center" class="Rhead">06:30PM</td>
-                    <td valign="middle" align="center" class="Rhead">08:00PM</td>
-                    <td valign="middle" align="center" class="Rhead">09:30PM</td>
-                </tr>
-                <tr>
-                    <td><span>01-05-2025<br>Thursday</span></td>
-                    <td><span>267<br>5</span></td>
-                    <td><span>127<br>0</span></td>
-                    <td><span>239<br>4</span></td>
-                    <td><span>350<br>8</span></td>
-                    <td><span>789<br>4</span></td>
-                    <td><span>369<br>8</span></td>
-                    <td><span>358<br>6</span></td>
-                    <td><span>567<br>8</span></td>
-                </tr>
-                <tr>
-                    <td><span>02-05-2025<br>Friday</span></td>
-                    <td><span>259<br>6</span></td>
-                    <td><span>138<br>2</span></td>
-                    <td><span>389<br>0</span></td>
-                    <td><span>380<br>1</span></td>
-                    <td><span>680<br>4</span></td>
-                    <td><span>347<br>4</span></td>
-                    <td><span>660<br>2</span></td>
-                    <td><span>124<br>7</span></td>
-                </tr>
-                <tr>
-                    <td><span>03-05-2025<br>Saturday</span></td>
-                    <td><span>489<br>1</span></td>
-                    <td><span>179<br>7</span></td>
-                    <td><span>145<br>0</span></td>
-                    <td><span>289<br>9</span></td>
-                    <td><span>699<br>4</span></td>
-                    <td><span>256<br>3</span></td>
-                    <td><span>350<br>8</span></td>
-                    <td><span>570<br>2</span></td>
-                </tr>
-                <tr>
-                    <td><span>04-05-2025<br>Sunday</span></td>
-                    <td><span>145<br>0</span></td>
-                    <td><span>123<br>6</span></td>
-                    <td><span>368<br>7</span></td>
-                    <td><span>159<br>5</span></td>
-                    <td><span>***<br>*</span></td>
-                    <td><span>***<br>*</span></td>
-                    <td><span>***<br>*</span></td>
-                    <td><span>***<br>*</span></td>
-                </tr>
-                <tr>
-                    <td><span>05-05-2025<br>Monday</span></td>
-                    <td><span>259<br>6</span></td>
-                    <td><span>126<br>9</span></td>
-                    <td><span>249<br>5</span></td>
-                    <td><span>237<br>2</span></td>
-                    <td><span>360<br>9</span></td>
-                    <td><span>245<br>1</span></td>
-                    <td><span>459<br>8</span></td>
-                    <td><span>440<br>8</span></td>
-                </tr>
-                <tr>
-                    <td><span>06-05-2025<br>Tuesday</span></td>
-                    <td><span>560<br>1</span></td>
-                    <td><span>134<br>8</span></td>
-                    <td><span>346<br>3</span></td>
-                    <td><span>137<br>1</span></td>
-                    <td><span>390<br>2</span></td>
-                    <td><span>260<br>8</span></td>
-                    <td><span>227<br>1</span></td>
-                    <td><span>269<br>7</span></td>
-                </tr>
-                <tr>
-                    <td><span>07-05-2025<br>Wednesday</span></td>
-                    <td><span>467<br>7</span></td>
-                    <td><span>590<br>4</span></td>
-                    <td><span>670<br>3</span></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    
-    <div class="bg4">
-        <h2>Main FataFat Time Table</h2>
-    </div>
-    
-    <table class="center">
-        <tbody>
-            <tr>
-                <th>Game Round</th>
-                <th>Game Time</th>
-                <th>Result Time</th>
-            </tr>
-            <tr>
-                <td>1st Baji</td>
-                <td>10.30am</td>
-                <td>11.00am</td>
-            </tr>
-            <tr>
-                <td>2nd Baji</td>
-                <td>12.00am</td>
-                <td>12.30pm</td>
-            </tr>
-            <tr>
-                <td>3rd Baji</td>
-                <td>01.30pm</td>
-                <td>02.00pm</td>
-            </tr>
-            <tr>
-                <td>4th Baji</td>
-                <td>02.30pm</td>
-                <td>03.30pm</td>
-            </tr>
-            <tr>
-                <td>5th Baji</td>
-                <td>04.30pm</td>
-                <td>05.00pm</td>
-            </tr>
-            <tr>
-                <td>6th Baji</td>
-                <td>06.00pm</td>
-                <td>06.30pm</td>
-            </tr>
-            <tr>
-                <td>7th Baji</td>
-                <td>07.30pm</td>
-                <td>08.00pm</td>
-            </tr>
-            <tr>
-                <td>8th Baji</td>
-                <td>09.00pm</td>
-                <td>09.30pm</td>
-            </tr>
-        </tbody>
-    </table>
-    
     <hr>
-    
-    <h2 style="color:pink">About Main Fatafat</h2>
-    <p>Welcome to Main Fatafat Satta Matka, the ultimate destination for all your satta matka needs! We are thrilled to bring you an exhilarating experience filled with excitement and endless possibilities. <br> At Main Fatafat Satta Matka, we understand the thrill that comes with playing this popular game. With our user-friendly platform, we aim to provide you with a seamless and electrifying gaming experience like never before. Get ready to dive into the world of satta matka and witness the adrenaline rush firsthand. <br> Our team consists of passionate individuals who have a deep understanding of the satta matka industry. We are constantly striving to bring you the most accurate and up-to-date results, ensuring that you stay ahead in the game. With our cutting-edge technology and expert analysis, you can trust us to provide you with reliable information and guidance. <br> Whether you are a seasoned player or new to the world of satta matka, we have something for everyone. Our website offers a wide range of games, markets, and betting options to cater to your preferences. From traditional matka to modern variations, we have it all under one roof. <br> What sets us apart is our commitment to transparency and fairness. We believe in maintaining a level playing field for all our users, ensuring that every game is conducted with utmost integrity. Rest assured, your safety and security are our top priorities, and we leave no stone unturned to provide you with a secure gaming environment. <br> Join us on this thrilling journey and unlock the door to immense excitement and unlimited opportunities. Get ready to experience the rush, the joy, and the ecstasy that only Main Fatafat Satta Matka can deliver. Let the games begin!</p>
-    
-    <hr>
-    
-    <a href="index.php" class="refresh-btn">Refresh</a>
-    
+
+    <h2 style="color:rgb(255, 7, 7); margin-top: 30px;">About Main Goa</h2>
+    <p style="padding: 20px; line-height: 25px;">Welcome to Main Fatafat Satta Matka, the ultimate destination for all
+        your satta matka needs! We are thrilled to
+        bring you an exhilarating experience filled with excitement and endless possibilities. <br> At Main Fatafat
+        Satta Matka, we understand the thrill that comes with playing this popular game. With our user-friendly
+        platform, we aim to provide you with a seamless and electrifying gaming experience like never before. Get ready
+        to dive into the world of satta matka and witness the adrenaline rush firsthand. <br> Our team consists of
+        passionate individuals who have a deep understanding of the satta matka industry. We are constantly striving to
+        bring you the most accurate and up-to-date results, ensuring that you stay ahead in the game. With our
+        cutting-edge technology and expert analysis, you can trust us to provide you with reliable information and
+        guidance. <br> Whether you are a seasoned player or new to the world of satta matka, we have something for
+        everyone. Our website offers a wide range of games, markets, and betting options to cater to your preferences.
+        From traditional matka to modern variations, we have it all under one roof. <br> What sets us apart is our
+        commitment to transparency and fairness. We believe in maintaining a level playing field for all our users,
+        ensuring that every game is conducted with utmost integrity. Rest assured, your safety and security are our top
+        priorities, and we leave no stone unturned to provide you with a secure gaming environment. <br> Join us on this
+        thrilling journey and unlock the door to immense excitement and unlimited opportunities. Get ready to experience
+        the rush, the joy, and the ecstasy that only Main Fatafat Satta Matka can deliver. Let the games begin!</p>
+
+
+
+    <a href="" class="refresh-btn">Refresh</a>
+    <br>
+
+
+
+
 
 </body>
-<footer class="footer">
-  <div class="vemo2"><a href="https://mainfatafat.org/">mainfatafat.org</a></div>
-  ALL RIGHTS RESERVED (2023-2025)<br>
-  SITE MANAGER:-<br>
-  <u>Admin Sir</u><br>
-  <div class="vemo">7024923729</div>
-  <p><b>https://mainfatafat.org<img src="data:image/png;base64,R0lGODlhBwAHAPsAMQAAAP8zM/9mZv8AAN0AAMwAACIAAHcAAFUAAO4AAIgAAP+ZmQAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQJIwAAACwAAAAABwAHAAAEHRCAEYYEQYhAplgbcWTaUCBJoCaKARRE0V4H4gKRACH5BAUjAAAALAAAAAABAAEAAAICRIEAOw==" alt="Satta Matka /" width="10" height="10"></b></p>
-</footer>
-</html>
+
+
+
+{% endblock body %}
