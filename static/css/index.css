@@ -19,14 +19,19 @@
         .background-image {
 
 
-            background-image: url('/static/css/bg.jpg');
-            background-position: center;
+            background-image: url('./bg.jpg');
+            /* background-position: center; */
             background-repeat: no-repeat;
             background-size: cover;
+      
 
 
         }
 
+        
+        .inner-background-image{
+            background-color: #0908087f;
+        }
 
         .logo-container {
             text-align: center;
@@ -67,6 +72,21 @@
             margin: 15px 0;
         }
 
+.about-h2 {
+    color: rgb(255, 0, 0);
+    text-shadow: 1px 1px 1px white;
+    text-align: center;
+    padding-top: 30px;
+}
+
+
+        .about-div{
+            background-color: #ffa600;
+            background-image: url('/static/css/ab.jpg'); background-position: center;
+            background-repeat: no-repeat;
+        }
+
+
         p {
             margin-bottom: 15px;
             padding: 0 10px;
@@ -86,7 +106,7 @@
  
 
         .matka_result_box {
-            background-image: url('https://img.freepik.com/free-vector/flat-design-poker-table-background_23-2151016818.jpg?t=st=1746854753~exp=1746858353~hmac=8ad2ff750508b4c5425c98b0e91e814007de54ec88f52b15edd4c194c89d3123&w=1380');
+            background-image: url('./flat-design-poker-table-background.png');
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center;
