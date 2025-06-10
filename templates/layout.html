@@ -118,7 +118,16 @@
 </script>   
  -->
 
-
+<script>
+  function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
+</script>
 
 <style>
   /* For modern browsers */
@@ -144,7 +153,35 @@
 </style>
 
 
+<header>
+<div class="header">
+<section>
+<span class="cross parallelogram"><img src="/static/css/ab-removebg-preview.png" class="logo skew-fix" alt="LOGO."></span>
+</section>
+<section>
+<div class="top-tab">
+<span>
+<a href="tel:0000000000"><i class="fa fa-phone"></i> (+0)-000-0000-000</a>
+<a href="emailto:support@websitename.com"><i class="fa fa-envelope"></i> support@websitename.com</a>
+</span>
+<span>
+<a href="#"><i class="fa fa-facebook"></i></a>
+<a href="#"><i class="fa fa-instagram"></i></a>
+<a href="#"><i class="fa fa-twitter"></i></a>
+<a href="#"><i class="fa fa-youtube"></i></a>
+</span>
+</div>
+<div class="topnav" id="myTopnav">
 
+<a href="/" class="active">Home</a>
+<a href="/contact">Contact</a>
+<a href="/about">About</a>
+<a href="/about">Old Result</a>
+<a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+</div>
+</section>
+</div>
+</header>
 
 {% block body %}
 
