@@ -484,7 +484,7 @@ def text():
 
     return render_template('text.html', 
                            
-                           results=results, extra=daily_extra, now=now, start_time=start_time, end_time=end_time, daily_data=daily_data, title="Fastest and Live Online Goa Satta Result only at goasatta.in")
+        results=results, extra=daily_extra, now=now, start_time=start_time, end_time=end_time, daily_data=daily_data, title="Fastest and Live Online Goa Satta Result only at goasatta.in")
 
 
 
@@ -495,7 +495,8 @@ def text():
 
 @app.route("/contact")
 def contact():
-    return render_template('Contact.html', title="Contact Us")
+    return render_template('contact.html', title="Contact Us")
+
 @app.route("/old")
 def old():
 

@@ -1,71 +1,68 @@
 {% extends 'layout.html' %}
 {% block title %} {{title}} {% endblock title %}
 {% block body %}
+
 <body>
-    
 
 
 
 
-<!--BANNER-->
+
+    <!--BANNER-->
 
 
-    <div class="banner" >
-        <div style="background-color: rgba(0, 0, 0, 0.571);" class="banner-1">
 
-<section>
-<h3>Welcome To <em>Xrigade</em> Logistics</h3>
-<h1 class="title">We Make Your Transport Simple</h1>
+    </head>
 
-</section>
-<section class="form-section">
-    <div class="contact-container">
-        <h1>Contact Us</h1>
-        <form class="contact-form">
-            <div class="form-group">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
+    <body>
+        <div class="banner">
+            <div class="banner-1">
+                <section>
+                    <h3>Welcome To <em>Xrigade</em> Logistics</h3>
+                    <h1 class="title">We Make Your Transport Simple</h1>
+                </section>
+                <section class="form-section">
+                    <div class="contact-container">
+                        <h1>Contact Us</h1>
+                        <form class="contact-form">
+                            <div class="form-group">
+                                <label for="name">Name:</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message">Message:</label>
+                                <textarea id="message" name="message" rows="3" required></textarea>
+                            </div>
+
+                            <button type="submit" class="submit-btn">Send Message</button>
+                        </form>
+                    </div>
+                </section>
             </div>
-            
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
+        </div>
+
+        <!-- SECTION1 -->
+        <div class="section1">
+            <div class="title_header">
+                <section>
+                    <h1 class="choose-us">Why People Choose Us?</h1>
+                </section>
+                <section style="color: rgb(255, 255, 255);">
+                    <p class="choose-us-p">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                        laboris nisi ut aliquip ex ea commodo consequat.
+                    </p>
+                </section>
             </div>
-            
-            
-            <div class="form-group">
-                <label for="message">Message:</label>
-                <textarea id="message" name="message" rows="5" required></textarea>
-            </div>
-            
-            <button type="submit" class="submit-btn">Send Message</button>
-        </form>
-    </div>
-</section>
-</div>
-</div>
+        </div>
 
+    </body>
 
-
-
-<!--SECTION1-->
-<div class="section1">
-<div class="title_header">
-<section>
-<h1 class="choose-us">Why People Choose Us?</h1>
-
-</section>
-<section style="color: rgb(255, 255, 255); ">
-<p class="choose-us-p"
->Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-</section>
-</div>
-<section>
-
-</section>
-</div>
-
-
-</body>
-
-{% endblock body %}
+    {% endblock body %}

@@ -2,20 +2,198 @@
 {% block title %} {{title}} {% endblock title %}
 {% block body %}
 
-<div class="container my-5" style="height: 60vh;">
-    <h2>You Are Editing Slot - {{slot}}</h2>
-    <form action="/update/{{slot}}" method="POST">
-      <div class="mb-3">
-        <label for="title" class="form-label">One Digit Result</label>
-        <input type="text" class="form-control" name="oneDigi" id="oneDigi" value="{{one}}"
-          aria-describedby="emailHelp" min="0" max="9" required>
+<div class="result-editor">
+
+
+
+
+ 
+
+
+
+
+  <div class="editor-container">
+
+
+ 
+    <h2 class="editor-title">Edit Slot - <span class="slot-name">{{slot}}</span></h2>
+    
+    <form action="/update/{{slot}}" method="POST" class="editor-form">
+      <div class="form-group">
+        <label for="oneDigi" class="form-label" style="color: #ffffff; font-size: 1.3rem;">One Digit Result</label>
+        <input 
+          type="number" 
+          class="form-input" 
+          name="oneDigi" 
+          id="oneDigi" 
+          value="{{one}}"
+          min="0" 
+          max="9" 
+          required
+          pattern="[0-9]"
+          inputmode="numeric">
+        <div class="input-hint">Enter a single digit (0-9)</div>
       </div>
-      <div class="mb-3">
-        <label for="desc" class="form-label">Three Digit Result</label>
-        <input type="text" class="form-control" name="threeDigi" id="threeDigi" value="{{three}}" min="100" max="999" required>
+      
+      <div class="form-group">
+        <label for="threeDigi" class="form-label" style="color: #ffffff; font-size: 1.3rem;">Three Digit Result</label>
+        <input 
+          type="number" 
+          class="form-input" 
+          name="threeDigi" 
+          id="threeDigi" 
+          value="{{three}}" 
+          min="100" 
+          max="999" 
+          required
+          pattern="[0-9]{3}"
+          inputmode="numeric">
+        <div class="input-hint">Enter three digits (100-999)</div>
       </div>
-      <button type="submit" class="btn btn-success">Update</button>
+      
+      <div class="form-actions">
+        <button type="submit" class="submit-btn">
+          <span class="btn-text">Update Result</span>
+          <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 6L9 17l-5-5"/>
+          </svg>
+        </button>
+      </div>
     </form>
   </div>
+
+    
+
+</div>
+
+<style>
+:root {
+  --primary: #4f46e5;
+  --primary-hover: #4338ca;
+  
+  --text-light: #6b7280;
+  --bg: #f9fafb;
+  --card-bg: #ffffff;
+  --border: #e5e7eb;
+  --radius: 12px;
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+
+
+.result-editor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: fit-content;
+  background-image: url('https://i.postimg.cc/SRbN0Qxs/bg.jpg');
+  /* background-color: #4f46e5; */
+  padding: 4rem;
+}
+
+.editor-container {
+  width: 100%;
+  max-width: 480px;
+  background: rgba(126, 6, 6, 0.56);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 2rem;
+  border: 1px solid var(--border);
+  
+
+}
+
+.editor-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: var(--bg);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.slot-name {
+  color: var(--primary);
+}
+
+.editor-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: rgb(255, 255, 255);
+}
+
+.form-input {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.2s;
+  background-color: var(--bg);
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.input-hint {
+  font-size: 0.75rem;
+  color: white;
+}
+
+.form-actions {
+  margin-top: 1rem;
+}
+
+.submit-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  width: 100%;
+}
+
+.submit-btn:hover {
+  background-color: var(--primary-hover);
+}
+
+.btn-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+@media (max-width: 640px) {
+  .editor-container {
+    padding: 1.5rem;
+  }
+  
+  .editor-title {
+    font-size: 1.25rem;
+  }
+}
+</style>
 
 {% endblock body %}

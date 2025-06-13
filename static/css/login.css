@@ -19,7 +19,7 @@
   position: relative;
   width: 500px;
   height: 500px;
-  background: #0a0a0a;
+  background: #077faa;
   border-radius: 50%;
   overflow: hidden;
   margin-top: 6rem;
@@ -145,6 +145,7 @@
   border-radius: 50px;
   display: inline-block;
 }
+
 
 .inputBox-login {
   position: relative;

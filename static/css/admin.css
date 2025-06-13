@@ -1,0 +1,406 @@
+  /* <style> */
+
+  .admin-body {
+      background-image: url('/static/css/bg.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+  }
+
+  .admin-mask {
+      background-color: #00000091;
+      margin-top: -1rem;
+      padding-top: 1rem;
+  }
+
+  /* Apply equal padding for table cells */
+  .admin-th-3 {
+      padding: 1rem;
+      text-align: center;
+  }
+
+  /* Make inputs and selects take full width & height of cell */
+  .admin-select,
+  .admin-input,
+  .btn {
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+      padding: 0.5rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+  }
+
+  .input-wrapper {
+      display: flex;
+      justify-content: center;
+      /* horizontal center */
+      margin-top: 4rem;
+  }
+
+  .admin-input-text {
+      width: 40%;
+      padding: 0.5rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px 0px 0px 4px;
+      box-sizing: border-box;
+  }
+
+
+  .btn-success-text {
+      background-color: #28a745;
+      text-decoration: none;
+      color: #fff;
+      padding: 15px 22px;
+      font-size: 16px;
+      font-weight: 600;
+      border: none;
+      border-radius: 0px 6px 6px 0px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 8px rgba(40, 167, 69, 0.5);
+  }
+
+
+  .btn-success-text:hover {
+      background-color: #218838;
+      box-shadow: 0 0 12px rgba(40, 167, 69, 0.8), 0 0 20px rgba(40, 167, 69, 0.6);
+      transform: scale(1.05);
+  }
+
+
+  .btn-success-text:active {
+      background-color: #1e7e34;
+      transform: scale(0.98);
+  }
+
+  /* Remove extra spacing in select for better centering */
+  .admin-select {
+      appearance: none;
+      /* optional: removes default arrow styling */
+      background-position: right 0.7rem center;
+      background-repeat: no-repeat;
+  }
+
+  .admin-th-1 {
+      padding: 1rem;
+      margin-bottom: 30px;
+
+  }
+
+  .admin-th-2 {
+      padding: 1.34rem;
+  }
+
+
+  /* Tab switcher visible only on mobile */
+  .tab-switcher {
+      display: none;
+  }
+
+
+
+
+  .admin-form {
+      background-image: url('/static/contest-bg.png');
+      background-position: center;
+  }
+
+
+
+  .container-admin {
+      margin-top: 3rem;
+  }
+
+  @media (max-width: 1068px) {
+      .container-admin {
+          flex-direction: column;
+          margin-top: 2rem;
+          justify-self: center;
+          align-items: center;
+
+      }
+
+      .admin-input-text {
+          width: 70%;
+          padding: 0.5rem;
+          font-size: 1rem;
+          border: 1px solid #ccc;
+          border-radius: 4px 0px 0px 4px;
+          box-sizing: border-box;
+      }
+
+      #leftTabContent,
+      #rightTabContent {
+          display: none;
+          width: 100%;
+
+      }
+
+      .active-tab {
+          display: block !important;
+      }
+  }
+
+  @media screen and (max-width: 768px) {
+      .responsive-form-table thead .desktop-headers {
+          display: none;
+      }
+
+      .responsive-form-table tr {
+          display: block;
+          margin-bottom: 1.5em;
+          border: 1px solid #ddd;
+      }
+
+
+      .responsive-form-table td {
+          display: flex;
+          flex-direction: column;
+          text-align: left;
+          padding: 10px 15px;
+          border-bottom: 1px solid #eee;
+      }
+
+      .responsive-form-table td:before {
+          content: attr(data-label);
+          font-weight: bold;
+          margin-bottom: 10px;
+          color: #c30e0e;
+
+      }
+
+      .responsive-form-table td:last-child {
+          border-bottom: 0;
+      }
+
+      .responsive-form-table {
+
+          padding: 10px;
+          font-size: 1.2em;
+          width: 100%;
+          /* or max-width: 600px; */
+          margin: 0 auto;
+
+      }
+
+      .responsive-form-table .admin-select,
+      .responsive-form-table .admin-input {
+          width: 100%;
+          height: 40px;
+      }
+
+      .btn-success {
+
+          height: 40px;
+      }
+
+
+  }
+
+  /* Default desktop styles */
+
+  /* Mobile styles - stack the table */
+  @media screen and (max-width: 550px) {
+
+      .numerinput,
+      .numerinput thead,
+      .numerinput tbody,
+      .numerinput th,
+      .numerinput td,
+      .numerinput tr {
+          display: block;
+      }
+
+      .numerinput thead tr {
+          position: absolute;
+          top: -9999px;
+          left: -9999px;
+
+      }
+
+      .numerinput tr {
+          border: 1px solid #ccc;
+          margin-bottom: 1rem;
+
+      }
+
+      .numerinput td {
+          /* Behave like a "row" */
+          border: none;
+          border-bottom: 1px solid #eee;
+          position: relative;
+          padding-left: 50%;
+
+          text-align: right;
+      }
+
+      .numerinput td:before {
+          /* Now like a table header */
+          position: absolute;
+          /* Top/left values mimic padding */
+          top: 22px;
+          left: 16px;
+          width: 45%;
+          padding-right: 10px;
+          white-space: nowrap;
+          text-align: left;
+          font-weight: bold;
+      }
+
+      /* Label the data */
+      .numerinput td:nth-of-type(1):before {
+          content: "Slotes";
+      }
+
+      .numerinput td:nth-of-type(2):before {
+          content: "One Digit";
+      }
+
+      .numerinput td:nth-of-type(3):before {
+          content: "Three Digits";
+      }
+
+      .numerinput td:nth-of-type(4):before {
+          content: "Edit";
+      }
+
+      .numerinput td:nth-of-type(5):before {
+          content: "Delete";
+      }
+
+      .numerinput tbody td:nth-of-type(1) {
+          background-color: #d18109;
+      }
+
+  }
+
+
+  /* </style> */
+
+
+
+
+  /* <style> */
+
+  #leftBtn,
+  #rightBtn {
+      display: none;
+  }
+
+
+  @media (max-width: 1068px) {
+
+      #leftBtn,
+      #rightBtn {
+          display: block;
+      }
+
+      .tab-buttons {
+          display: flex;
+          position: relative;
+          border: 1px solid #ccc;
+          border-radius: 8px;
+          overflow: hidden;
+          margin: 2rem;
+          margin-top: 5rem;
+      }
+
+      .tab-buttons button {
+          flex: 1;
+          padding: 0.75rem 1rem;
+          border: none;
+          background: white;
+          font-weight: bold;
+          cursor: pointer;
+          z-index: 1;
+          position: relative;
+          transition: color 0.3s ease, background-color 0.3s ease;
+      }
+
+      .tab-buttons .active-btn {
+          color: white;
+          background-color: #a9250a;
+      }
+
+      .tab-slider {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          width: 50%;
+          background-color: orange;
+          transition: transform 0.4s ease-in-out;
+          z-index: 0;
+          border-radius: 8px;
+      }
+
+
+
+      .tab-content.active-tab {
+          display: block;
+      }
+
+      .h1-admin {
+          margin: 20px;
+      }
+  }
+
+
+
+  /* </style> */
+
+  /* <style> */
+
+  .btn-success {
+      background-color: #28a745;
+      text-decoration: none;
+      color: #fff;
+      padding: 8px 16px;
+      font-size: 16px;
+      font-weight: 600;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 8px rgba(40, 167, 69, 0.5);
+  }
+
+  .btn-danger {
+      background-color: #a9250a;
+      text-decoration: none;
+      color: #fff;
+      padding: 8px 16px;
+      font-size: 16px;
+      font-weight: 600;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 8px rgba(211, 6, 6, 0.5);
+  }
+
+  .btn-danger:hover {
+      background-color: rgb(179, 7, 7);
+      box-shadow: 0 0 12px rgba(225, 6, 6, 0.8), 0 0 20px rgba(214, 7, 7, 0.6);
+      transform: scale(1.05);
+  }
+
+  .btn-success:hover {
+      background-color: #218838;
+      box-shadow: 0 0 12px rgba(40, 167, 69, 0.8), 0 0 20px rgba(40, 167, 69, 0.6);
+      transform: scale(1.05);
+  }
+
+
+  .btn-success:active {
+      background-color: #1e7e34;
+      transform: scale(0.98);
+  }
+
+  .btn-danger:active {
+      background-color: rgb(179, 7, 7);
+      transform: scale(0.98);
+  }
+
+  /* </style> */
