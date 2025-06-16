@@ -176,18 +176,22 @@ justify-content:Center;
 /*NAV*/
 .topnav {
 overflow: hidden;
-background-color: rgb(228, 228, 228);
+background-image: url('/static/contest-bg.png');
+background-repeat: no-repeat;
+background-size: cover;
+background-position: top;
+
 padding-left:10rem;
 }
 
 .topnav a {
 float: left;
 display: block;
-color: var(--dark);
+color: #f4f008;
 text-align: center;
 padding: 14px 16px;
 text-decoration: none;
-font-size: 18px;
+font-size: 16px;
 margin:10px 20px;
 }
 
@@ -264,6 +268,7 @@ display: none;
 .topnav a.icon {
 float: right;
 display: block;
+color: #ffffff;
 }
 }
 
@@ -305,8 +310,9 @@ margin:0px;
 @media(max-width:1120px){
     .topnav a {
 
-font-size:22px;
-margin:10px 20px;
+font-size:18px;
+/* margin:10px 20px; */
+margin-top: 20px;
 }
 }
 

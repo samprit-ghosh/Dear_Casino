@@ -486,7 +486,7 @@ def text():
 
 @app.route("/contact")
 def contact():
-    return render_template('contact.html', title="Contact Us")
+    return render_template('Contact.html', title="Contact Us")
 
 @app.route("/old")
 def old():
