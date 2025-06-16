@@ -7,7 +7,6 @@ from pytz import timezone
 from dateutil.relativedelta import relativedelta
 
 import requests
-from bs4 import BeautifulSoup
 
 import re
 
@@ -199,14 +198,6 @@ def delete_old_results():
         db.session.commit()
 
     return redirect(url_for('home'))
-
-from flask import render_template, request
-from datetime import datetime
-from dateutil.relativedelta import relativedelta
-from pytz import timezone
-from bs4 import BeautifulSoup
-import requests
-import re
 
 
 
@@ -506,18 +497,3 @@ def old():
       return render_template('old.html', matka_results=matka_results, night_results=night_results, title="Old Result")
 if __name__ == '__main__':
     app.run(debug=True)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
