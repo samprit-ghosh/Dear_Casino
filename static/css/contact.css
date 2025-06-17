@@ -78,7 +78,7 @@ display:flex;
 align-items:center;
 justify-content:center;
 width:35%;
-height: 14.7vh;
+height: 14.9vh;
 }
 
 .parallelogram{
@@ -191,7 +191,7 @@ color: #f4f008;
 text-align: center;
 padding: 14px 16px;
 text-decoration: none;
-font-size: 16px;
+font-size: 20px;
 margin:10px 20px;
 }
 
