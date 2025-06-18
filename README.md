@@ -1,4 +1,4 @@
-Project Name 🚀
+Dear Casino🚀
 
  
  
@@ -38,7 +38,7 @@ Installation 💻
 Clone the repo
 sh
 Copy code
-git clone https://github.com/yourusername/your-repo-name.git
+git clone https://github.com/samprit-ghosh/goa-main.git
 Install NPM packages
 sh
 Copy code
@@ -69,11 +69,11 @@ License 📄
 Distributed under the MIT License. See LICENSE.txt for more information.
 
 Contact 📬
-Your Name - @your_twitter - email@example.com
+Your Name - goamatka19@gmail.com
 
-Project Link: https://github.com/yourusername/your-repo-name
+Project Link: https://goa-main.onrender.com/
 
 Acknowledgements 🙏
-Resource Name
-Resource Name
-Resource Name
+White Davil
+Black Panthor
+

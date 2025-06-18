@@ -240,10 +240,16 @@ margin-left: -20px;
           </a>
         </strong>
       </p>
+      <p class="rights">ALL RIGHTS RESERVED © <span id="current-year"></span></p>
     </div>
   </div>
 
-  <p class="rights">ALL RIGHTS RESERVED © 2023–2025</p>
+
+
+<script>
+  document.getElementById("current-year").textContent = new Date().getFullYear();
+</script>
+
 </footer>
 
 

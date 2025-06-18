@@ -727,7 +727,9 @@
 
     .footer {
         text-align: center;
-        padding: 2rem;
+        /* padding: 2rem; */
+        padding-top: 2rem;
+        padding-bottom: 10px;
         background: linear-gradient(45deg, #500202cb, #b9031ba6);
         font-size: 17px;
         color: #f6e904;
