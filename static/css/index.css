@@ -15,13 +15,13 @@
         font-family: sans-serif;
     }
 
-    .marquee{
+    .marquee {
         background-color: #640303;
         color: #fffb00;
         padding: 0.4rem;
         font-size: 1.4rem;
         padding-top: 14px;
-        
+
     }
 
     .background-image {
@@ -32,7 +32,7 @@
 
 
     .inner-background-image {
-        background-color: #09080860;
+        background-color: #09080884;
     }
 
     .logo-container {
@@ -225,7 +225,7 @@
 
 
 
-  
+
 
     .vemo,
     .vemo2 {
@@ -273,7 +273,7 @@
             font-size: 14px;
         }
 
- 
+
 
         .refresh-btn {
             display: block;
@@ -318,17 +318,17 @@
 
 
 
-.main-result-show{
-    background-color: #810808b7;
-    color: #F4F008;
-    border-radius: 10px;
-  font-family: 'Cinzel Decorative', serif;
-    justify-self: center;
-    text-align: center;
-    padding: 0.5rem;
-    padding-right: 1.3rem;
-    padding-left: 1.3rem;
-}
+    .main-result-show {
+        background-color: #810808b7;
+        color: #F4F008;
+        border-radius: 10px;
+        font-family: 'Cinzel Decorative', serif;
+        justify-self: center;
+        text-align: center;
+        padding: 0.5rem;
+        padding-right: 1.3rem;
+        padding-left: 1.3rem;
+    }
 
 
 
@@ -446,9 +446,9 @@
         justify-self: center;
         align-items: center;
         transition: all 0.3s ease;
-  padding-top: 20px;
+        padding-top: 20px;
         transform: scale(1);
-       
+
     }
 
 
@@ -490,7 +490,7 @@
 
 
 
-/* 
+    /* 
     .hero {
         position: relative;
         width: 100%;
@@ -533,30 +533,31 @@
         /* font-size: 10px; */
         color: #F4F008;
     }
-.main-table-spanGap-time{
-            display: block;
-        /* margin: 0 auto; */
-        padding-top: 4px;
-        /* padding-bottom: 10px; */
-        text-align: center;
-        /* font-size: 10px; */
-        line-height: 25px;
-        color: #F4F008;
-}
 
-@media(max-width:450px){
-  .main-table-spanGap {
-        display: block;
-        /* margin: 0 auto; */
-        padding-top: 4px;
-        padding-bottom: 10px;
-        text-align: center;
-        /* font-size: 10px; */
+    .main-table-spanGap-time {
+
         color: #F4F008;
-   
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 15px;
+        font-size: 1.8rem;
     }
 
-}
+    @media(max-width:450px) {
+        .main-table-spanGap {
+            display: block;
+            /* margin: 0 auto; */
+            padding-top: 4px;
+            padding-bottom: 10px;
+            text-align: center;
+            /* font-size: 10px; */
+            color: #F4F008;
+
+        }
+
+    }
 
 
     .table-container {
@@ -574,7 +575,7 @@
         min-width: 500px;
         background-image: url('/static/contest-bg.png');
         /* Allow horizontal scroll */
-        
+
     }
 
     .main-table td,
@@ -605,28 +606,28 @@
     /* 🔻 RESPONSIVE COMPACT STYLES FOR SMALL SCREENS */
     @media screen and (max-width: 600px) {
         .main-table {
-            font-size: 12px;
+            font-size: 15px;
             min-width: unset;
         }
 
-.main-table-spanGap-time{
-            display: block;
-        /* margin: 0 auto; */
-        padding-top: 4px;
-        /* padding-bottom: 10px; */
-        text-align: center;
-        font-size: 10px;
-        line-height: 15px;
-        color: #F4F008;
-}
 
+        .main-table-spanGap-time {
+
+            color: #F4F008;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 1.6rem;
+        }
 
         .time-head {
             /* padding: 2px 0px; */
             font-weight: 500;
-            font-size: 11px;
-            padding-top:30px;
-            line-height:15px;
+            font-size: 14px;
+            padding-top: 30px;
+            line-height: 15px;
         }
 
         .table-title {
@@ -663,6 +664,25 @@
 
     }
 
+
+
+    @media(max-width:460px) {
+
+        .main-table {
+            font-size: 14px;
+            min-width: unset;
+        }
+
+
+
+        .time-head {
+            /* padding: 2px 0px; */
+            font-weight: 500;
+            font-size: 12px;
+            padding-top: 30px;
+            line-height: 14px;
+        }
+    }
 
 
     @media(max-width:350px) {
@@ -706,74 +726,59 @@
 
 
     .footer {
-  text-align: center;
-  padding: 2rem;
-  background: linear-gradient(45deg, #3a0960, #551a8b);
-  font-size: 17px;
-  color: #ffffff;
-  position: relative;
-  overflow: hidden;
-}
+        text-align: center;
+        padding: 2rem;
+        background: linear-gradient(45deg, #500202cb, #b9031ba6);
+        font-size: 17px;
+        color: #f6e904;
+        position: relative;
+        overflow: hidden;
+    }
 
-.footer a {
-  color: #ff4d4d;
-  text-decoration: none;
-  font-weight: bold;
-  transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
-}
+    .footer a {
+        color: #ffffff;
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+    }
 
-.footer a:hover {
-  color: #ffc107;
-  transform: scale(1.1);
-}
+    .footer a:hover {
+        color: #ffc107;
+        transform: scale(1.1);
+    }
 
-.footer-content {
-  animation: fadeInUp 1s ease-out;
-}
+    .footer-content {
+        animation: fadeInUp 1s ease-out;
+    }
 
-.footer-id,
-.footer-brand,
-.manager,
-.rights,
-.footer-link {
-  margin: 0.5rem 0;
-}
+    .footer-id,
+    .footer-brand,
+    .manager,
+    .rights,
+    .footer-link {
+        margin: 0.5rem 0;
+    }
 
-@keyframes fadeInUp {
-  0% {
-    transform: translateY(40px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0px);
-    opacity: 1;
-  }
-}
+    @keyframes fadeInUp {
+        0% {
+            transform: translateY(40px);
+            opacity: 0;
+        }
 
-.footer::before {
-  content: "";
-  position: absolute;
-  top: -20px;
-  left: 0;
-  width: 100%;
-  height: 40px;
-  background: url('https://www.svgbackgrounds.com/wp-content/uploads/2021/12/wave-haikei.svg') no-repeat center top;
-  background-size: cover;
-  z-index: 1;
-}
+        100% {
+            transform: translateY(0px);
+            opacity: 1;
+        }
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    .footer::before {
+        content: "";
+        position: absolute;
+        top: -20px;
+        left: 0;
+        width: 100%;
+        height: 40px;
+        background: url('https://www.svgbackgrounds.com/wp-content/uploads/2021/12/wave-haikei.svg') no-repeat center top;
+        background-size: cover;
+        z-index: 1;
+    }

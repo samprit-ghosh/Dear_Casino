@@ -44,7 +44,7 @@
       .section {
         --section-block-size: max(400px, 100dvb);
         display: grid;
-        color: rgb(255, 255, 255);
+        color: rgb(255, 255, 0);
         min-block-size: var(--section-block-size);
         position: relative;
         block-size: 100%;
@@ -57,13 +57,9 @@
 
       .section-wrapper {
         position: relative;
-        background: #0F2027;
-        /* fallback for old browsers */
-        background: -webkit-linear-gradient(to right, #0d069f, #271576, #0F2027);
-        /* Chrome 10-25, Safari 5.1-6 */
-        background: linear-gradient(to right, #091013, #2d0b6b, #110707);
-        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-        display: grid;
+background-image: url('/static/contest-bg-about.png');
+background-position: center;
+display: grid;
 
 
         @media (width >=960px) {
