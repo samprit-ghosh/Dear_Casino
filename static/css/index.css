@@ -864,7 +864,7 @@ margin-top: 1.6rem;
     .outer-indivisual {
       margin: 0;
       padding: 0;
-      background: #002c0b; /* dark green background */
+      /* background: #002c0b; dark green background */
       font-family: 'Arial', sans-serif;
       color: white;
       display: flex;
