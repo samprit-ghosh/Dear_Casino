@@ -21,6 +21,7 @@
         padding: 0.4rem;
         font-size: 1.4rem;
         padding-top: 14px;
+        
 
     }
 
@@ -439,7 +440,7 @@
 
     .logo-img {
         margin-top: 20px;
-        height: 230px;
+        height: 240px;
         width: 240px;
         display: flex;
         filter: brightness(1) contrast(1.2);
@@ -455,15 +456,18 @@
 
     @media(max-width: 980px) {
         .logo-img {
-            height: 200px;
+            height: 220px;
             width: 220px;
+        }
+        .main-table-spanGap{
+            font-weight: 400;
         }
     }
 
 
     @media(max-width: 400px) {
         .logo-img {
-            height: 180px;
+            height: 200px;
             width: 200px;
         }
     }
@@ -486,6 +490,7 @@
 
 
 
+ 
 
 
 
@@ -532,6 +537,7 @@
         text-align: center;
         /* font-size: 10px; */
         color: #F4F008;
+        font-weight: 600;
     }
 
     .main-table-spanGap-time {
@@ -553,6 +559,7 @@
             padding-bottom: 10px;
             text-align: center;
             /* font-size: 10px; */
+            font-weight: 400;
             color: #F4F008;
 
         }
@@ -609,7 +616,17 @@
             font-size: 15px;
             min-width: unset;
         }
+        .main-table-spanGap {
+            display: block;
+            /* margin: 0 auto; */
+            padding-top: 4px;
+            padding-bottom: 10px;
+            text-align: center;
+            /* font-size: 10px; */
+            font-weight: 400;
+            color: #F4F008;
 
+        }
 
         .main-table-spanGap-time {
 
@@ -627,7 +644,8 @@
             font-weight: 500;
             font-size: 14px;
             padding-top: 30px;
-            line-height: 15px;
+            line-clamp: 10px;
+            zoom:90%;
         }
 
         .table-title {
@@ -685,7 +703,7 @@
     }
 
 
-    @media(max-width:350px) {
+    @media(max-width:370px) {
         h2 {
             font-size: 15px;
             line-height: 25px;
@@ -708,6 +726,10 @@
         }
 
 
+ .time-head{
+    /* background-color: rgb(0, 0, 0); */
+    zoom: 80%;
+ }
 
     }
 
@@ -715,72 +737,172 @@
 
 
 
+footer {
+  background-image: url('/static/css/duplicate-bg.png');
+  color: #ffd700;
+  font-family: Arial, sans-serif;
+  padding: 40px 20px 20px;
+}
+
+.container-footer {
+  /* max-width: 1200px; */
+  margin: auto;
+}
+
+.row-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.row-footer > div {
+  flex: 1 1 220px;
+  padding: 15px;
+}
+
+.logo-footer {
+  max-width: 150px;
+  margin-bottom: 10px;
+}
+
+.footer-about p {
+  font-size: 14px;
+  color: #ffcd06;
+  line-height: 1.6;
+}
+
+.useful-link h2,
+.social-links h2,
+.address-footer h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #fff;
+  text-align: center;
+}
+
+.use-links li,
+.social-icons li,
+.address-links li {
+  list-style: none;
+  margin: 12px 0;
+  line-height: 1.5rem;
+margin-left: 8rem;
+margin-top: 1.6rem;
+    
+}
+
+.use-links a,
+.social-icons a,
+.address-links a {
+  text-decoration: none;
+  color: #ffd700;
+  font-size: 14px;
+
+
+}
+
+.use-links i,
+.social-icons i,
+.address-links i {
+  margin-right: 8px;
+  color: #ffffff;
+}
+
+.address1-footer {
+  font-size: 14px;
+  color: #ffe57f;
+}
+
+/* Copy Right Section */
+#copy-right {
+  background-color: #660000;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  font-size: 16px;
+}
+
+#copy-right a {
+  color: #ffd700;
+  text-decoration: none;
+}
+
+#copy-right a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .row-footer {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .row-footer > div {
+    width: 100%;
+    max-width: 500px;
+  }
+
+  .logo-footer {
+    margin: 0 auto 10px;
+  }
+
+  .use-links li,
+  .social-icons li,
+  .address-links li {
+    font-size: 15px;
+    margin-left: 0rem;
+  }
+}
 
 
 
 
+    
+    /* <style> */
+    .outer-indivisual {
+      margin: 0;
+      padding: 0;
+      background: #002c0b; /* dark green background */
+      font-family: 'Arial', sans-serif;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height:fit-content;
+      margin-top: 0.2rem;
+/* margin-bottom: 1rem; */
 
-
-
-
-
-
-    .footer {
-        text-align: center;
-        /* padding: 2rem; */
-        padding-top: 2rem;
-        padding-bottom: 10px;
-        background: linear-gradient(45deg, #500202cb, #b9031ba6);
-        font-size: 17px;
-        color: #f6e904;
-        position: relative;
-        overflow: hidden;
     }
 
-    .footer a {
-        color: #ffffff;
-        text-decoration: none;
-        font-weight: bold;
-        transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+    .banner-indivisual {
+  background-image: url('/static/css/duplicate-bg.png');
+      border: 2px solid #f4a703;
+      border-radius: 10px;
+      padding: 40px;
+width: 100%;
+      text-align: center;
+      box-shadow: 0 0 10px #f4e804;
     }
 
-    .footer a:hover {
-        color: #ffc107;
-        transform: scale(1.1);
+    .banner-indivisual h1, .banner-indivisual h2 {
+      margin: 10px 0;
+   background: linear-gradient(90deg, #ffcc00, #f6ff00);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: bold;
     }
 
-    .footer-content {
-        animation: fadeInUp 1s ease-out;
+    .banner-indivisual h2 {
+      /* background: linear-gradient(90deg, #00ff00, #00ccff); */
     }
 
-    .footer-id,
-    .footer-brand,
-    .manager,
-    .rights,
-    .footer-link {
-        margin: 0.5rem 0;
+    .banner-indivisual h3 {
+      margin-top: 20px;
+      background: linear-gradient(90deg, #ffcc00, #f6ff00);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 1.7rem;
     }
-
-    @keyframes fadeInUp {
-        0% {
-            transform: translateY(40px);
-            opacity: 0;
-        }
-
-        100% {
-            transform: translateY(0px);
-            opacity: 1;
-        }
-    }
-
-    .footer::before {
-        content: "";
-        position: absolute;
-        top: -20px;
-        left: 0;
-        width: 100%;
-        height: 40px;
-        background: url('https://www.svgbackgrounds.com/wp-content/uploads/2021/12/wave-haikei.svg') no-repeat center top;
-        background-size: cover;
-        z-index: 1;
-    }
+  /* </style> */

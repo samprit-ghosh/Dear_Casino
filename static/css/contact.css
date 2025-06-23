@@ -359,7 +359,8 @@ padding:3rem 0;
 .banner section{
 width:100%;
 color:var(--white);
-padding:2rem;
+
+margin-top: -10rem;
 }
 
 .banner section h3{
@@ -429,7 +430,7 @@ border-radius:10px;
 .banner{
 height:100%;
 display:block;
-padding:8rem 0;
+/* padding:6rem 0; */
 }
 .banner section{
 padding:1rem;
@@ -439,6 +440,14 @@ font-size:2em;
 }
 .banner section .form{
 width:100%;
+}
+
+.banner section{
+width:100%;
+color:var(--white);
+
+margin-top: 0rem;
+
 }
 }
 
@@ -456,7 +465,7 @@ background-color: #131417;
 color:var(--white);
 overflow:hidden;
 /* border-radius:20px; */
-padding:3rem 0;
+/* padding:3rem 0; */
 }
 
 .section1 section{
@@ -510,9 +519,7 @@ justify-content:left;
 display:block;
 padding:0 1rem;
 }
-.section1 section .card{
-margin:10px 0;
-}
+
 }
 /* </style> */
 
@@ -537,6 +544,7 @@ margin:10px 0;
 .contact-form {
     display: flex;
     flex-direction: column;
+    
 }
 
 .form-group {
@@ -655,12 +663,13 @@ margin:10px 0;
             width: 100%;
             color: var(--white);
             padding: 1rem;
+            /* background-color: #f4f008; */
         }
 
         .banner section h3 {
             font-weight: 400;
             line-height: 1.2;
-            margin-bottom: 1rem;
+            /* margin-bottom: 1rem; */
             font-size: 1.5rem;
             padding-left: 20px;
             text-align: left;
@@ -669,7 +678,7 @@ margin:10px 0;
         .banner section .title {
             font-size: 2.5rem;
             line-height: 1.2;
-            margin-bottom: 2rem;
+            /* margin-bottom: 2rem; */
             padding-left: 20px;
 
         }
@@ -678,19 +687,30 @@ margin:10px 0;
             .banner-1 {
                 min-height: 150vh;
                 /* background-color: #4CAF50; */
-                margin-top: -8rem;
-                margin-bottom: -5rem;
+                margin-top: -5rem;
+           
+                /* margin-bottom: -5rem; */
 
             }
 
             .banner section h3 {
                 font-weight: 400;
                 line-height: 1.2;
-                margin-bottom: 1rem;
+                margin-top: -1.4rem;
                 font-size: 1.5rem;
 
                 text-align: center;
             }
+
+                    .banner section {
+            width: 100%;
+            color: var(--white);
+            padding: 1rem;
+            /* background-color: #f4f008; */
+          
+        }
+
+
 
         }
 
@@ -717,7 +737,8 @@ margin:10px 0;
             width: 100%;
             display: flex;
             justify-content: center;
-            margin-top: 2rem;
+            /* margin-top: -2rem; */
+     
 
         }
 
@@ -728,6 +749,7 @@ margin:10px 0;
             box-shadow: 0 0 20px rgba(254, 5, 5, 0.536);
             width: 100%;
             max-width: 500px;
+          
         }
 
         .contact-container h1 {
@@ -848,7 +870,7 @@ margin:10px 0;
             }
 
             .form-section {
-                margin-top: 0;
+             
                 width: 50%;
                 /* padding: 2rem; */
 

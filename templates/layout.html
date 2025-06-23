@@ -81,6 +81,7 @@
   <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/admin.css')}}">
   <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/contact.css')}}">
   <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/about.css')}}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 
 
@@ -214,43 +215,75 @@ margin-left: -20px;
 
   {% endblock body %}
 
-<footer class="footer">
-  <div class="footer-content">
-    <div class="left-section">
-      <div class="footer-link">
-        <a href="https://mainfatafat.org/" target="_blank" rel="noopener noreferrer">mainGoa.com</a>
-      </div>
+	<!-- footer section start -->
+		<footer id="footer">
+			<div class="container-footer">
+				<div class="row-footer">
+					<div class="col-md-3">
+						<a href="index.html"><img src="/static/css/logo-removebg-preview.png" alt="" class="img-fluid logo-footer"></a>
+                      <div class="footer-about">
+                          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,  </p>
+                      </div>
 
-      <p class="manager">
-        <strong>Site Manager:</strong><br>
-        <u>Admin Sir</u>
-      </p>
-    </div>
+					</div>
+					<div class="col-md-3">
+						<div class="useful-link">
+							<h2>Useful Links</h2>
+						
+							<div class="use-links">
+								<li><a href="/"><i class="fa-solid fa-angles-right"></i> Home</a></li>
+								<li><a href="/about"><i class="fa-solid fa-angles-right"></i> About Us</a></li>
+								<li><a href="/"><i class="fa-solid fa-angles-right"></i> Gallery</a></li>
+								<li><a href="/contact"><i class="fa-solid fa-angles-right"></i> Contact</a></li>
+							</div>
+						</div>
 
-    <div class="right-section">
-      <div class="footer-id">111111111</div>
+					</div>
+                    <div class="col-md-3">
+                        <div class="social-links">
+							<h2>Follow Us</h2>
+				
+							<div class="social-icons">
+								<li><a href="//"><i class="fa-brands fa-facebook-f"></i> Facebook</a></li>
+								<li><a href="/"><i class="fa-brands fa-instagram"></i> Instagram</a></li>
+								<li><a href="/"><i class="fa-brands fa-linkedin-in"></i> Linkedin</a></li>
+							</div>
+						</div>
+                    
 
-      <p class="footer-brand">
-        <strong>
-          <a href="https://mainfatafat.org" target="_blank" rel="noopener noreferrer">
-            https://maingoa.com
-            <img
-              src="data:image/png;base64,R0lGODlhBwAHAPsAMQAAAP8zM/9mZv8AAN0AAMwAACIAAHcAAFUAAO4AAIgAAP+ZmQAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQJIwAAACwAAAAABwAHAAAEHRCAEYYEQYhAplgbcWTaUCBJoCaKARRE0V4H4gKRACH5BAUjAAAALAAAAAABAAEAAAICRIEAOw=="
-              alt="Satta Matka Icon" width="10" height="10">
-          </a>
-        </strong>
-      </p>
-      <p class="rights">ALL RIGHTS RESERVED © <span id="current-year"></span></p>
-    </div>
-  </div>
+                    </div>
+					<div class="col-md-3">
+						<div class="address-footer">
+							<h2>Address</h2>
 
+							<div class="address-links">
+								<li class="address1-footer"><i class="fa-solid fa-location-dot"></i> Kolathur ramankulam-
+									Malappuram Dt 
+								   Kerala 679338</li>
+								   <li><a href="/"><i class="fa-solid fa-phone"></i> +91 90904500112</a></li>
+								   <li><a href="/"><i class="fa-solid fa-envelope"></i> mail@1234567.com</a></li>
+							</div>
+						</div>
+					</div>
+                  
+				</div>
+			</div>
 
-
+		</footer>
+		<!-- footer section end -->
+		<!-- footer copy right section start -->
+		<section id="copy-right">
+			<div class="copy-right-sec"><i class="fa-solid fa-copyright"></i>  
+				ALL RIGHTS RESERVED © <span id="year"></span> <a href="#">Dear Casino</a> 
 <script>
-  document.getElementById("current-year").textContent = new Date().getFullYear();
+  document.getElementById("year").textContent = new Date().getFullYear();
 </script>
 
-</footer>
+
+			</div>
+
+		</section>
+		<!-- footer copy right section end -->
 
 
 
