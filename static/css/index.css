@@ -21,7 +21,7 @@
         padding: 0.4rem;
         font-size: 1.4rem;
         padding-top: 14px;
-        
+
 
     }
 
@@ -459,7 +459,8 @@
             height: 220px;
             width: 220px;
         }
-        .main-table-spanGap{
+
+        .main-table-spanGap {
             font-weight: 400;
         }
     }
@@ -490,7 +491,7 @@
 
 
 
- 
+
 
 
 
@@ -616,6 +617,7 @@
             font-size: 15px;
             min-width: unset;
         }
+
         .main-table-spanGap {
             display: block;
             /* margin: 0 auto; */
@@ -645,7 +647,7 @@
             font-size: 14px;
             padding-top: 30px;
             line-clamp: 10px;
-            zoom:90%;
+            zoom: 90%;
         }
 
         .table-title {
@@ -653,34 +655,12 @@
 
             padding: 6px;
         }
+
+
     }
 
     /* </style> */
 
-    @media(max-width:500px) {
-        .finak_ank {
-            font-size: 20px;
-            font-weight: normal;
-            color: #fff;
-            margin-bottom: 10px;
-
-        }
-
-
-        .matka_result_box {
-            background-image: url('https://img.freepik.com/free-vector/flat-design-poker-table-background_23-2151016818.jpg?t=st=1746854753~exp=1746858353~hmac=8ad2ff750508b4c5425c98b0e91e814007de54ec88f52b15edd4c194c89d3123&w=1380');
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center;
-            padding: 30px;
-            padding-bottom: 40px;
-
-            border-radius: 5px;
-            text-align: center;
-
-        }
-
-    }
 
 
 
@@ -726,176 +706,276 @@
         }
 
 
- .time-head{
-    /* background-color: rgb(0, 0, 0); */
-    zoom: 80%;
- }
+        .time-head {
+            /* background-color: rgb(0, 0, 0); */
+            zoom: 80%;
+        }
 
+        .main-table-spanGap {
+            zoom: 90%;
+
+        }
+
+    }
+
+    @media(max-width:330px) {
+
+
+        .time-head {
+            /* background-color: rgb(0, 0, 0); */
+            zoom: 75%;
+        }
+
+        .main-table-spanGap {
+            zoom: 85%;
+
+        }
+
+    }
+
+
+    footer {
+        background-image: url('/static/css/duplicate-bg.png');
+
+        background-repeat: no-repeat;
+        background-size: cover;
+        color: #ffd700;
+        font-family: Arial, sans-serif;
+        padding: 40px 20px 20px;
+    }
+
+    .container-footer {
+        /* max-width: 1200px; */
+        margin: auto;
+    }
+
+    .row-footer {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .row-footer>div {
+        flex: 1 1 220px;
+        padding: 15px;
+    }
+
+    .logo-footer {
+        max-width: 150px;
+        margin-bottom: 10px;
+    }
+
+    .footer-about p {
+        font-size: 14px;
+        color: #ffcd06;
+        line-height: 1.6;
+    }
+
+    .useful-link h2,
+    .social-links h2,
+    .address-footer h2 {
+        font-size: 18px;
+        margin-bottom: 10px;
+        color: #fff;
+        text-align: center;
+    }
+
+    .use-links li,
+    .social-icons li,
+    .address-links li {
+        list-style: none;
+        margin: 12px 0;
+        line-height: 1.5rem;
+        margin-left: 8rem;
+        margin-top: 1.6rem;
+
+    }
+
+    .use-links a,
+    .social-icons a,
+    .address-links a {
+        text-decoration: none;
+        color: #ffd700;
+        font-size: 14px;
+
+
+    }
+
+    .use-links i,
+    .social-icons i,
+    .address-links i {
+        margin-right: 8px;
+        color: #ffffff;
+    }
+
+    .address1-footer {
+        font-size: 14px;
+        color: #ffe57f;
+    }
+
+    /* Copy Right Section */
+    #copy-right {
+        background-color: #660000;
+        color: #fff;
+        text-align: center;
+        padding: 20px;
+        font-size: 16px;
+    }
+
+    #copy-right a {
+        color: #ffd700;
+        text-decoration: none;
+    }
+
+    #copy-right a:hover {
+        text-decoration: underline;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 968px) {
+        .row-footer {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .row-footer>div {
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .logo-footer {
+            margin: 0 auto 10px;
+        }
+
+        .use-links li,
+        .social-icons li,
+        .address-links li {
+            font-size: 15px;
+            margin-left: 0rem;
+        }
     }
 
 
 
 
 
-footer {
-  background-image: url('/static/css/duplicate-bg.png');
-  color: #ffd700;
-  font-family: Arial, sans-serif;
-  padding: 40px 20px 20px;
-}
-
-.container-footer {
-  /* max-width: 1200px; */
-  margin: auto;
-}
-
-.row-footer {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-.row-footer > div {
-  flex: 1 1 220px;
-  padding: 15px;
-}
-
-.logo-footer {
-  max-width: 150px;
-  margin-bottom: 10px;
-}
-
-.footer-about p {
-  font-size: 14px;
-  color: #ffcd06;
-  line-height: 1.6;
-}
-
-.useful-link h2,
-.social-links h2,
-.address-footer h2 {
-  font-size: 18px;
-  margin-bottom: 10px;
-  color: #fff;
-  text-align: center;
-}
-
-.use-links li,
-.social-icons li,
-.address-links li {
-  list-style: none;
-  margin: 12px 0;
-  line-height: 1.5rem;
-margin-left: 8rem;
-margin-top: 1.6rem;
-    
-}
-
-.use-links a,
-.social-icons a,
-.address-links a {
-  text-decoration: none;
-  color: #ffd700;
-  font-size: 14px;
-
-
-}
-
-.use-links i,
-.social-icons i,
-.address-links i {
-  margin-right: 8px;
-  color: #ffffff;
-}
-
-.address1-footer {
-  font-size: 14px;
-  color: #ffe57f;
-}
-
-/* Copy Right Section */
-#copy-right {
-  background-color: #660000;
-  color: #fff;
-  text-align: center;
-  padding: 20px;
-  font-size: 16px;
-}
-
-#copy-right a {
-  color: #ffd700;
-  text-decoration: none;
-}
-
-#copy-right a:hover {
-  text-decoration: underline;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .row-footer {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .row-footer > div {
-    width: 100%;
-    max-width: 500px;
-  }
-
-  .logo-footer {
-    margin: 0 auto 10px;
-  }
-
-  .use-links li,
-  .social-icons li,
-  .address-links li {
-    font-size: 15px;
-    margin-left: 0rem;
-  }
-}
-
-
-
-
-    
-    /* <style> */
+/*   
     .outer-indivisual {
-      margin: 0;
-      padding: 0;
-      /* background: #002c0b; dark green background */
-      font-family: 'Arial', sans-serif;
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height:fit-content;
-      margin-top: 0.2rem;
-/* margin-bottom: 1rem; */
+        margin: 0;
+        padding: 0;
+      background-image: url('/static/css/duplicate-bg.png');
+              background-repeat: no-repeat;
+        background-size: cover;
+        font-family: 'Arial', sans-serif;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: fit-content;
+        margin-top: 0.2rem;
+        
 
     }
 
     .banner-indivisual {
-  background-image: url('/static/css/duplicate-bg.png');
+        
+
+        border: 2px solid #f4a703;
+        border-radius: 10px;
+        padding: 40px;
+        width: 100%;
+        text-align: center;
+        box-shadow: 0 0 10px #f4e804;
+    }
+
+    .banner-indivisual h1,
+    .banner-indivisual h2 {
+        margin: 10px 0;
+        background: linear-gradient(90deg, #ffcc00, #f6ff00);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: bold;
+        font-size: 2rem;
+        line-height: 2rem;
+    }
+
+
+
+    .banner-indivisual h3 {
+        margin-top: 20px;
+        background: linear-gradient(90deg, #ffcc00, #f6ff00);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-size: 1.5rem;
+    } */
+
+
+
+
+
+
+
+
+
+
+
+
+   .outer-indivisual {
+      margin: 0;
+      padding: 0;
+      background-image: url('/static/css/duplicate-bg.png');
+    
+      background-repeat: no-repeat;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: fit-content;
+      margin-top: 0.2rem;
+      color: white;
+    }
+
+    .banner-indivisual {
+      position: relative; /* Required to contain absolute canvas */
       border: 2px solid #f4a703;
       border-radius: 10px;
       padding: 40px;
-width: 100%;
+      width: 100%;
+   
       text-align: center;
       box-shadow: 0 0 10px #f4e804;
+      overflow: hidden;
+      z-index: 1;
     }
 
-    .banner-indivisual h1, .banner-indivisual h2 {
+    .fireworks-wrapper {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    canvas#birthday {
+      display: block;
+      width: 100%;
+      height: 100%;
+       background-color: #954d0523;
+     
+    }
+
+    .banner-indivisual h1,
+    .banner-indivisual h2 {
       margin: 10px 0;
-   background: linear-gradient(90deg, #ffcc00, #f6ff00);
+      background: linear-gradient(90deg, #ffcc00, #f6ff00);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       font-weight: bold;
-    }
-
-    .banner-indivisual h2 {
-      /* background: linear-gradient(90deg, #00ff00, #00ccff); */
+      font-size: 2rem;
+      line-height: 2rem;
     }
 
     .banner-indivisual h3 {
@@ -903,6 +983,60 @@ width: 100%;
       background: linear-gradient(90deg, #ffcc00, #f6ff00);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      font-size: 1.7rem;
+      font-size: 1.5rem;
     }
-  /* </style> */
+
+    @media(max-width: 500px) {
+      .banner-indivisual h1,
+      .banner-indivisual h2 {
+        font-size: 1.7rem;
+        line-height: 2.4rem;
+      }
+
+      .banner-indivisual h3 {
+        font-size: 1.4rem;
+        line-height: 2rem;
+      }
+    }
+
+
+
+
+
+    
+
+    @media(max-width:500px) {
+        .finak_ank {
+            font-size: 20px;
+            font-weight: normal;
+            color: #fff;
+            margin-bottom: 10px;
+
+        }
+
+        .banner-indivisual h1,
+        .banner-indivisual h2 {
+            margin: 10px 0;
+            background: linear-gradient(90deg, #ffcc00, #f6ff00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+            font-size: 1.7rem;
+            line-height: 2.4rem;
+        }
+
+
+
+        .banner-indivisual h3 {
+            margin-top: 20px;
+            background: linear-gradient(90deg, #ffcc00, #f6ff00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 1.4rem;
+            line-height: 2rem;
+        }
+
+        .Full-pannel-record {
+            font-size: 1.54rem;
+        }
+    }

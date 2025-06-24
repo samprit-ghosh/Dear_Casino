@@ -12,15 +12,181 @@
 
 
 
-    <div class="outer-indivisual">
-        <div class="banner-indivisual">
-            <h1>Dear Casino Official Website </h1>
-            <h3> Dear Fatafat || Nagaland Satta</h3>
-            <!-- <h3>Nagaland Satta</h3> -->
-        </div>
+<div class="outer-indivisual">
+  <div class="banner-indivisual">
+    <div class="fireworks-wrapper">
+      <canvas id="birthday"></canvas>
     </div>
+    <h1>Dear Casino Official Website</h1>
+    <h3>Dear Fatafat || Nagaland Satta</h3>
+  </div>
+</div>
 
 
+
+
+
+<script>
+  const PI2 = Math.PI * 2;
+  const random = (min, max) => (Math.random() * (max - min + 1) + min) | 0;
+  const timestamp = () => new Date().getTime();
+
+  const isMobile = window.innerWidth <= 768; // 👈 Detect mobile screen
+  const FIREWORK_COUNT = isMobile ? 1 : 3;
+  const EXPLOSION_MIN = isMobile ? 20 : 80;
+  const EXPLOSION_MAX = isMobile ? 60 : 160;
+
+  class Birthday {
+    constructor() {
+      this.resize();
+      this.fireworks = [];
+      this.counter = 0;
+    }
+
+    resize() {
+      this.width = canvas.width = canvas.offsetWidth;
+      this.height = canvas.height = canvas.offsetHeight;
+
+      let center = (this.width / 2) | 0;
+      this.spawnA = (center - center / 4) | 0;
+      this.spawnB = (center + center / 4) | 0;
+      this.spawnC = this.height * 0.1;
+      this.spawnD = this.height * 0.5;
+    }
+
+    onClick(evt) {
+      let x = evt.clientX || (evt.touches && evt.touches[0].pageX);
+      let y = evt.clientY || (evt.touches && evt.touches[0].pageY);
+
+      let count = random(FIREWORK_COUNT, FIREWORK_COUNT + 2);
+      for (let i = 0; i < count; i++) {
+        this.fireworks.push(
+          new Firework(
+            random(this.spawnA, this.spawnB),
+            this.height,
+            x,
+            y,
+            0,
+            random(EXPLOSION_MIN, EXPLOSION_MAX)
+          )
+        );
+      }
+
+      this.counter = -1;
+    }
+
+    update(delta) {
+      ctx.globalCompositeOperation = "source-over";
+      ctx.clearRect(0, 0, this.width, this.height);
+
+      ctx.globalCompositeOperation = "lighter";
+      for (let firework of this.fireworks) firework.update(delta);
+
+      this.counter += delta * 3;
+      if (this.counter >= 1) {
+        const spawnCount = isMobile ? 1 : 2;
+        for (let i = 0; i < spawnCount; i++) {
+          this.fireworks.push(
+            new Firework(
+              random(this.spawnA, this.spawnB),
+              this.height,
+              random(0, this.width),
+              random(this.spawnC, this.spawnD),
+              0,
+              random(EXPLOSION_MIN, EXPLOSION_MAX)
+            )
+          );
+        }
+        this.counter = 0;
+      }
+
+      if (this.fireworks.length > 1000) {
+        this.fireworks = this.fireworks.filter(f => !f.dead);
+      }
+    }
+  }
+
+  class Firework {
+    constructor(x, y, targetX, targetY, shade, offsprings) {
+      this.dead = false;
+      this.offsprings = offsprings;
+
+      this.x = x;
+      this.y = y;
+      this.targetX = targetX;
+      this.targetY = targetY;
+
+      this.shade = shade;
+      this.history = [];
+    }
+
+    update(delta) {
+      if (this.dead) return;
+
+      let xDiff = this.targetX - this.x;
+      let yDiff = this.targetY - this.y;
+
+      if (Math.abs(xDiff) > 3 || Math.abs(yDiff) > 3) {
+        this.x += xDiff * 2 * delta;
+        this.y += yDiff * 2 * delta;
+
+        this.history.push({ x: this.x, y: this.y });
+        if (this.history.length > 20) this.history.shift();
+      } else {
+        if (this.offsprings && !this.madeChilds) {
+          let babies = this.offsprings / 2;
+          for (let i = 0; i < babies; i++) {
+            let targetX = (this.x + this.offsprings * Math.cos((PI2 * i) / babies)) | 0;
+            let targetY = (this.y + this.offsprings * Math.sin((PI2 * i) / babies)) | 0;
+            birthday.fireworks.push(new Firework(this.x, this.y, targetX, targetY, this.shade, 0));
+          }
+        }
+        this.madeChilds = true;
+        this.history.shift();
+      }
+
+      if (this.history.length === 0) {
+        this.dead = true;
+      } else if (this.offsprings) {
+        for (let i = 0; i < this.history.length; i++) {
+          let point = this.history[i];
+          ctx.beginPath();
+          ctx.fillStyle = `rgba(255, 255, 255, ${i / this.history.length})`;
+          ctx.arc(point.x, point.y, isMobile ? 1.5 : 2.5, 0, PI2, false);
+          ctx.fill();
+        }
+      } else {
+        ctx.beginPath();
+        ctx.fillStyle = `white`;
+        ctx.arc(this.x, this.y, isMobile ? 2 : 3, 0, PI2, false);
+        ctx.fill();
+      }
+    }
+  }
+
+  let canvas = document.getElementById("birthday");
+  let ctx = canvas.getContext("2d");
+
+  let then = timestamp();
+  let birthday = new Birthday();
+
+  window.onresize = () => {
+    birthday.resize();
+    // Recheck screen width in case of orientation change
+    location.reload();
+  };
+
+  document.onclick = evt => birthday.onClick(evt);
+  document.ontouchstart = evt => birthday.onClick(evt);
+
+  (function loop() {
+    requestAnimationFrame(loop);
+    let now = timestamp();
+    let delta = now - then;
+    then = now;
+    birthday.update(delta / 1000);
+  })();
+</script>
 
 
     <div class="inner-background-image">
@@ -139,9 +305,9 @@
 
 
         <div class="bg4">
-            <img src="/static/css/istockphoto-1365016893-612x612-removebg-preview.png" alt="" style="height: 60px;">
+
             <h2>LATEST LAST SEVEN DAY RECORD CHART DEAR FATAFAT</h2>
-            <img src="/static/css/istockphoto-1365016893-612x612-removebg-preview.png" alt="" style="height: 60px;">
+
         </div>
         <br>
 
@@ -328,7 +494,7 @@
         </div>
 
 
-    
+
         <br>
         <br>
         <center>
@@ -342,7 +508,6 @@
         <br>
         <br>
 
-        
 
 
 
@@ -357,468 +522,513 @@
 
 
 
-    <div class="outer-indivisual">
-        <div class="banner-indivisual">
-            <h1>Dear Casino Official Website </h1>
-            <h3> Dear Fatafat || Nagaland Satta</h3>
-            <!-- <h3>Nagaland Satta</h3> -->
-        </div>
-    </div>
 
-
-
-
-
-    <div class="inner-background-image">
-
-        <div class="marquee">
-            <marquee behavior="right" direction="range">Zukyar Dudayif is isld</marquee>
+        <div class="outer-indivisual">
+            <div class="banner-indivisual">
+                <h2>Dear Casino Official Website </h2>
+                <h3> Dear Fatafat || Nagaland Satta</h3>
+                <!-- <h3>Nagaland Satta</h3> -->
+            </div>
         </div>
 
 
 
-        <section class="hero" style="position: relative;">
 
-            <!-- Background Video -->
-            <video autoplay muted loop class="background-video"
-                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
-                <source src="/static/css/video-2.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
 
-            <!-- Color Overlay -->
-            <div class="color-mask" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+        <div class="inner-background-image">
+
+            <div class="marquee">
+                <marquee behavior="right" direction="range">Zukyar Dudayif is isld</marquee>
+            </div>
+
+
+
+            <section class="hero" style="position: relative;">
+
+                <!-- Background Video -->
+                <video autoplay muted loop class="background-video"
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
+                    <source src="/static/css/video-2.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+
+                <!-- Color Overlay -->
+                <div class="color-mask" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;
            background: rgba(0, 0, 0, 0.563); z-index: 1;">
-            </div>
-
-            <!-- Content Above Overlay -->
-            <div class="hero-inner" style="position: relative; z-index: 2;">
-                <div class="hero-text">
-                    <img src="/static/css/nagaland.png" alt="Logo" class="logo-img">
                 </div>
-            </div>
 
-            <div style="position: relative; z-index: 2; padding: 0.4rem;">
-                <div
-                    style="display: flex; justify-content: space-evenly; align-items: center; flex-wrap: wrap; gap: 1rem;">
-                    <div style="text-align: center;">
-                        <h4 style="margin-bottom: 10px; color: #FFEA02;"><img
-                                src="data:image/png;base64,R0lGODlhBwAHAPsAMQAAAP8zM/9mZv8AAN0AAMwAACIAAHcAAFUAAO4AAIgAAP+ZmQAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQJIwAAACwAAAAABwAHAAAEHRCAEYYEQYhAplgbcWTaUCBJoCaKARRE0V4H4gKRACH5BAUjAAAALAAAAAABAAEAAAICRIEAOw=="
-                                alt="Satta Matka Icon" width="10" height="10"> live</h4>
-                        <h1 style="color: #FFEA02;text-shadow: 0 0 5px #ff0000, 0 0 5px #ff0000, 0 0 10px #ff0303;margin-bottom: 15px; font-family: 'Cinzel Decorative', serif; "
-                            class="result-name">Dear Fatafat</h1>
-                        <h1 class="main-result-show">3 - 128</h1>
-                    </div>
-
-                    <div style="text-align: center;">
-                        <h4 style="margin-bottom: 10px;color: #FFEA02;"><img
-                                src="data:image/png;base64,R0lGODlhBwAHAPsAMQAAAP8zM/9mZv8AAN0AAMwAACIAAHcAAFUAAO4AAIgAAP+ZmQAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQJIwAAACwAAAAABwAHAAAEHRCAEYYEQYhAplgbcWTaUCBJoCaKARRE0V4H4gKRACH5BAUjAAAALAAAAAABAAEAAAICRIEAOw=="
-                                alt="Satta Matka Icon" width="10" height="10"> live</h4>
-                        <h1 style="color: #FFEA02;text-shadow: 0 0 5px #ff0000, 0 0 5px #ff0000, 0 0 10px #ff0303; margin-bottom: 15px;font-family: 'Cinzel Decorative', serif;"
-                            class="result-name">Nagaland Satta</h1>
-                        <h1 class="main-result-show">156 - 8</h1>
+                <!-- Content Above Overlay -->
+                <div class="hero-inner" style="position: relative; z-index: 2;">
+                    <div class="hero-text">
+                        <img src="/static/css/nagaland.png" alt="Logo" class="logo-img">
                     </div>
                 </div>
+
+                <div style="position: relative; z-index: 2; padding: 0.4rem;">
+                    <div
+                        style="display: flex; justify-content: space-evenly; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                        <div style="text-align: center;">
+                            <h4 style="margin-bottom: 10px; color: #FFEA02;"><img
+                                    src="data:image/png;base64,R0lGODlhBwAHAPsAMQAAAP8zM/9mZv8AAN0AAMwAACIAAHcAAFUAAO4AAIgAAP+ZmQAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQJIwAAACwAAAAABwAHAAAEHRCAEYYEQYhAplgbcWTaUCBJoCaKARRE0V4H4gKRACH5BAUjAAAALAAAAAABAAEAAAICRIEAOw=="
+                                    alt="Satta Matka Icon" width="10" height="10"> live</h4>
+                            <h1 style="color: #FFEA02;text-shadow: 0 0 5px #ff0000, 0 0 5px #ff0000, 0 0 10px #ff0303;margin-bottom: 15px; font-family: 'Cinzel Decorative', serif; "
+                                class="result-name">Dear Fatafat</h1>
+                            <h1 class="main-result-show">3 - 128</h1>
+                        </div>
+
+                        <div style="text-align: center;">
+                            <h4 style="margin-bottom: 10px;color: #FFEA02;"><img
+                                    src="data:image/png;base64,R0lGODlhBwAHAPsAMQAAAP8zM/9mZv8AAN0AAMwAACIAAHcAAFUAAO4AAIgAAP+ZmQAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQJIwAAACwAAAAABwAHAAAEHRCAEYYEQYhAplgbcWTaUCBJoCaKARRE0V4H4gKRACH5BAUjAAAALAAAAAABAAEAAAICRIEAOw=="
+                                    alt="Satta Matka Icon" width="10" height="10"> live</h4>
+                            <h1 style="color: #FFEA02;text-shadow: 0 0 5px #ff0000, 0 0 5px #ff0000, 0 0 10px #ff0303; margin-bottom: 15px;font-family: 'Cinzel Decorative', serif;"
+                                class="result-name">Nagaland Satta</h1>
+                            <h1 class="main-result-show">156 - 8</h1>
+                        </div>
+                    </div>
+                </div>
+                <br>
+            </section>
+
+            <div class="bg4">
+
+                <h2>LATEST LAST SEVEN DAY RECORD CHART NAGALAND SATTA</h2>
+
             </div>
             <br>
-        </section>
-
-        <div class="bg4">
-            <img src="/static/css/istockphoto-1365016893-612x612-removebg-preview.png" alt="" style="height: 60px;">
-            <h2>LATEST LAST SEVEN DAY RECORD CHART NAGALAND SATTA</h2>
-            <img src="/static/css/istockphoto-1365016893-612x612-removebg-preview.png" alt="" style="height: 60px;">
-        </div>
-        <br>
 
 
 
-        <div class="table-container">
-            <table class="main-table">
-                <tbody>
-                    <tr style="padding: 0">
-                        <td colspan="13" style="padding:0">
+            <div class="table-container">
+                <table class="main-table">
+                    <tbody>
+                        <tr style="padding: 0">
+                            <td colspan="13" style="padding:0">
 
-                        </td>
-                    </tr>
-                    <tr class="table-header">
+                            </td>
+                        </tr>
+                        <tr class="table-header">
 
-                        <td class="time-head">11:00 AM</td>
-                        <td class="time-head">12:30 PM</td>
-                        <td class="time-head">02:00 PM</td>
-                        <td class="time-head">03:30 PM</td>
-                        <td class="time-head">05:00 PM</td>
-                        <td class="time-head">06:30 PM</td>
-                        <td class="time-head">08:00 PM</td>
-                        <td class="time-head">09:30 PM</td>
-                        <td class="time-head">08:00 PM</td>
-                        <td class="time-head">09:30 PM</td>
-                    </tr>
+                            <td class="time-head">11:00 AM</td>
+                            <td class="time-head">12:30 PM</td>
+                            <td class="time-head">02:00 PM</td>
+                            <td class="time-head">03:30 PM</td>
+                            <td class="time-head">05:00 PM</td>
+                            <td class="time-head">06:30 PM</td>
+                            <td class="time-head">08:00 PM</td>
+                            <td class="time-head">09:30 PM</td>
+                            <td class="time-head">08:00 PM</td>
+                            <td class="time-head">09:30 PM</td>
+                        </tr>
 
-                    <!-- Sample Row -->
+                        <!-- Sample Row -->
 
-                    <h1><span class="main-table-spanGap-time">01-05-2025 Thurs</span></h1>
-                    <tr>
+                        <h1><span class="main-table-spanGap-time">01-05-2025 Thurs</span></h1>
+                        <tr>
 
-                        <td><span class="main-table-spanGap">267</span><span class="main-table-spanGap">267</span></td>
-                        <td><span class="main-table-spanGap">127</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">239</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">350</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">789</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">369</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">358</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">567</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">567</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">567</span><span class="main-table-spanGap">127</span></td>
-                    </tr>
+                            <td><span class="main-table-spanGap">267</span><span class="main-table-spanGap">267</span>
+                            </td>
+                            <td><span class="main-table-spanGap">127</span><span class="main-table-spanGap">127</span>
+                            </td>
+                            <td><span class="main-table-spanGap">239</span><span class="main-table-spanGap">127</span>
+                            </td>
+                            <td><span class="main-table-spanGap">350</span><span class="main-table-spanGap">127</span>
+                            </td>
+                            <td><span class="main-table-spanGap">789</span><span class="main-table-spanGap">127</span>
+                            </td>
+                            <td><span class="main-table-spanGap">369</span><span class="main-table-spanGap">127</span>
+                            </td>
+                            <td><span class="main-table-spanGap">358</span><span class="main-table-spanGap">127</span>
+                            </td>
+                            <td><span class="main-table-spanGap">567</span><span class="main-table-spanGap">127</span>
+                            </td>
+                            <td><span class="main-table-spanGap">567</span><span class="main-table-spanGap">127</span>
+                            </td>
+                            <td><span class="main-table-spanGap">567</span><span class="main-table-spanGap">127</span>
+                            </td>
+                        </tr>
 
 
 
-                    <!-- Add remaining rows the same way -->
-                </tbody>
-            </table>
+                        <!-- Add remaining rows the same way -->
+                    </tbody>
+                </table>
+                <br><br>
+                <table class="main-table">
+                    <tbody>
+                        <tr style="padding: 0">
+                            <td colspan="13" style="padding:0">
+
+                            </td>
+                        </tr>
+                        <tr class="table-header">
+
+                            <td class="time-head">11:00 AM</td>
+                            <td class="time-head">12:30 PM</td>
+                            <td class="time-head">02:00 PM</td>
+                            <td class="time-head">03:30 PM</td>
+                            <td class="time-head">05:00 PM</td>
+                            <td class="time-head">06:30 PM</td>
+                            <td class="time-head">08:00 PM</td>
+                            <td class="time-head">09:30 PM</td>
+                            <td class="time-head">08:00 PM</td>
+                            <td class="time-head">09:30 PM</td>
+                        </tr>
+
+                        <!-- Sample Row -->
+
+                        <h1><span class="main-table-spanGap-time">01-05-2025 Thurs</span></h1>
+                        <tr>
+
+                            <td><span class="main-table-spanGap">267</span><span class="main-table-spanGap">267</span>
+                            </td>
+                            <td><span class="main-table-spanGap">127</span><span class="main-table-spanGap">127</span>
+                            </td>
+                            <td><span class="main-table-spanGap">239</span><span class="main-table-spanGap">127</span>
+                            </td>
+                            <td><span class="main-table-spanGap">350</span><span class="main-table-spanGap">127</span>
+                            </td>
+                            <td><span class="main-table-spanGap">789</span><span class="main-table-spanGap">127</span>
+                            </td>
+                            <td><span class="main-table-spanGap">369</span><span class="main-table-spanGap">127</span>
+                            </td>
+                            <td><span class="main-table-spanGap">358</span><span class="main-table-spanGap">127</span>
+                            </td>
+                            <td><span class="main-table-spanGap">567</span><span class="main-table-spanGap">127</span>
+                            </td>
+                            <td><span class="main-table-spanGap">567</span><span class="main-table-spanGap">127</span>
+                            </td>
+                            <td><span class="main-table-spanGap">567</span><span class="main-table-spanGap">127</span>
+                            </td>
+                        </tr>
+
+
+
+                        <!-- Add remaining rows the same way -->
+                    </tbody>
+                </table>
+                <br><br>
+                <table class="main-table">
+                    <tbody>
+                        <tr style="padding: 0">
+                            <td colspan="13" style="padding:0">
+
+                            </td>
+                        </tr>
+                        <tr class="table-header">
+
+                            <td class="time-head">11:00 AM</td>
+                            <td class="time-head">12:30 PM</td>
+                            <td class="time-head">02:00 PM</td>
+                            <td class="time-head">03:30 PM</td>
+                            <td class="time-head">05:00 PM</td>
+                            <td class="time-head">06:30 PM</td>
+                            <td class="time-head">08:00 PM</td>
+                            <td class="time-head">09:30 PM</td>
+                            <td class="time-head">08:00 PM</td>
+                            <td class="time-head">09:30 PM</td>
+                        </tr>
+
+                        <!-- Sample Row -->
+
+                        <h1><span class="main-table-spanGap-time">01-05-2025 Thurs</span></h1>
+                        <tr>
+
+                            <td><span class="main-table-spanGap">267</span><span class="main-table-spanGap">267</span>
+                            </td>
+                            <td><span class="main-table-spanGap">127</span><span class="main-table-spanGap">127</span>
+                            </td>
+                            <td><span class="main-table-spanGap">239</span><span class="main-table-spanGap">127</span>
+                            </td>
+                            <td><span class="main-table-spanGap">350</span><span class="main-table-spanGap">127</span>
+                            </td>
+                            <td><span class="main-table-spanGap">789</span><span class="main-table-spanGap">127</span>
+                            </td>
+                            <td><span class="main-table-spanGap">369</span><span class="main-table-spanGap">127</span>
+                            </td>
+                            <td><span class="main-table-spanGap">358</span><span class="main-table-spanGap">127</span>
+                            </td>
+                            <td><span class="main-table-spanGap">567</span><span class="main-table-spanGap">127</span>
+                            </td>
+                            <td><span class="main-table-spanGap">567</span><span class="main-table-spanGap">127</span>
+                            </td>
+                            <td><span class="main-table-spanGap">567</span><span class="main-table-spanGap">127</span>
+                            </td>
+                        </tr>
+
+
+
+                        <!-- Add remaining rows the same way -->
+                    </tbody>
+                </table>
+                <br><br>
+                <table class="main-table">
+                    <tbody>
+                        <tr style="padding: 0">
+                            <td colspan="13" style="padding:0">
+
+                            </td>
+                        </tr>
+                        <tr class="table-header">
+
+                            <td class="time-head">11:00 AM</td>
+                            <td class="time-head">12:30 PM</td>
+                            <td class="time-head">02:00 PM</td>
+                            <td class="time-head">03:30 PM</td>
+                            <td class="time-head">05:00 PM</td>
+                            <td class="time-head">06:30 PM</td>
+                            <td class="time-head">08:00 PM</td>
+                            <td class="time-head">09:30 PM</td>
+                            <td class="time-head">08:00 PM</td>
+                            <td class="time-head">09:30 PM</td>
+                        </tr>
+
+                        <!-- Sample Row -->
+
+                        <h1><span class="main-table-spanGap-time">01-05-2025 Thurs</span></h1>
+                        <tr>
+
+                            <td><span class="main-table-spanGap">267</span><span class="main-table-spanGap">267</span>
+                            </td>
+                            <td><span class="main-table-spanGap">127</span><span class="main-table-spanGap">127</span>
+                            </td>
+                            <td><span class="main-table-spanGap">239</span><span class="main-table-spanGap">127</span>
+                            </td>
+                            <td><span class="main-table-spanGap">350</span><span class="main-table-spanGap">127</span>
+                            </td>
+                            <td><span class="main-table-spanGap">789</span><span class="main-table-spanGap">127</span>
+                            </td>
+                            <td><span class="main-table-spanGap">369</span><span class="main-table-spanGap">127</span>
+                            </td>
+                            <td><span class="main-table-spanGap">358</span><span class="main-table-spanGap">127</span>
+                            </td>
+                            <td><span class="main-table-spanGap">567</span><span class="main-table-spanGap">127</span>
+                            </td>
+                            <td><span class="main-table-spanGap">567</span><span class="main-table-spanGap">127</span>
+                            </td>
+                            <td><span class="main-table-spanGap">567</span><span class="main-table-spanGap">127</span>
+                            </td>
+                        </tr>
+
+
+
+                        <!-- Add remaining rows the same way -->
+                    </tbody>
+                </table>
+            </div>
+
+            <br>
+            <br>
+            <br>
+            <center>
+                <a href="/old"
+                    style="text-decoration: underline; text-decoration-color: white; text-underline-offset: 4px;">
+                    <h1 style="color: #ffffff; margin: 0;" class="Full-pannel-record">Full pannel record</h1>
+                </a>
+
+            </center>
+
+            <br>
+            <br>
+
+
+            <div class="bg4">
+
+                <h2>OUR OFICIAL GAMES TIME TABLE</h2>
+
+            </div>
+            <br>
+            <div class="time-table-game">
+
+                <table class="sub-table" style="color: #fffb00;">
+                    <thead>
+                        <tr>
+                            <th>
+                                <center>Game Name </center>
+                            </th>
+                            <th>
+                                <center>Game Round's</center>
+                            </th>
+                            <th>
+                                <center>Time</center>
+                            </th>
+                            <th>
+                                <center>Result</center>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Nagaland Satta</td>
+                            <td>1st Baji</td>
+                            <td>01:00 PM</td>
+                            <td>***-*</td>
+                        </tr>
+                        <tr>
+                            <td>Nagaland Satta</td>
+                            <td>2nd Baji</td>
+                            <td>06:00 PM</td>
+                            <td>***-*</td>
+                        </tr>
+                        <tr>
+                            <td>Nagaland Satta</td>
+                            <td>3rd Baji</td>
+                            <td>08:00 PM</td>
+                            <td>***-*</td>
+                        </tr>
+                        <tr>
+                            <td>Nagaland Satta</td>
+                            <td>3rd Baji</td>
+                            <td>08:00 PM</td>
+                            <td>***-*</td>
+                        </tr>
+                        <tr>
+                            <td>Nagaland Satta</td>
+                            <td>3rd Baji</td>
+                            <td>08:00 PM</td>
+                            <td>***-*</td>
+                        </tr>
+                        <tr>
+                            <td>Nagaland Satta</td>
+                            <td>3rd Baji</td>
+                            <td>08:00 PM</td>
+                            <td>***-*</td>
+                        </tr>
+                        <tr>
+                            <td>Nagaland Satta</td>
+                            <td>3rd Baji</td>
+                            <td>08:00 PM</td>
+                            <td>***-*</td>
+                        </tr>
+                        <tr>
+                            <td>Nagaland Satta</td>
+                            <td>3rd Baji</td>
+                            <td>08:00 PM</td>
+                            <td>***-*</td>
+                        </tr>
+
+
+
+                    </tbody>
+                </table>
+
+
+                <table class="sub-table" style="color: #fffb00;">
+                    <thead>
+                        <tr>
+                            <th>
+                                <center>Game Name </center>
+                            </th>
+                            <th>
+                                <center>Game Round's</center>
+                            </th>
+                            <th>
+                                <center>Time</center>
+                            </th>
+                            <th>
+                                <center>Result</center>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Nagaland Satta</td>
+                            <td>1st Baji</td>
+                            <td>01:00 PM</td>
+                            <td>***-*</td>
+                        </tr>
+                        <tr>
+                            <td>Nagaland Satta</td>
+                            <td>2nd Baji</td>
+                            <td>06:00 PM</td>
+                            <td>***-*</td>
+                        </tr>
+                        <tr>
+                            <td>Nagaland Satta</td>
+                            <td>3rd Baji</td>
+                            <td>08:00 PM</td>
+                            <td>***-*</td>
+                        </tr>
+                        <tr>
+                            <td>Nagaland Satta</td>
+                            <td>3rd Baji</td>
+                            <td>08:00 PM</td>
+                            <td>***-*</td>
+                        </tr>
+                        <tr>
+                            <td>Nagaland Satta</td>
+                            <td>3rd Baji</td>
+                            <td>08:00 PM</td>
+                            <td>***-*</td>
+                        </tr>
+                        <tr>
+                            <td>Nagaland Satta</td>
+                            <td>3rd Baji</td>
+                            <td>08:00 PM</td>
+                            <td>***-*</td>
+                        </tr>
+                        <tr>
+                            <td>Nagaland Satta</td>
+                            <td>3rd Baji</td>
+                            <td>08:00 PM</td>
+                            <td>***-*</td>
+                        </tr>
+                        <tr>
+                            <td>Nagaland Satta</td>
+                            <td>3rd Baji</td>
+                            <td>08:00 PM</td>
+                            <td>***-*</td>
+                        </tr>
+                        <tr>
+                            <td>Nagaland Satta</td>
+                            <td>3rd Baji</td>
+                            <td>08:00 PM</td>
+                            <td>***-*</td>
+                        </tr>
+                        <tr>
+                            <td>Nagaland Satta</td>
+                            <td>3rd Baji</td>
+                            <td>08:00 PM</td>
+                            <td>***-*</td>
+                        </tr>
+
+
+                    </tbody>
+                </table>
+            </div>
             <br><br>
-            <table class="main-table">
-                <tbody>
-                    <tr style="padding: 0">
-                        <td colspan="13" style="padding:0">
-
-                        </td>
-                    </tr>
-                    <tr class="table-header">
-
-                        <td class="time-head">11:00 AM</td>
-                        <td class="time-head">12:30 PM</td>
-                        <td class="time-head">02:00 PM</td>
-                        <td class="time-head">03:30 PM</td>
-                        <td class="time-head">05:00 PM</td>
-                        <td class="time-head">06:30 PM</td>
-                        <td class="time-head">08:00 PM</td>
-                        <td class="time-head">09:30 PM</td>
-                        <td class="time-head">08:00 PM</td>
-                        <td class="time-head">09:30 PM</td>
-                    </tr>
-
-                    <!-- Sample Row -->
-
-                    <h1><span class="main-table-spanGap-time">01-05-2025 Thurs</span></h1>
-                    <tr>
-
-                        <td><span class="main-table-spanGap">267</span><span class="main-table-spanGap">267</span></td>
-                        <td><span class="main-table-spanGap">127</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">239</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">350</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">789</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">369</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">358</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">567</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">567</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">567</span><span class="main-table-spanGap">127</span></td>
-                    </tr>
-
-
-
-                    <!-- Add remaining rows the same way -->
-                </tbody>
-            </table>
-            <br><br>
-            <table class="main-table">
-                <tbody>
-                    <tr style="padding: 0">
-                        <td colspan="13" style="padding:0">
-
-                        </td>
-                    </tr>
-                    <tr class="table-header">
-
-                        <td class="time-head">11:00 AM</td>
-                        <td class="time-head">12:30 PM</td>
-                        <td class="time-head">02:00 PM</td>
-                        <td class="time-head">03:30 PM</td>
-                        <td class="time-head">05:00 PM</td>
-                        <td class="time-head">06:30 PM</td>
-                        <td class="time-head">08:00 PM</td>
-                        <td class="time-head">09:30 PM</td>
-                        <td class="time-head">08:00 PM</td>
-                        <td class="time-head">09:30 PM</td>
-                    </tr>
-
-                    <!-- Sample Row -->
-
-                    <h1><span class="main-table-spanGap-time">01-05-2025 Thurs</span></h1>
-                    <tr>
-
-                        <td><span class="main-table-spanGap">267</span><span class="main-table-spanGap">267</span></td>
-                        <td><span class="main-table-spanGap">127</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">239</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">350</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">789</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">369</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">358</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">567</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">567</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">567</span><span class="main-table-spanGap">127</span></td>
-                    </tr>
-
-
-
-                    <!-- Add remaining rows the same way -->
-                </tbody>
-            </table>
-            <br><br>
-            <table class="main-table">
-                <tbody>
-                    <tr style="padding: 0">
-                        <td colspan="13" style="padding:0">
-
-                        </td>
-                    </tr>
-                    <tr class="table-header">
-
-                        <td class="time-head">11:00 AM</td>
-                        <td class="time-head">12:30 PM</td>
-                        <td class="time-head">02:00 PM</td>
-                        <td class="time-head">03:30 PM</td>
-                        <td class="time-head">05:00 PM</td>
-                        <td class="time-head">06:30 PM</td>
-                        <td class="time-head">08:00 PM</td>
-                        <td class="time-head">09:30 PM</td>
-                        <td class="time-head">08:00 PM</td>
-                        <td class="time-head">09:30 PM</td>
-                    </tr>
-
-                    <!-- Sample Row -->
-
-                    <h1><span class="main-table-spanGap-time">01-05-2025 Thurs</span></h1>
-                    <tr>
-
-                        <td><span class="main-table-spanGap">267</span><span class="main-table-spanGap">267</span></td>
-                        <td><span class="main-table-spanGap">127</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">239</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">350</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">789</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">369</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">358</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">567</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">567</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">567</span><span class="main-table-spanGap">127</span></td>
-                    </tr>
-
-
-
-                    <!-- Add remaining rows the same way -->
-                </tbody>
-            </table>
         </div>
 
-               <br>
-        <br>
-        <br>
-        <center>
-            <a href="/old"
-                style="text-decoration: underline; text-decoration-color: white; text-underline-offset: 4px;">
-                <h1 style="color: #ffffff; margin: 0;">Full pannel record</h1>
-            </a>
-
-        </center>
-
-        <br>
-        <br>
-
-
-        <div class="bg4">
-            <img src="/static/css/istockphoto-1365016893-612x612-removebg-preview.png" alt="" style="height: 60px;">
-            <h2>OUR OFICIAL GAMES TIME TABLE</h2>
-            <img src="/static/css/istockphoto-1365016893-612x612-removebg-preview.png" alt="" style="height: 60px;">
-        </div>
-        <br>
-        <div class="time-table-game">
-
-            <table class="sub-table" style="color: #fffb00;">
-                <thead>
-                    <tr>
-                        <th>
-                            <center>Game Name </center>
-                        </th>
-                        <th>
-                            <center>Game Round's</center>
-                        </th>
-                        <th>
-                            <center>Time</center>
-                        </th>
-                        <th>
-                            <center>Result</center>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Nagaland Satta</td>
-                        <td>1st Baji</td>
-                        <td>01:00 PM</td>
-                        <td>***-*</td>
-                    </tr>
-                    <tr>
-                        <td>Nagaland Satta</td>
-                        <td>2nd Baji</td>
-                        <td>06:00 PM</td>
-                        <td>***-*</td>
-                    </tr>
-                    <tr>
-                        <td>Nagaland Satta</td>
-                        <td>3rd Baji</td>
-                        <td>08:00 PM</td>
-                        <td>***-*</td>
-                    </tr>
-                    <tr>
-                        <td>Nagaland Satta</td>
-                        <td>3rd Baji</td>
-                        <td>08:00 PM</td>
-                        <td>***-*</td>
-                    </tr>
-                    <tr>
-                        <td>Nagaland Satta</td>
-                        <td>3rd Baji</td>
-                        <td>08:00 PM</td>
-                        <td>***-*</td>
-                    </tr>
-                    <tr>
-                        <td>Nagaland Satta</td>
-                        <td>3rd Baji</td>
-                        <td>08:00 PM</td>
-                        <td>***-*</td>
-                    </tr>
-                    <tr>
-                        <td>Nagaland Satta</td>
-                        <td>3rd Baji</td>
-                        <td>08:00 PM</td>
-                        <td>***-*</td>
-                    </tr>
-                    <tr>
-                        <td>Nagaland Satta</td>
-                        <td>3rd Baji</td>
-                        <td>08:00 PM</td>
-                        <td>***-*</td>
-                    </tr>
-
-
-
-                </tbody>
-            </table>
-
-
-            <table class="sub-table" style="color: #fffb00;">
-                <thead>
-                    <tr>
-                        <th>
-                            <center>Game Name </center>
-                        </th>
-                        <th>
-                            <center>Game Round's</center>
-                        </th>
-                        <th>
-                            <center>Time</center>
-                        </th>
-                        <th>
-                            <center>Result</center>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Nagaland Satta</td>
-                        <td>1st Baji</td>
-                        <td>01:00 PM</td>
-                        <td>***-*</td>
-                    </tr>
-                    <tr>
-                        <td>Nagaland Satta</td>
-                        <td>2nd Baji</td>
-                        <td>06:00 PM</td>
-                        <td>***-*</td>
-                    </tr>
-                    <tr>
-                        <td>Nagaland Satta</td>
-                        <td>3rd Baji</td>
-                        <td>08:00 PM</td>
-                        <td>***-*</td>
-                    </tr>
-                    <tr>
-                        <td>Nagaland Satta</td>
-                        <td>3rd Baji</td>
-                        <td>08:00 PM</td>
-                        <td>***-*</td>
-                    </tr>
-                    <tr>
-                        <td>Nagaland Satta</td>
-                        <td>3rd Baji</td>
-                        <td>08:00 PM</td>
-                        <td>***-*</td>
-                    </tr>
-                    <tr>
-                        <td>Nagaland Satta</td>
-                        <td>3rd Baji</td>
-                        <td>08:00 PM</td>
-                        <td>***-*</td>
-                    </tr>
-                    <tr>
-                        <td>Nagaland Satta</td>
-                        <td>3rd Baji</td>
-                        <td>08:00 PM</td>
-                        <td>***-*</td>
-                    </tr>
-                    <tr>
-                        <td>Nagaland Satta</td>
-                        <td>3rd Baji</td>
-                        <td>08:00 PM</td>
-                        <td>***-*</td>
-                    </tr>
-                    <tr>
-                        <td>Nagaland Satta</td>
-                        <td>3rd Baji</td>
-                        <td>08:00 PM</td>
-                        <td>***-*</td>
-                    </tr>
-                    <tr>
-                        <td>Nagaland Satta</td>
-                        <td>3rd Baji</td>
-                        <td>08:00 PM</td>
-                        <td>***-*</td>
-                    </tr>
-
-
-                </tbody>
-            </table>
-        </div>
-        <br><br>
     </div>
 
-</div>
+
+
+    <div class="about-div">
+
+        <div style="background-color: #110d0dc0;">
+
+            <h1 class="about-h2">About Dear Casino</h1>
+            <p style="padding: 40px; line-height: 25px;">
+                Welcome to Dear Casino – your ultimate destination for satta matka excitement! Dive into a thrilling
+                world
+                of games, fast results, and endless possibilities. Our platform is designed for both new and experienced
+                players, offering a seamless and secure gaming experience.
+
+                At Dear Casino, we combine cutting-edge technology with expert insights to bring you accurate results
+                and
+                fair play every time. From classic matka to modern variations, everything you love is here under one
+                roof.
+
+                Join the fun, feel the rush, and discover the excitement that only Dear Fatafat can deliver. Let the
+                games
+                begin!
+            </p>
 
 
 
-<div class="about-div">
-
-    <div style="background-color: #110d0dc0;">
-
-        <h1 class="about-h2">About Dear Casino</h1>
-        <p style="padding: 40px; line-height: 25px;">
-            Welcome to Dear Casino – your ultimate destination for satta matka excitement! Dive into a thrilling world
-            of games, fast results, and endless possibilities. Our platform is designed for both new and experienced
-            players, offering a seamless and secure gaming experience.
-
-            At Dear Casino, we combine cutting-edge technology with expert insights to bring you accurate results and
-            fair play every time. From classic matka to modern variations, everything you love is here under one roof.
-
-            Join the fun, feel the rush, and discover the excitement that only Dear Fatafat can deliver. Let the games
-            begin!
-        </p>
-
-
-
-        <a href="" class="refresh-btn">Refresh</a>
-        <br>
+            <a href="" class="refresh-btn">Refresh</a>
+            <br>
+        </div>
     </div>
-</div>
 
 
 
@@ -826,4 +1036,4 @@
 
 
 
-{% endblock body %}
+    {% endblock body %}
