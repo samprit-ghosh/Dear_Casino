@@ -275,7 +275,8 @@ def admin():
         currentday = now.strftime('%d-%b-%Y(%a)')
         daily_data = Result.query.filter_by(date=currentday).first()
         daily_extra = Extra.query.filter_by(date=currentday).first()
-        return render_template('admin.html', daily_data=daily_data, daily_extra=daily_extra, title="Admin Panel")
+        readonly_text = "Readonly Input fdtrh dfbfgn fdfnf gfngfn gjntym bthrt gfnrthtrhr"
+        return render_template('admin.html', readonly_text=readonly_text,daily_data=daily_data, daily_extra=daily_extra, title="Admin Panel")
     return redirect(url_for('admin_auth'))
     
 
