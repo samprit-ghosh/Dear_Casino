@@ -5,9 +5,8 @@ import os
 from datetime import datetime, timedelta, date
 from pytz import timezone
 from dateutil.relativedelta import relativedelta
-
+import bcrypt
 import requests
-
 import re
 
 
@@ -248,11 +247,19 @@ def home():
                           title="Fastest and Live Online Goa Satta Result only at goasatta.in")
 
 
+def check_password(plain_password: str, hashed_password: str) -> bool:
+    # Compare the plain password with the hashed password
+    return bcrypt.checkpw(plain_password.encode('utf-8'), hashed_password.encode('utf-8'))
+
+
 @app.route("/admin_auth", methods=['GET', 'POST'])
 def admin_auth():
     if request.method == 'POST':
+        username = request.form['username']
         password = request.form['password']
-        if password == ADMIN_PASSWORD:
+        # print(username, password)
+        if username == "admin" and check_password(password, ADMIN_PASSWORD):
+            # print("Admin Authenticated", username, password)
             session['admin'] = True
             return redirect(url_for('admin'))
         else:
