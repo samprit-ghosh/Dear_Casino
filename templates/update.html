@@ -16,9 +16,9 @@
 
 
  
-    <h2 class="editor-title">Edit Slot - <span class="slot-name">{{slot}}</span></h2>
+    <h2 class="editor-title">Edit Slot - <span class="slot-name">{{slot}}</span>({{game}})</h2>
     
-    <form action="/update/{{slot}}" method="POST" class="editor-form">
+    <form action="/update/{{game}}/{{slot}}" method="POST" class="editor-form">
       <div class="form-group">
         <label for="oneDigi" class="form-label" style="color: #ffffff; font-size: 1.3rem;">One Digit Result</label>
         <input 

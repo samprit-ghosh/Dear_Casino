@@ -1,0 +1,7 @@
+{% if active_marquee %}
+<div class="marquee-container">
+    <marquee scrollamount="{{ active_marquee.scroll_speed }}" class="marquee-text">
+        {{ active_marquee.content }}
+    </marquee>
+</div>
+{% endif %} 

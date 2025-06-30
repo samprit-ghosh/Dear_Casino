@@ -1,0 +1,32 @@
+.marquee-container {
+    background-color: #161b22;
+    padding: 10px 0;
+    border-bottom: 1px solid #30363d;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+.marquee-text {
+    color: #f1f1f1;
+    font-size: 16px;
+    font-weight: 500;
+    white-space: nowrap;
+    width: 100%;
+}
+
+/* Style for admin panel */
+.marquee-preview {
+    margin: 15px 0;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .marquee-text {
+        font-size: 14px;
+    }
+} 
