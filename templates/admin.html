@@ -42,7 +42,7 @@
         <td class="admin-th-3" data-label="Type"><b>Daily</b></td>
         <td class="admin-th-3" data-label="Slot">
           <select name="slots" id="slots" required class="admin-select">
-            <option disabled selected>Select a Slot</option>
+            <option disabled selected > Select a Slot</option>
             {% if not daily_data.slot_1_1 %}<option value="1">  Slot - 01</option>{% endif %}
             {% if not daily_data.slot_2_1 %}<option value="2">  Slot - 02</option>{% endif %}
             {% if not daily_data.slot_3_1 %}<option value="3">  Slot - 03</option>{% endif %}
@@ -54,10 +54,11 @@
           </select>
         </td>
         <td class="admin-th-3" data-label="One Digit">
-          <input type="number" name="one_digit" class="admin-input" min="0" max="9" required>
+          <input type="number" name="three_digit" class="admin-input" min="0" max="9" step="1" required>
+
         </td>
         <td class="admin-th-3" data-label="Three Digits">
-          <input type="number" name="three_digit" class="admin-input" min="0" max="999" required>
+          <input type="number" name="three_digit" class="admin-input" min="0" max="999" step="1" required>
         </td>
         <td class="admin-th-3" data-label="Action">
           <button type="submit" class=" btn-success">Submit</button>
@@ -68,7 +69,9 @@
 </form>
 
 
-<table class="numerinput admin-form" style="margin-top: 3rem;">
+
+
+<table class="numerinput admin-form" style="margin-top: 3rem; justify-self: center;">
   <thead>
     <tr class="admin-tr"> 
       <th class="admin-th-1">Slotes</th>
@@ -225,7 +228,7 @@
 </form>
 
 
-      <table class="numerinput admin-form"  style="margin-top: 3rem;">
+      <table class="numerinput admin-form"  style="margin-top: 3rem; justify-self: center;" >
       <thead>
         <tr class="admin-tr"> 
           <th class="admin-th-1">Slotes</th>
@@ -379,7 +382,7 @@
 <center>
   
 <div class="input-group-marque">
-  <input type="text" class="form-control-marque" value="{{ readonly_text }}" readonly id="inputBox">
+  <input type="text" class="form-control-marque" value="mjgyk" readonly id="inputBox">
   <button class="btn btn-icon edit" onclick="toggleEdit()" title="Edit" style="width: fit-content; padding: 15px;">
     <i class="bi bi-pencil-square"></i>
   </button>

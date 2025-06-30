@@ -11,9 +11,6 @@ import re
 
 
 
-
-
-
 # Create a timezone-aware UTC datetime
 
 
@@ -30,7 +27,11 @@ app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
+global_array = [10, "Apple", 20, "Banana", 30, "Cherry"]
 
+@app.context_processor
+def inject_globals():
+    return dict(global_array=global_array)
 
 # 10:00 AM
 # 11:00 AM
@@ -275,8 +276,8 @@ def admin():
         currentday = now.strftime('%d-%b-%Y(%a)')
         daily_data = Result.query.filter_by(date=currentday).first()
         daily_extra = Extra.query.filter_by(date=currentday).first()
-        readonly_text = "Readonly Input fdtrh dfbfgn fdfnf gfngfn gjntym bthrt gfnrthtrhr"
-        return render_template('admin.html', readonly_text=readonly_text,daily_data=daily_data, daily_extra=daily_extra, title="Admin Panel")
+        
+        return render_template('admin.html',daily_data=daily_data, daily_extra=daily_extra, title="Admin Panel")
     return redirect(url_for('admin_auth'))
     
 
