@@ -32,6 +32,9 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 
+# Dear Fatafat -> 8 Slots -> 10:30-9:00 (1.5 hr)
+# Nagaland Satta -> 10 Slots -> 10:20-7:20 (1 hr)
+
 # 10:00 AM
 # 11:00 AM
 # 12:00 PM
