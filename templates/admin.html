@@ -15,10 +15,6 @@
     <div class="tab-slider" id="tabSlider"></div>
   </div>
   <!-- Mobile Tab Switcher -->
-<div class="input-wrapper">
-  <input type="text" class="admin-input-text" /> <button class="btn-success-text">Submit</button>
-</div>
-
 
   <!-- Tables -->
 <div class="container-admin" style="display: flex; justify-content: space-evenly; padding: 2rem; ">
@@ -60,7 +56,8 @@
           </select>
         </td>
         <td class="admin-th-3" data-label="One Digit">
-          <input type="number" name="one_digit" class="admin-input" min="0" max="9" required>
+          <input type="number" name="three_digit" class="admin-input" min="0" max="9" step="1" required>
+
         </td>
         <td class="admin-th-3" data-label="Three Digits">
           <input type="number" name="three_digit" class="admin-input" min="100" max="999" required>
@@ -74,7 +71,9 @@
 </form>
 
 
-<table class="numerinput admin-form" style="margin-top: 3rem;">
+
+
+<table class="numerinput admin-form" style="margin-top: 3rem; justify-self: center;">
   <thead>
     <tr class="admin-tr"> 
       <th class="admin-th-1">Slotes</th>
@@ -231,7 +230,7 @@
 </form>
 
 
-      <table class="numerinput admin-form"  style="margin-top: 3rem;">
+      <table class="numerinput admin-form"  style="margin-top: 3rem; justify-self: center;" >
       <thead>
         <tr class="admin-tr"> 
           <th class="admin-th-1">Slotes</th>
@@ -356,15 +355,22 @@
 
 
 
+<div class="input-wrapper">
+  <input type="text" class="admin-input-text" /> <button class="btn-success-text">Submit</button>
+</div>
 <center>
   
-  <input type="text" value="Readonly Input " readonly  style="padding: 10px 20px;
-      font-size: 18px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      background-color: #ffffff; margin-top: 3rem;  text-align: center; padding-top: 10px;" class="admin-input-text"/>
-</center>
+<div class="input-group-marque">
+  <input type="text" class="form-control-marque" value="mjgyk" readonly id="inputBox">
+  <button class="btn btn-icon edit" onclick="toggleEdit()" title="Edit" style="width: fit-content; padding: 15px;">
+    <i class="bi bi-pencil-square"></i>
+  </button>
+  <button class="btn btn-icon delete" onclick="deleteInput()" title="Delete"style="width: fit-content; padding: 15px;">
+    <i class="bi bi-trash"></i>
+  </button>
+</div>
 
+</center>
 
 
 

@@ -406,3 +406,71 @@
   }
 
   /* </style> */
+
+
+
+  
+    .input-group-marque{
+          display: flex;
+  align-items: center;
+  gap: 10px;
+width: 50%;
+
+  padding: 10px 12px;
+  border-radius: 8px;
+  /* box-shadow: 0 4px 10px rgba(255, 4, 4, 0.3); */
+  margin: 1.5rem auto;
+    }
+
+.form-control-marque {
+  flex: 1;
+  padding: 14px 16px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-align: center;
+
+}
+
+.form-control-marque:read-only {
+  background-color: #f9f9f9;
+}
+
+.btn-icon {
+  width: 36px;             /* smaller width */
+  height: 36px;            /* same as input height */
+  padding: 0;
+  border: none;
+  background: transparent;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  flex-shrink: 0;
+    background-color: #ffda0728;
+}
+
+.btn-icon.edit {
+  color: #0a9c2c;
+    transition: all 0.3s ease;
+}
+
+.btn-icon.edit:hover {
+  color: #1e7e34;  
+  box-shadow: 0 0 12px rgba(40, 167, 69, 0.8), 0 0 20px rgba(40, 167, 69, 0.6);
+       transform: scale(1.05);
+
+}
+
+.btn-icon.delete {
+  color: #ff031c;
+   transition: all 0.3s ease;
+}
+
+.btn-icon.delete:hover {
+  color: #bd2130;
+        box-shadow: 0 0 12px rgba(225, 6, 6, 0.8), 0 0 20px rgba(214, 7, 7, 0.6);
+       transform: scale(1.05);
+}

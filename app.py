@@ -11,9 +11,6 @@ import re
 
 
 
-
-
-
 # Create a timezone-aware UTC datetime
 
 
@@ -30,7 +27,11 @@ app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
+global_array = [10, "Apple", 20, "Banana", 30, "Cherry"]
 
+@app.context_processor
+def inject_globals():
+    return dict(global_array=global_array)
 
 # Nagaland Satta -> 10 Slots -> 10:20-7:20 (1 hr)
 # Dear Fatafat -> 8 Slots -> 10:30-9:00 (1.5 hr)
