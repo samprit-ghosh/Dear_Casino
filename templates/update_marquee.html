@@ -3,7 +3,7 @@
 {% block body %}
 
 <div class="container my-5" style="height: 60vh;">
-    <h2>You Are Editing Marquee Text</h2>
+    <h2>You Are Editing Marquee Text - {{status}}</h2>
     <form action="/update/marquee/{{marquee_to_update.id}}" method="POST">
       <div class="mb-3">
         <label for="title" class="form-label">Marquee Text</label>
@@ -11,8 +11,8 @@
           aria-describedby="emailHelp" required>
       </div>
       <select name="marquee_status" id="slots" required class="admin-select">
-            <option value="Enable" {% if status == True %}{% endif %}>Enable</option>
-            <option value="Disable" {% if status == False %}{% endif %}>Disable</option>
+            <option value="Enable" {% if status == True %} selected {% endif %}>Enable</option>
+            <option value="Disable" {% if status == False %} selected {% endif %}>Disable</option>
           </select>
       <button type="submit" class="btn btn-success">Update</button>
     </form>
