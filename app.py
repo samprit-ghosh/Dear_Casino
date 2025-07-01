@@ -356,9 +356,10 @@ def admin():
             Fatafat_Result.created_at >= today_start,
             Fatafat_Result.created_at <= today_end
         ).first()
-        
-        # daily_extra = Extra.query.filter_by(date=now.strftime('%d-%b-%Y(%a)')).first()
-        return render_template('admin.html', daily_data_nagaland=daily_data_nagaland, daily_data_fatafat=daily_data_fatafat, title="Admin Panel")
+
+        marquee_texts = MarqueeText.query.order_by(MarqueeText.created_at.desc()).all()
+
+        return render_template('admin.html', daily_data_nagaland=daily_data_nagaland, daily_data_fatafat=daily_data_fatafat, title="Admin Panel", marquee_texts=marquee_texts)
     return redirect(url_for('admin_auth'))
     
 
@@ -530,69 +531,48 @@ def delete(game, slot):
     return redirect(url_for('admin_auth'))
 
 
-@app.route('/add_extra', methods=['POST'])
-def add_extra():
-    currentday = datetime.now(timezone("Asia/Kolkata")).strftime('%d-%b-%Y(%a)')
-    # daily_extra = Extra.query.filter_by(date=currentday).first()
-
-    # if not daily_extra:
-    #     daily_extra = Extra(date=currentday)
-
-    slot = request.form['slots']
-    value_1 = request.form['one_digit']
-    value_3 = request.form['three_digit']
-
-    # if slot == '1':
-    #     daily_extra.open_1 = value_1
-    #     daily_extra.open_3 = value_3
-    # elif slot == '2':
-    #     daily_extra.close_1 = value_1
-    #     daily_extra.close_3 = value_3
-
-    # db.session.add(daily_extra)
-    # db.session.commit()
-    return redirect('/admin')
-
-
-@app.route('/update_extra/<int:slot_no>', methods=['GET', 'POST'])
-def update_extra(slot_no):
+@app.route('/add_marquee', methods=['POST'])
+def add_marquee():
     if 'admin' in session:
-        currentday = datetime.now(timezone("Asia/Kolkata")).strftime('%d-%b-%Y(%a)')
-        # daily_extra = Extra.query.filter_by(date=currentday).first()
-        
-        slot = 'open' if slot_no == 1 else 'close'
-
-        slot_one  = f'{slot}_1'
-        slot_three  = f'{slot}_3'
-
-        # one = getattr(daily_extra, slot_one)
-        # three = getattr(daily_extra, slot_three)
-
-        if request.method=='POST':
-            oneDigi = request.form['oneDigi']
-            threeDigi = request.form['threeDigi']
-            # setattr(daily_extra, slot_one, oneDigi)
-            # setattr(daily_extra, slot_three, threeDigi)
+        if request.method == 'POST':
+            marquee_text = request.form['marquee_text']
+            print(marquee_text)
+            if not marquee_text:
+                flash("Marquee text cannot be empty")
+                return redirect(url_for('admin_marquee'))
+            new_marquee = MarqueeText(content=marquee_text, is_active=True)
+            db.session.add(new_marquee)
             db.session.commit()
-            return redirect('/admin')
-        return render_template('update_extra.html', slot_no=slot_no, slot=slot, title="Edit Result")
+        return redirect('/admin')
     return redirect(url_for('admin_auth'))
 
 
-@app.route('/delete_extra/<int:slot_no>', methods=['GET', 'POST'])
-def delete_extra(slot_no):
+
+@app.route('/update/marquee/<int:id>', methods=['GET', 'POST'])
+def update_marquee(id):
     if 'admin' in session:
-        currentday = datetime.now(timezone("Asia/Kolkata")).strftime('%d-%b-%Y(%a)')
-        # daily_extra = Extra.query.filter_by(date=currentday).first()
+        marquee_to_update = MarqueeText.query.filter(MarqueeText.id == id).first()
+        if request.method=='POST':
+            updated_marquee_text = request.form['marquee_text']
+            updated_marquee_status = request.form['marquee_status']
+            marquee_to_update.content = updated_marquee_text
+            if updated_marquee_status == "Enable":
+                marquee_to_update.is_active = True
+            elif updated_marquee_status == "Disable":
+                marquee_to_update.is_active = False
+            db.session.commit()
+            return redirect('/admin')
+        return render_template('update_marquee.html', title="Edit Marquee", marquee_to_update=marquee_to_update, status=marquee_to_update.is_active)
+    return redirect(url_for('admin_auth'))
 
-        slot = 'open' if slot_no == 1 else 'close'
 
-        slot_one  = f'{slot}_1'
-        slot_three  = f'{slot}_3'
-
-        # setattr(daily_extra, slot_one, None)
-        # setattr(daily_extra, slot_three, None)
-        # db.session.commit()
+@app.route('/delete/marquee/<int:id>', methods=['GET', 'POST'])
+def delete_marquee(id):
+    if 'admin' in session:
+        marquee_to_delete = MarqueeText.query.filter(MarqueeText.id == id).first()
+        if marquee_to_delete:
+            db.session.delete(marquee_to_delete)
+            db.session.commit()
         return redirect('/admin')
     return redirect(url_for('admin_auth'))
 

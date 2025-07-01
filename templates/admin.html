@@ -352,24 +352,30 @@
 
 
 
+<form action="/add_marquee" method="post">
+  <div class="input-wrapper">
+    <input type="text" class="admin-input-text" name="marquee_text" placeholder="Add new marquee text..." required/>
+    <button class="btn-success-text">Submit</button>
+  </div>
+</form>
 
-
-
-<div class="input-wrapper">
-  <input type="text" class="admin-input-text" /> <button class="btn-success-text">Submit</button>
-</div>
 <center>
-  
-<div class="input-group-marque">
-  <input type="text" class="form-control-marque" value="mjgyk" readonly id="inputBox">
-  <button class="btn btn-icon edit" onclick="toggleEdit()" title="Edit" style="width: fit-content; padding: 15px;">
-    <i class="bi bi-pencil-square"></i>
-  </button>
-  <button class="btn btn-icon delete" onclick="deleteInput()" title="Delete"style="width: fit-content; padding: 15px;">
-    <i class="bi bi-trash"></i>
-  </button>
-</div>
-
+  {% for marquee_text in marquee_texts %}
+  <h1>{{marquee_text.content}}({{marquee_text.is_active}})</h1>
+    <div class="input-group-marque">
+    <input type="text" class="form-control-marque" value={{marquee_text.content}} readonly id="inputBox">
+    <a style="text-decoration: none" href="/update/marquee/{{marquee_text.id}}">
+      <button class="btn btn-icon edit" onclick="toggleEdit()" title="Edit" style="width: fit-content; padding: 15px;">
+        <i class="bi bi-pencil-square"></i>
+      </button>
+    </a>
+    <a style="text-decoration: none" href="/delete/marquee/{{marquee_text.id}}">
+      <button class="btn btn-icon delete" onclick="deleteInput()" title="Delete"style="width: fit-content; padding: 15px;">
+        <i class="bi bi-trash"></i>
+      </button>
+    </a>
+  </div>
+  {% endfor %}
 </center>
 
 
