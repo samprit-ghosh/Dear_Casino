@@ -1,4 +1,4 @@
-  /* <style> */
+
 
   .admin-body {
       background-image: url('/static/css/bg.jpg');
@@ -12,13 +12,12 @@
       padding-top: 1rem;
   }
 
-  /* Apply equal padding for table cells */
   .admin-th-3 {
       padding: 1rem;
       text-align: center;
   }
 
-  /* Make inputs and selects take full width & height of cell */
+
   .admin-select,
   .admin-input,
   .btn {
@@ -44,7 +43,7 @@
       padding: 0.5rem;
       font-size: 1rem;
       border: 1px solid #ccc;
-     
+
       border-radius: 4px 0px 0px 4px;
       box-sizing: border-box;
   }
@@ -77,10 +76,9 @@
       transform: scale(0.98);
   }
 
-  /* Remove extra spacing in select for better centering */
+ 
   .admin-select {
       appearance: none;
-      /* optional: removes default arrow styling */
       background-position: right 0.7rem center;
       background-repeat: no-repeat;
   }
@@ -96,7 +94,6 @@
   }
 
 
-  /* Tab switcher visible only on mobile */
   .tab-switcher {
       display: none;
   }
@@ -169,7 +166,7 @@
           content: attr(data-label);
           font-weight: bold;
           margin-bottom: 10px;
-          color: #c30e0e;
+          color: #ffffff;
 
       }
 
@@ -200,91 +197,6 @@
 
 
   }
-
-  /* Default desktop styles */
-
-  /* Mobile styles - stack the table */
-  @media screen and (max-width: 550px) {
-
-      .numerinput,
-      .numerinput thead,
-      .numerinput tbody,
-      .numerinput th,
-      .numerinput td,
-      .numerinput tr {
-          display: block;
-      }
-
-      .numerinput thead tr {
-          position: absolute;
-          top: -9999px;
-          left: -9999px;
-
-      }
-
-      .numerinput tr {
-          border: 1px solid #ccc;
-          margin-bottom: 1rem;
-
-      }
-
-      .numerinput td {
-          /* Behave like a "row" */
-          border: none;
-          border-bottom: 1px solid #eee;
-          position: relative;
-          padding-left: 50%;
-
-          text-align: right;
-      }
-
-      .numerinput td:before {
-          /* Now like a table header */
-          position: absolute;
-          /* Top/left values mimic padding */
-          top: 22px;
-          left: 16px;
-          width: 45%;
-          padding-right: 10px;
-          white-space: nowrap;
-          text-align: left;
-          font-weight: bold;
-      }
-
-      /* Label the data */
-      .numerinput td:nth-of-type(1):before {
-          content: "Slotes";
-      }
-
-      .numerinput td:nth-of-type(2):before {
-          content: "One Digit";
-      }
-
-      .numerinput td:nth-of-type(3):before {
-          content: "Three Digits";
-      }
-
-      .numerinput td:nth-of-type(4):before {
-          content: "Edit";
-      }
-
-      .numerinput td:nth-of-type(5):before {
-          content: "Delete";
-      }
-
-      .numerinput tbody td:nth-of-type(1) {
-          background-color: #d18109;
-      }
-
-  }
-
-
-  /* </style> */
-
-
-
-
-  /* <style> */
 
   #leftBtn,
   #rightBtn {
@@ -409,68 +321,104 @@
 
 
 
-  
-    .input-group-marque{
-          display: flex;
-  align-items: center;
-  gap: 10px;
-width: 50%;
 
-  padding: 10px 12px;
-  border-radius: 8px;
-  /* box-shadow: 0 4px 10px rgba(255, 4, 4, 0.3); */
-  margin: 1.5rem auto;
-    }
+  .input-group-marque {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 50%;
 
-.form-control-marque {
-  flex: 1;
-  padding: 14px 16px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  text-align: center;
+      padding: 10px 12px;
+      border-radius: 8px;
+      /* box-shadow: 0 4px 10px rgba(255, 4, 4, 0.3); */
+      margin: 1.5rem auto;
+  }
 
-}
 
-.form-control-marque:read-only {
-  background-color: #f9f9f9;
-}
+  .form-control-marque {
+      flex: 1;
+      padding: 14px 16px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      text-align: center;
 
-.btn-icon {
-  width: 36px;             /* smaller width */
-  height: 36px;            /* same as input height */
-  padding: 0;
-  border: none;
-  background: transparent;
-  font-size: 1.2rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 5px;
-  flex-shrink: 0;
-    background-color: #ffda0728;
-}
+  }
 
-.btn-icon.edit {
-  color: #0a9c2c;
-    transition: all 0.3s ease;
-}
+  .form-control-marque:read-only {
+      background-color: #f9f9f9;
+  }
 
-.btn-icon.edit:hover {
-  color: #1e7e34;  
-  box-shadow: 0 0 12px rgba(40, 167, 69, 0.8), 0 0 20px rgba(40, 167, 69, 0.6);
-       transform: scale(1.05);
+  .btn-icon {
+      width: 36px;
+      /* smaller width */
+      height: 36px;
+      /* same as input height */
+      padding: 0;
+      border: none;
+      background: transparent;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 5px;
+      flex-shrink: 0;
+      background-color: #ffda0728;
+  }
 
-}
+  .btn-icon.edit {
+      color: #0a9c2c;
+      transition: all 0.3s ease;
+  }
 
-.btn-icon.delete {
-  color: #ff031c;
-   transition: all 0.3s ease;
-}
+  .btn-icon.edit:hover {
+      color: #1e7e34;
+      box-shadow: 0 0 12px rgba(40, 167, 69, 0.8), 0 0 20px rgba(40, 167, 69, 0.6);
+      transform: scale(1.05);
 
-.btn-icon.delete:hover {
-  color: #bd2130;
-        box-shadow: 0 0 12px rgba(225, 6, 6, 0.8), 0 0 20px rgba(214, 7, 7, 0.6);
-       transform: scale(1.05);
+  }
+
+  .btn-icon.delete {
+      color: #ff031c;
+      transition: all 0.3s ease;
+  }
+
+  .btn-icon.delete:hover {
+      color: #bd2130;
+      box-shadow: 0 0 12px rgba(225, 6, 6, 0.8), 0 0 20px rgba(214, 7, 7, 0.6);
+      transform: scale(1.05);
+  }
+
+
+
+  @media (max-width: 768px) {
+  .input-group-marque {
+    flex-direction: column;
+    width: 90%;
+    gap: 8px;
+    padding: 8px;
+  }
+
+  .form-control-marque {
+    width: 100%;
+    font-size: 15px;
+    padding: 12px 14px;
+    text-align: left;
+  }
+
+  .btn-icon {
+    width: 100%;
+    height: 40px;
+    font-size: 1rem;
+    justify-content: flex-start;
+    padding-left: 10px;
+  }
+
+  .btn-icon.edit,
+  .btn-icon.delete {
+    width: 100%;
+    justify-content: center;
+    font-size: 1.1rem;
+  }
 }

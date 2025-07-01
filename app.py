@@ -727,12 +727,6 @@ def text():
         results=results, now=now, start_time=start_time, end_time=end_time, daily_data=daily_data, title="Fastest and Live Online Goa Satta Result only at goasatta.in")
 
 
-
-
-# @app.route("/online")
-# def online():
-#     return render_template('online.html', title="Play Online")
-
 @app.route("/contact")
 def contact():
     return render_template('Contact.html', title="Contact Us")
