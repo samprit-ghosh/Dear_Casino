@@ -17,12 +17,12 @@
     <div class="fireworks-wrapper">
       <canvas id="birthday"></canvas>
     </div>
-    <img src="/static/css/main-logo.png" alt="Dear Fatafat" class="main-logo">
+        <img src="/static/css/logo-removebg-preview.png" alt="Logo" class="main-logo">
     <h1>Dear Casino Official Website</h1>
     <h3>Dear Fatafat || Nagaland Satta</h3>
 <div class="button-container">
-  <a href="/" class="modern-button">Dear Fatafat</a>
-  <a href="/" class="modern-button">Nagaland Satta</a>
+  <a href="#Fatafat" class="modern-button">Dear Fatafat</a>
+  <a href="#NAGALAND" class="modern-button">Nagaland Satta</a>
 </div>
 
   </div>
@@ -198,9 +198,16 @@
 
     <div class="inner-background-image">
 
-        <div class="marquee">
-            <marquee behavior="right" direction="range">{{ global_array[1] }}</marquee>
-        </div>
+ 
+
+
+  {% if active_marquee %}
+  <div class="marquee">
+    <marquee scrollamount="{{ active_marquee.scroll_speed }}" class="marquee-text">
+      {{ active_marquee.content }}
+    </marquee>
+  </div>
+  {% endif %}
 
 
 
@@ -221,7 +228,8 @@
             <!-- Content Above Overlay -->
             <div class="hero-inner" style="position: relative; z-index: 2;">
                 <div class="hero-text">
-                    <img src="/static/css/logo-removebg-preview.png" alt="Logo" class="logo-img">
+              
+                      <img src="/static/css/main-logo.png" alt="Dear Fatafat" class="logo-img">
                 </div>
             </div>
 
@@ -243,7 +251,7 @@
                                 alt="Satta Matka Icon" width="10" height="10"> live</h4>
                         <h1 style="color: #FFEA02;text-shadow: 0 0 5px #ff0000, 0 0 5px #ff0000, 0 0 10px #ff0303; margin-bottom: 15px;font-family: 'Cinzel Decorative', serif;"
                             class="result-name">Nagaland Satta</h1>
-                        <h1 class="main-result-show">156 - 8</h1>
+                        <h1 class="main-result-show">8 - 156</h1>
                     </div>
                 </div>
             </div>
@@ -313,7 +321,7 @@
 
         <div class="bg4">
 
-            <h2>LATEST LAST SEVEN DAY RECORD CHART DEAR FATAFAT</h2>
+            <h2 id="Fatafat">LATEST LAST SEVEN DAY RECORD CHART DEAR FATAFAT</h2>
 
         </div>
         <br>
@@ -505,11 +513,10 @@
         <br>
         <br>
         <center>
-            <a href="/old"
-                style="text-decoration: underline; text-decoration-color: white; text-underline-offset: 4px;">
-                <h1 style="color: #ffffff; margin: 0;">Full pannel record</h1>
-            </a>
-
+               <a href="/old"
+                    style="text-decoration: underline; text-decoration-color: white; text-underline-offset: 4px;">
+                    <h1 style="color: #ffffff; margin: 0; padding: 15px;" class="Full-pannel-record">Dear Fatafat full pannel record</h1>
+                </a>
         </center>
 
         <br>
@@ -520,23 +527,178 @@
 
 
 
+<div class="outer-indivisual">
+  <div class="banner-indivisual">
+    <div class="fireworks-wrapper">
+      <canvas id="birthday2"></canvas>
+    </div>
+    
+    <h1>Dear Casino Official Website</h1>
+    <h3>Dear Fatafat || Nagaland Satta</h3>
+<div class="button-container">
+  <a href="#Fatafat" class="modern-button">Dear Fatafat</a>
+  <a href="#NAGALAND" class="modern-button">Nagaland Satta</a>
+</div>
+
+  </div>
+
+</div>
+
+
+<!-- SECOND FIREWORK ANIMATION -->
+
+
+<script>
+  const PI2_2 = Math.PI * 2;
+  const random2 = (min, max) => (Math.random() * (max - min + 1) + min) | 0;
+  const timestamp2 = () => new Date().getTime();
+
+  const getIsMobile2 = () => window.innerWidth <= 768;
+  const getFireworkCount2 = () => getIsMobile2() ? 1 : 2;
+  const getExplosionMin2 = () => getIsMobile2() ? 15 : 30;
+  const getExplosionMax2 = () => getIsMobile2() ? 50 : 80;
+
+  class Birthday2 {
+    constructor() {
+      this.canvas = document.getElementById("birthday2");
+      this.ctx = this.canvas.getContext("2d");
+      this.resize();
+      this.fireworks = [];
+      this.counter = 0;
+    }
+
+    resize() {
+      this.width = this.canvas.width = this.canvas.offsetWidth;
+      this.height = this.canvas.height = this.canvas.offsetHeight;
+      let center = (this.width / 2) | 0;
+      this.spawnA = (center - center / 4) | 0;
+      this.spawnB = (center + center / 4) | 0;
+      this.spawnC = this.height * 0.1;
+      this.spawnD = this.height * 0.5;
+    }
+
+    onClick(evt) {
+      let x = evt.clientX || (evt.touches && evt.touches[0].pageX);
+      let y = evt.clientY || (evt.touches && evt.touches[0].pageY);
+      let count = random2(getFireworkCount2(), getFireworkCount2() + 2);
+      for (let i = 0; i < count; i++) {
+        this.fireworks.push(new Firework2(
+          random2(this.spawnA, this.spawnB),
+          this.height,
+          x,
+          y,
+          0,
+          random2(getExplosionMin2(), getExplosionMax2())
+        ));
+      }
+      this.counter = -1;
+    }
+
+    update(delta) {
+      this.ctx.globalCompositeOperation = "source-over";
+      this.ctx.clearRect(0, 0, this.width, this.height);
+      this.ctx.globalCompositeOperation = "lighter";
+
+      for (let firework of this.fireworks) firework.update(delta);
+
+      this.counter += delta * 3;
+      if (this.counter >= 1) {
+        const spawnCount = getIsMobile2() ? 1 : 2;
+        for (let i = 0; i < spawnCount; i++) {
+          this.fireworks.push(new Firework2(
+            random2(this.spawnA, this.spawnB),
+            this.height,
+            random2(0, this.width),
+            random2(this.spawnC, this.spawnD),
+            0,
+            random2(getExplosionMin2(), getExplosionMax2())
+          ));
+        }
+        this.counter = 0;
+      }
+
+      if (this.fireworks.length > 1000) {
+        this.fireworks = this.fireworks.filter(f => !f.dead);
+      }
+    }
+  }
+
+  class Firework2 {
+    constructor(x, y, targetX, targetY, shade, offsprings) {
+      this.dead = false;
+      this.offsprings = offsprings;
+      this.x = x;
+      this.y = y;
+      this.targetX = targetX;
+      this.targetY = targetY;
+      this.shade = shade;
+      this.history = [];
+    }
+
+    update(delta) {
+      if (this.dead) return;
+
+      let xDiff = this.targetX - this.x;
+      let yDiff = this.targetY - this.y;
+
+      if (Math.abs(xDiff) > 3 || Math.abs(yDiff) > 3) {
+        this.x += xDiff * 2 * delta;
+        this.y += yDiff * 2 * delta;
+
+        this.history.push({ x: this.x, y: this.y });
+        if (this.history.length > 20) this.history.shift();
+      } else {
+        if (this.offsprings && !this.madeChilds) {
+          let babies = this.offsprings / 2;
+          for (let i = 0; i < babies; i++) {
+            let targetX = (this.x + this.offsprings * Math.cos((PI2_2 * i) / babies)) | 0;
+            let targetY = (this.y + this.offsprings * Math.sin((PI2_2 * i) / babies)) | 0;
+            birthday2.fireworks.push(new Firework2(this.x, this.y, targetX, targetY, this.shade, 0));
+          }
+        }
+        this.madeChilds = true;
+        this.history.shift();
+      }
+
+      const ctx = birthday2.ctx;
+      if (this.history.length === 0) {
+        this.dead = true;
+      } else if (this.offsprings) {
+        for (let i = 0; i < this.history.length; i++) {
+          let point = this.history[i];
+          ctx.beginPath();
+          ctx.fillStyle = `rgba(255, 255, 255, ${i / this.history.length})`;
+          ctx.arc(point.x, point.y, getIsMobile2() ? 1.3 : 2.2, 0, PI2_2, false);
+          ctx.fill();
+        }
+      } else {
+        ctx.beginPath();
+        ctx.fillStyle = `white`;
+        ctx.arc(this.x, this.y, getIsMobile2() ? 1.8 : 2.8, 0, PI2_2, false);
+        ctx.fill();
+      }
+    }
+  }
+
+  let birthday2 = new Birthday2();
+  let then2 = timestamp2();
+
+  window.addEventListener("resize", () => birthday2.resize());
+  document.addEventListener("click", evt => birthday2.onClick(evt));
+  document.addEventListener("touchstart", evt => birthday2.onClick(evt));
+
+  (function loop2() {
+    requestAnimationFrame(loop2);
+    let now = timestamp2();
+    let delta = now - then2;
+    then2 = now;
+    birthday2.update(delta / 1000);
+  })();
+</script>
 
 
 
 
-
-
-
-
-
-
-        <div class="outer-indivisual">
-            <div class="banner-indivisual">
-                <h2>Dear Casino Official Website </h2>
-                <h3> Dear Fatafat || Nagaland Satta</h3>
-                <!-- <h3>Nagaland Satta</h3> -->
-            </div>
-        </div>
 
 
 
@@ -598,7 +760,7 @@
 
             <div class="bg4">
 
-                <h2>LATEST LAST SEVEN DAY RECORD CHART NAGALAND SATTA</h2>
+                <h2 id="NAGALAND">LATEST LAST SEVEN DAY RECORD CHART NAGALAND SATTA</h2>
 
             </div>
             <br>
@@ -829,7 +991,7 @@
             <center>
                 <a href="/old"
                     style="text-decoration: underline; text-decoration-color: white; text-underline-offset: 4px;">
-                    <h1 style="color: #ffffff; margin: 0;" class="Full-pannel-record">Full pannel record</h1>
+                    <h1 style="color: #ffffff; margin: 0;padding: 15px;" class="Full-pannel-record">Nagaland satta full pannel record</h1>
                 </a>
 
             </center>

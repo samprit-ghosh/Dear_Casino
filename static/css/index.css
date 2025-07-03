@@ -966,6 +966,13 @@
        background-color: #954d0523;
      
     }
+        canvas#birthday2 {
+      display: block;
+      width: 100%;
+      height: 100%;
+       background-color: #954d0523;
+     
+    }
 
     .banner-indivisual h1,
     .banner-indivisual h2 {

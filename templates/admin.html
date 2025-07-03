@@ -1,490 +1,498 @@
-
-
 {% extends 'layout.html' %}
 {% block title %} {{title}} {% endblock title %}
 {% block body %}
 
 <body class="admin-body">
-    <div class="admin-mask">
+  <div class="admin-mask">
 
 
 
-  <div class="tab-buttons">
-    <button onclick="toggleMobileTab('left')" id="leftBtn" class="active-btn">Add New Result</button>
-    <button onclick="toggleMobileTab('right')" id="rightBtn">View Entries</button>
-    <div class="tab-slider" id="tabSlider"></div>
-  </div>
-  <!-- Mobile Tab Switcher -->
-
-  <!-- Tables -->
-<div class="container-admin" style="display: flex; justify-content: space-evenly; padding: 2rem; ">
-    <!-- Left Table -->
-
-
-<div id="leftTabContent" class="tab-content active-tab">
-<form action="/add_nagaland" method="post" class="admin-form">
-    <h1 colspan="5" style="color: orange; padding: 10px; text-align: center;" class="h1-admin">Add New Result (Nagaland Satta)</h1>
-  <table class="responsive-form-table">
-    <thead>
-      <tr>
-        <!-- <th colspan="5" style="color: orange; padding: 10px; text-align: center;">Add New Result (Left)</th> -->
-      </tr>
-      <tr class="desktop-headers">
-        <th class="admin-th-3">Type</th>
-        <th class="admin-th-3">Slot</th>
-        <th class="admin-th-3">One Digit</th>
-        <th class="admin-th-3">Three Digits</th>
-        <th class="admin-th-3">Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr id="row456">
-        <td class="admin-th-3" data-label="Type"><b>Daily</b></td>
-        <td class="admin-th-3" data-label="Slot">
-          <select name="slots" id="slots" required class="admin-select">
-            <option disabled selected>Select a Slot</option>
-            {% if not daily_data_nagaland.slot1_digit %}<option value="1">Slot - 01</option>{% endif %}
-            {% if not daily_data_nagaland.slot2_digit %}<option value="2">Slot - 02</option>{% endif %}
-            {% if not daily_data_nagaland.slot3_digit %}<option value="3">Slot - 03</option>{% endif %}
-            {% if not daily_data_nagaland.slot4_digit %}<option value="4">Slot - 04</option>{% endif %}
-            {% if not daily_data_nagaland.slot5_digit %}<option value="5">Slot - 05</option>{% endif %}
-            {% if not daily_data_nagaland.slot6_digit %}<option value="6">Slot - 06</option>{% endif %}
-            {% if not daily_data_nagaland.slot7_digit %}<option value="7">Slot - 07</option>{% endif %}
-            {% if not daily_data_nagaland.slot8_digit %}<option value="8">Slot - 08</option>{% endif %}
-            {% if not daily_data_nagaland.slot9_digit %}<option value="9">Slot - 09</option>{% endif %}
-            {% if not daily_data_nagaland.slot10_digit %}<option value="10">Slot - 10</option>{% endif %}
-          </select>
-        </td>
-        <td class="admin-th-3" data-label="One Digit">
-          <input type="number" name="one_digit" class="admin-input" min="0" max="9" step="1" required>
-
-        </td>
-        <td class="admin-th-3" data-label="Three Digits">
-          <input type="number" name="three_digit" class="admin-input" min="100" max="999" required>
-        </td>
-        <td class="admin-th-3" data-label="Action">
-          <button type="submit" class=" btn-success">Submit</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</form>
-
-
-
-
-<table class="numerinput admin-form" style="margin-top: 3rem; justify-self: center;">
-  <thead>
-    <tr class="admin-tr"> 
-      <th class="admin-th-1">Slotes</th>
-      <th class="admin-th-1" style="background-color: white; color: black;">One Digit</th>
-      <th class="admin-th-1" style="background-color: rgb(2, 115, 2);">Three Digits</th>
-      <th class="admin-th-1" style="background-color: rgb(255, 255, 255);color: black;">Edit</th>
-      <th class="admin-th-1" style="background-color: rgb(222, 124, 4);color: white;">Delete</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% if daily_data_nagaland.slot10_digit %}
-    <tr class="admin-tr">
-      <td class="admin-th-2" > <b> Slot - 10 </b></td>
-      <td class="admin-th-2">{{daily_data_nagaland.slot10_digit}}</td>
-      <td class="admin-th-2">{{daily_data_nagaland.slot10_number}}</td>
-      <td class="admin-th-2"><a href="/update/nagaland/10" type="submit" class=" btn-success">Edit</a></td>
-      <td class="admin-th-2"><a href="/delete/nagaland/10" type="submit" class=" btn-danger">Delete</a></td>     
-    </tr>
-    {% endif %}
-    {% if daily_data_nagaland.slot9_digit %}
-    <tr class="admin-tr">
-      <td class="admin-th-2" > <b> Slot - 09 </b></td>
-      <td class="admin-th-2">{{daily_data_nagaland.slot9_digit}}</td>
-      <td class="admin-th-2">{{daily_data_nagaland.slot9_number}}</td>
-      <td class="admin-th-2"><a href="/update/nagaland/9" type="submit" class=" btn-success">Edit</a></td>
-      <td class="admin-th-2"><a href="/delete/nagaland/9" type="submit" class=" btn-danger">Delete</a></td> 
-    </tr>
-    {% endif %}
-    {% if daily_data_nagaland.slot8_digit %}
-    <tr class="admin-tr">
-      <td class="admin-th-2" > <b> Slot - 08 </b></td>
-      <td class="admin-th-2">{{daily_data_nagaland.slot8_digit}}</td>
-      <td class="admin-th-2">{{daily_data_nagaland.slot8_number}}</td>
-      <td class="admin-th-2"><a href="/update/nagaland/8" type="submit" class=" btn-success">Edit</a></td>
-      <td class="admin-th-2"><a href="/delete/nagaland/8" type="submit" class=" btn-danger">Delete</a></td> 
-    </tr>
-    {% endif %}
-    {% if daily_data_nagaland.slot7_digit %}
-    <tr class="admin-tr">
-      <td class="admin-th-2" > <b> Slot - 07 </b></td>
-      <td class="admin-th-2">{{daily_data_nagaland.slot7_digit}}</td>
-      <td class="admin-th-2">{{daily_data_nagaland.slot7_number}}</td>
-      <td class="admin-th-2"><a href="/update/nagaland/7" type="submit" class="btn-success">Edit</a></td>
-      <td class="admin-th-2"><a href="/delete/nagaland/7" type="submit" class=" btn-danger">Delete</a></td> 
-    </tr>
-    {% endif %}
-    {% if daily_data_nagaland.slot6_digit %}
-    <tr class="admin-tr">
-      <td class="admin-th-2" > <b> Slot - 06 </b></td>
-      <td class="admin-th-2">{{daily_data_nagaland.slot6_digit}}</td>
-      <td class="admin-th-2">{{daily_data_nagaland.slot6_number}}</td>
-      <td class="admin-th-2"><a href="/update/nagaland/6" type="submit" class=" btn-success">Edit</a></td>
-      <td class="admin-th-2"><a href="/delete/nagaland/6" type="submit" class=" btn-danger">Delete</a></td> 
-    </tr>
-    {% endif %}
-    {% if daily_data_nagaland.slot5_digit %}
-    <tr class="admin-tr">
-      <td class="admin-th-2" > <b> Slot - 05 </b></td>
-      <td class="admin-th-2">{{daily_data_nagaland.slot5_digit}}</td>
-      <td class="admin-th-2">{{daily_data_nagaland.slot5_number}}</td>
-      <td class="admin-th-2"><a href="/update/nagaland/5" type="submit" class=" btn-success">Edit</a></td>
-      <td class="admin-th-2"><a href="/delete/nagaland/5" type="submit" class=" btn-danger">Delete</a></td> 
-    </tr>
-    {% endif %}
-    {% if daily_data_nagaland.slot4_digit %}
-    <tr class="admin-tr">
-      <td class="admin-th-2" > <b> Slot - 04 </b></td>
-      <td class="admin-th-2">{{daily_data_nagaland.slot4_digit}}</td>
-      <td class="admin-th-2">{{daily_data_nagaland.slot4_number}}</td>
-      <td class="admin-th-2"><a href="/update/nagaland/4" type="submit" class=" btn-success">Edit</a></td>
-      <td class="admin-th-2"><a href="/delete/nagaland/4" type="submit" class=" btn-danger">Delete</a></td> 
-    </tr>
-    {% endif %}
-    {% if daily_data_nagaland.slot3_digit %}
-    <tr class="admin-tr">
-      <td class="admin-th-2" > <b> Slot - 03 </b></td>
-      <td class="admin-th-2">{{daily_data_nagaland.slot3_digit}}</td>
-      <td class="admin-th-2">{{daily_data_nagaland.slot3_number}}</td>
-      <td class="admin-th-2"><a href="/update/nagaland/3" type="submit" class="btn-success">Edit</a></td>
-      <td class="admin-th-2"><a href="/delete/nagaland/3" type="submit" class="btn-danger">Delete</a></td> 
-    </tr>
-    {% endif %}
-    {% if daily_data_nagaland.slot2_digit %}
-    <tr class="admin-tr">
-      <td class="admin-th-2" > <b> Slot - 02 </b></td>
-      <td class="admin-th-2">{{daily_data_nagaland.slot2_digit}}</td>
-      <td class="admin-th-2">{{daily_data_nagaland.slot2_number}}</td>
-      <td class="admin-th-2"><a href="/update/nagaland/2" type="submit" class="btn-success">Edit</a></td>
-      <td class="admin-th-2"><a href="/delete/nagaland/2" type="submit" class="btn btn-danger">Delete</a></td> 
-    </tr>
-    {% endif %}
-    {% if daily_data_nagaland.slot1_digit %}
-    <tr class="admin-tr">
-      <td class="admin-th-2" > <b> Slot - 01 </b></td>
-      <td class="admin-th-2">{{daily_data_nagaland.slot1_digit}}</td>
-      <td class="admin-th-2">{{daily_data_nagaland.slot1_number}}</td>
-      <td class="admin-th-2"><a href="/update/nagaland/1" type="submit" class="btn-success">Edit</a></td>
-      <td class="admin-th-2"><a href="/delete/nagaland/1" type="submit" class="btn-danger">Delete</a></td> 
-    </tr>
-    {% endif %}
-  </tbody>
-</table>
-
-
-
-</div>
-
-
-    <!-- Right Table -->
-    <div id="rightTabContent" class="tab-content">
-<form action="/add_fatafat" method="post" class="admin-form">
-    <h1 colspan="5" style="color: orange; padding: 10px; text-align: center;">Add New Result (Fatafat Satta)</h1>
-  <table class="responsive-form-table">
-    <thead>
-      <tr>
-        <!-- <th colspan="5" style="color: orange; padding: 10px; text-align: center;">Add New Result (Left)</th> -->
-      </tr>
-      <tr class="desktop-headers">
-        <th class="admin-th-3">Type</th>
-        <th class="admin-th-3">Slot</th>
-        <th class="admin-th-3">One Digit</th>
-        <th class="admin-th-3">Three Digits</th>
-        <th class="admin-th-3">Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr id="row456">
-        <td class="admin-th-3" data-label="Type"><b>Daily</b></td>
-        <td class="admin-th-3" data-label="Slot">
-          <select name="slots" id="slots" required class="admin-select">
-            <option disabled selected>Select a Slot</option>
-            {% if not daily_data_fatafat.slot1_digit %}<option value="1">Slot - 01</option>{% endif %}
-            {% if not daily_data_fatafat.slot2_digit %}<option value="2">Slot - 02</option>{% endif %}
-            {% if not daily_data_fatafat.slot3_digit %}<option value="3">Slot - 03</option>{% endif %}
-            {% if not daily_data_fatafat.slot4_digit %}<option value="4">Slot - 04</option>{% endif %}
-            {% if not daily_data_fatafat.slot5_digit %}<option value="5">Slot - 05</option>{% endif %}
-            {% if not daily_data_fatafat.slot6_digit %}<option value="6">Slot - 06</option>{% endif %}
-            {% if not daily_data_fatafat.slot7_digit %}<option value="7">Slot - 07</option>{% endif %}
-            {% if not daily_data_fatafat.slot8_digit %}<option value="8">Slot - 08</option>{% endif %}
-          </select>
-        </td>
-        <td class="admin-th-3" data-label="One Digit">
-          <input type="number" name="one_digit" class="admin-input" min="0" max="9" required>
-        </td>
-        <td class="admin-th-3" data-label="Three Digits">
-          <input type="number" name="three_digit" class="admin-input" min="0" max="999" required>
-        </td>
-        <td class="admin-th-3" data-label="Action">
-          <button type="submit" class=" btn-success">Submit</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</form>
-
-
-      <table class="numerinput admin-form"  style="margin-top: 3rem; justify-self: center;" >
-      <thead>
-        <tr class="admin-tr"> 
-          <th class="admin-th-1">Slotes</th>
-          <th class="admin-th-1" style="background-color: white; color: black;">One Digit</th>
-          <th class="admin-th-1" style="background-color: rgb(2, 115, 2);">Three Digits</th>
-          <th class="admin-th-1" style="background-color: rgb(255, 255, 255);color: black;">Edit</th>
-          <th class="admin-th-1" style="background-color: rgb(222, 124, 4);color: white;">Delete</th>
-        </tr>
-      </thead>
-      <tbody>
-          {% if daily_data_fatafat.slot8_digit %}
-          <tr class="admin-tr">
-            <td class="admin-th-2" > <b> Slot - 08 </b></td>
-            <td class="admin-th-2">{{daily_data_fatafat.slot8_digit}}</td>
-            <td class="admin-th-2">{{daily_data_fatafat.slot8_number}}</td>
-            <td class="admin-th-2"><a href="/update/fatafat/8" type="submit" class=" btn-success">Edit</a></td>
-            <td class="admin-th-2"><a href="/delete/fatafat/8" type="submit" class=" btn-danger">Delete</a></td> 
-          </tr>
-          {% endif %}
-          {% if daily_data_fatafat.slot7_digit %}
-          <tr class="admin-tr">
-            <td class="admin-th-2" > <b> Slot - 07 </b></td>
-            <td class="admin-th-2">{{daily_data_fatafat.slot7_digit}}</td>
-            <td class="admin-th-2">{{daily_data_fatafat.slot7_number}}</td>
-            <td class="admin-th-2"><a href="/update/fatafat/7" type="submit" class="btn-success">Edit</a></td>
-            <td class="admin-th-2"><a href="/delete/fatafat/7" type="submit" class=" btn-danger">Delete</a></td> 
-          </tr>
-          {% endif %}
-          {% if daily_data_fatafat.slot6_digit %}
-          <tr class="admin-tr">
-            <td class="admin-th-2" > <b> Slot - 06 </b></td>
-            <td class="admin-th-2">{{daily_data_fatafat.slot6_digit}}</td>
-            <td class="admin-th-2">{{daily_data_fatafat.slot6_number}}</td>
-            <td class="admin-th-2"><a href="/update/fatafat/6" type="submit" class=" btn-success">Edit</a></td>
-            <td class="admin-th-2"><a href="/delete/fatafat/6" type="submit" class=" btn-danger">Delete</a></td> 
-          </tr>
-          {% endif %}
-          {% if daily_data_fatafat.slot5_digit %}
-          <tr class="admin-tr">
-            <td class="admin-th-2" > <b> Slot - 05 </b></td>
-            <td class="admin-th-2">{{daily_data_fatafat.slot5_digit}}</td>
-            <td class="admin-th-2">{{daily_data_fatafat.slot5_number}}</td>
-            <td class="admin-th-2"><a href="/update/fatafat/5" type="submit" class=" btn-success">Edit</a></td>
-            <td class="admin-th-2"><a href="/delete/fatafat/5" type="submit" class=" btn-danger">Delete</a></td> 
-          </tr>
-          {% endif %}
-          {% if daily_data_fatafat.slot4_digit %}
-          <tr class="admin-tr">
-            <td class="admin-th-2" > <b> Slot - 04 </b></td>
-            <td class="admin-th-2">{{daily_data_fatafat.slot4_digit}}</td>
-            <td class="admin-th-2">{{daily_data_fatafat.slot4_number}}</td>
-            <td class="admin-th-2"><a href="/update/fatafat/4" type="submit" class=" btn-success">Edit</a></td>
-            <td class="admin-th-2"><a href="/delete/fatafat/4" type="submit" class=" btn-danger">Delete</a></td> 
-          </tr>
-          {% endif %}
-          {% if daily_data_fatafat.slot3_digit %}
-          <tr class="admin-tr">
-            <td class="admin-th-2" > <b> Slot - 03 </b></td>
-            <td class="admin-th-2">{{daily_data_fatafat.slot3_digit}}</td>
-            <td class="admin-th-2">{{daily_data_fatafat.slot3_number}}</td>
-            <td class="admin-th-2"><a href="/update/fatafat/3" type="submit" class="btn-success">Edit</a></td>
-            <td class="admin-th-2"><a href="/delete/fatafat/3" type="submit" class="btn-danger">Delete</a></td> 
-          </tr>
-          {% endif %}
-          {% if daily_data_fatafat.slot2_digit %}
-          <tr class="admin-tr">
-            <td class="admin-th-2" > <b> Slot - 02 </b></td>
-            <td class="admin-th-2">{{daily_data_fatafat.slot2_digit}}</td>
-            <td class="admin-th-2">{{daily_data_fatafat.slot2_number}}</td>
-            <td class="admin-th-2"><a href="/update/fatafat/2" type="submit" class="btn-success">Edit</a></td>
-            <td class="admin-th-2"><a href="/delete/fatafat/2" type="submit" class="btn btn-danger">Delete</a></td> 
-          </tr>
-          {% endif %}
-          {% if daily_data_fatafat.slot1_digit %}
-          <tr class="admin-tr">
-            <td class="admin-th-2" > <b> Slot - 01 </b></td>
-            <td class="admin-th-2">{{daily_data_fatafat.slot1_digit}}</td>
-            <td class="admin-th-2">{{daily_data_fatafat.slot1_number}}</td>
-            <td class="admin-th-2"><a href="/update/fatafat/1" type="submit" class="btn-success">Edit</a></td>
-            <td class="admin-th-2"><a href="/delete/fatafat/1" type="submit" class="btn-danger">Delete</a></td> 
-          </tr>
-          {% endif %}
-        </tbody>
-    </table>
-
+    <div class="tab-buttons">
+      <button onclick="toggleMobileTab('left')" id="leftBtn" class="active-btn">Nagaland Satta</button>
+      <button onclick="toggleMobileTab('right')" id="rightBtn">Dear Fatafat</button>
+      <div class="tab-slider" id="tabSlider"></div>
     </div>
+    <!-- Mobile Tab Switcher -->
+
+    <!-- Tables -->
+    <div class="container-admin" style="display: flex; justify-content: space-evenly; padding: 2rem; ">
+      <!-- Left Table -->
+
+
+      <div id="leftTabContent" class="tab-content active-tab">
+        <form action="/add_nagaland" method="post" class="admin-form">
+          <h1 colspan="5" style="color: orange; padding: 10px; text-align: center;line-height:2.9rem;" class="h1-admin">
+            Add Result || Nagaland Satta</h1>
+          <table class="responsive-form-table">
+            <thead>
+              <tr>
+
+              </tr>
+              <tr class="desktop-headers">
+                <th class="admin-th-3">Type </th>
+                <th class="admin-th-3">Slot</th>
+                <th class="admin-th-3">One Digit</th>
+                <th class="admin-th-3">Three Digits</th>
+                <th class="admin-th-3">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr id="row456">
+                <td class="admin-th-3" data-label="Type Daily"><b class="mob-type">Daily</b></td>
+                <td class="admin-th-3" data-label="Slot">
+                  <select name="slots" id="slots" class="admin-select" required>
+                    <option value="" disabled selected>Select a Slot</option>
+                    {% if not daily_data_nagaland.slot1_digit %}<option value="1">Slot - 01</option>{% endif %}
+                    {% if not daily_data_nagaland.slot2_digit %}<option value="2">Slot - 02</option>{% endif %}
+                    {% if not daily_data_nagaland.slot3_digit %}<option value="3">Slot - 03</option>{% endif %}
+                    {% if not daily_data_nagaland.slot4_digit %}<option value="4">Slot - 04</option>{% endif %}
+                    {% if not daily_data_nagaland.slot5_digit %}<option value="5">Slot - 05</option>{% endif %}
+                    {% if not daily_data_nagaland.slot6_digit %}<option value="6">Slot - 06</option>{% endif %}
+                    {% if not daily_data_nagaland.slot7_digit %}<option value="7">Slot - 07</option>{% endif %}
+                    {% if not daily_data_nagaland.slot8_digit %}<option value="8">Slot - 08</option>{% endif %}
+                    {% if not daily_data_nagaland.slot9_digit %}<option value="9">Slot - 09</option>{% endif %}
+                    {% if not daily_data_nagaland.slot10_digit %}<option value="10">Slot - 10</option>{% endif %}
+                  </select>
+                </td>
+                <td class="admin-th-3" data-label="One Digit">
+                  <input type="number" name="one_digit" class="admin-input" min="0" max="9" step="1" required>
+
+                </td>
+                <td class="admin-th-3" data-label="Three Digits">
+                  <input type="number" name="three_digit" class="admin-input" min="100" max="999" required>
+                </td>
+                <td class="admin-th-3" data-label="Action">
+                  <button type="submit" class=" btn-success">Submit</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+
+
+
+
+        <table class="numerinput admin-form" style="margin-top: 3rem; justify-self: center;">
+          <thead>
+            <tr class="admin-tr">
+              <th class="admin-th-1">Slotes</th>
+              <th class="admin-th-1" style="background-color: white; color: black;">One Digit</th>
+              <th class="admin-th-1" style="background-color: rgb(2, 115, 2);">Three Digits</th>
+              <th class="admin-th-1" style="background-color: white; color: black;">Edit</th>
+              <th class="admin-th-1" style="background-color: rgb(222, 124, 4); color: white;">Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% if daily_data_nagaland.slot10_digit %}
+            <tr class="admin-tr">
+              <td class="admin-th-2" data-label="Slotes"><b>Slot - 10</b></td>
+              <td class="admin-th-2" data-label="One Digit">{{ daily_data_nagaland.slot10_digit }}</td>
+              <td class="admin-th-2" data-label="Three Digits">{{ daily_data_nagaland.slot10_number }}</td>
+              <td class="admin-th-2" data-label="Edit"><a href="/update/nagaland/10" class="btn-success">Edit</a></td>
+              <td class="admin-th-2" data-label="Delete"><a href="/delete/nagaland/10" class="btn-danger">Delete</a>
+              </td>
+            </tr>
+            {% endif %}
+            {% if daily_data_nagaland.slot9_digit %}
+            <tr class="admin-tr">
+              <td class="admin-th-2" data-label="Slotes"><b>Slot - 09</b></td>
+              <td class="admin-th-2" data-label="One Digit">{{ daily_data_nagaland.slot9_digit }}</td>
+              <td class="admin-th-2" data-label="Three Digits">{{ daily_data_nagaland.slot9_number }}</td>
+              <td class="admin-th-2" data-label="Edit"><a href="/update/nagaland/9" class="btn-success">Edit</a></td>
+              <td class="admin-th-2" data-label="Delete"><a href="/delete/nagaland/9" class="btn-danger">Delete</a></td>
+            </tr>
+            {% endif %}
+            {% if daily_data_nagaland.slot8_digit %}
+            <tr class="admin-tr">
+              <td class="admin-th-2" data-label="Slotes"><b>Slot - 08</b></td>
+              <td class="admin-th-2" data-label="One Digit">{{ daily_data_nagaland.slot8_digit }}</td>
+              <td class="admin-th-2" data-label="Three Digits">{{ daily_data_nagaland.slot8_number }}</td>
+              <td class="admin-th-2" data-label="Edit"><a href="/update/nagaland/8" class="btn-success">Edit</a></td>
+              <td class="admin-th-2" data-label="Delete"><a href="/delete/nagaland/8" class="btn-danger">Delete</a></td>
+            </tr>
+            {% endif %}
+            {% if daily_data_nagaland.slot7_digit %}
+            <tr class="admin-tr">
+              <td class="admin-th-2" data-label="Slotes"><b>Slot - 07</b></td>
+              <td class="admin-th-2" data-label="One Digit">{{ daily_data_nagaland.slot7_digit }}</td>
+              <td class="admin-th-2" data-label="Three Digits">{{ daily_data_nagaland.slot7_number }}</td>
+              <td class="admin-th-2" data-label="Edit"><a href="/update/nagaland/7" class="btn-success">Edit</a></td>
+              <td class="admin-th-2" data-label="Delete"><a href="/delete/nagaland/7" class="btn-danger">Delete</a></td>
+            </tr>
+            {% endif %}
+            {% if daily_data_nagaland.slot6_digit %}
+            <tr class="admin-tr">
+              <td class="admin-th-2" data-label="Slotes"><b>Slot - 06</b></td>
+              <td class="admin-th-2" data-label="One Digit">{{ daily_data_nagaland.slot6_digit }}</td>
+              <td class="admin-th-2" data-label="Three Digits">{{ daily_data_nagaland.slot6_number }}</td>
+              <td class="admin-th-2" data-label="Edit"><a href="/update/nagaland/6" class="btn-success">Edit</a></td>
+              <td class="admin-th-2" data-label="Delete"><a href="/delete/nagaland/6" class="btn-danger">Delete</a></td>
+            </tr>
+            {% endif %}
+            {% if daily_data_nagaland.slot5_digit %}
+            <tr class="admin-tr">
+              <td class="admin-th-2" data-label="Slotes"><b>Slot - 05</b></td>
+              <td class="admin-th-2" data-label="One Digit">{{ daily_data_nagaland.slot5_digit }}</td>
+              <td class="admin-th-2" data-label="Three Digits">{{ daily_data_nagaland.slot5_number }}</td>
+              <td class="admin-th-2" data-label="Edit"><a href="/update/nagaland/5" class="btn-success">Edit</a></td>
+              <td class="admin-th-2" data-label="Delete"><a href="/delete/nagaland/5" class="btn-danger">Delete</a></td>
+            </tr>
+            {% endif %}
+            {% if daily_data_nagaland.slot4_digit %}
+            <tr class="admin-tr">
+              <td class="admin-th-2" data-label="Slotes"><b>Slot - 04</b></td>
+              <td class="admin-th-2" data-label="One Digit">{{ daily_data_nagaland.slot4_digit }}</td>
+              <td class="admin-th-2" data-label="Three Digits">{{ daily_data_nagaland.slot4_number }}</td>
+              <td class="admin-th-2" data-label="Edit"><a href="/update/nagaland/4" class="btn-success">Edit</a></td>
+              <td class="admin-th-2" data-label="Delete"><a href="/delete/nagaland/4" class="btn-danger">Delete</a></td>
+            </tr>
+            {% endif %}
+            {% if daily_data_nagaland.slot3_digit %}
+            <tr class="admin-tr">
+              <td class="admin-th-2" data-label="Slotes"><b>Slot - 03</b></td>
+              <td class="admin-th-2" data-label="One Digit">{{ daily_data_nagaland.slot3_digit }}</td>
+              <td class="admin-th-2" data-label="Three Digits">{{ daily_data_nagaland.slot3_number }}</td>
+              <td class="admin-th-2" data-label="Edit"><a href="/update/nagaland/3" class="btn-success">Edit</a></td>
+              <td class="admin-th-2" data-label="Delete"><a href="/delete/nagaland/3" class="btn-danger">Delete</a></td>
+            </tr>
+            {% endif %}
+            {% if daily_data_nagaland.slot2_digit %}
+            <tr class="admin-tr">
+              <td class="admin-th-2" data-label="Slotes"><b>Slot - 02</b></td>
+              <td class="admin-th-2" data-label="One Digit">{{ daily_data_nagaland.slot2_digit }}</td>
+              <td class="admin-th-2" data-label="Three Digits">{{ daily_data_nagaland.slot2_number }}</td>
+              <td class="admin-th-2" data-label="Edit"><a href="/update/nagaland/2" class="btn-success">Edit</a></td>
+              <td class="admin-th-2" data-label="Delete"><a href="/delete/nagaland/2" class="btn-danger">Delete</a></td>
+            </tr>
+            {% endif %}
+            {% if daily_data_nagaland.slot1_digit %}
+            <tr class="admin-tr">
+              <td class="admin-th-2" data-label="Slotes"><b>Slot - 01</b></td>
+              <td class="admin-th-2" data-label="One Digit">{{ daily_data_nagaland.slot1_digit }}</td>
+              <td class="admin-th-2" data-label="Three Digits">{{ daily_data_nagaland.slot1_number }}</td>
+              <td class="admin-th-2" data-label="Edit"><a href="/update/nagaland/1" class="btn-success">Edit</a></td>
+              <td class="admin-th-2" data-label="Delete"><a href="/delete/nagaland/1" class="btn-danger">Delete</a></td>
+            </tr>
+            {% endif %}
+          </tbody>
+        </table>
+
+
+
+
+      </div>
+
+
+      <!-- Right Table -->
+      <div id="rightTabContent" class="tab-content">
+        <form action="/add_fatafat" method="post" class="admin-form">
+          <h1 colspan="5" style="color: orange; padding: 20px; text-align: center;line-height:2.9rem;">Add Result ||
+            Dear Fatafat</h1>
+          <table class="responsive-form-table">
+            <thead>
+              <tr>
+
+              </tr>
+              <tr class="desktop-headers">
+                <th class="admin-th-3">Type</th>
+                <th class="admin-th-3">Slot</th>
+                <th class="admin-th-3">One Digit</th>
+                <th class="admin-th-3">Three Digits</th>
+                <th class="admin-th-3">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr id="row456">
+                <td class="admin-th-3" data-label="Type Daily"><b class="mob-type">Daily</b></td>
+                <td class="admin-th-3" data-label="Slot">
+                  <select name="slots" id="slots" required class="admin-select">
+                    <option value=""  disabled selected >Select a Slot</option>
+                    {% if not daily_data_fatafat.slot1_digit %}<option value="1">Slot - 01</option>{% endif %}
+                    {% if not daily_data_fatafat.slot2_digit %}<option value="2">Slot - 02</option>{% endif %}
+                    {% if not daily_data_fatafat.slot3_digit %}<option value="3">Slot - 03</option>{% endif %}
+                    {% if not daily_data_fatafat.slot4_digit %}<option value="4">Slot - 04</option>{% endif %}
+                    {% if not daily_data_fatafat.slot5_digit %}<option value="5">Slot - 05</option>{% endif %}
+                    {% if not daily_data_fatafat.slot6_digit %}<option value="6">Slot - 06</option>{% endif %}
+                    {% if not daily_data_fatafat.slot7_digit %}<option value="7">Slot - 07</option>{% endif %}
+                    {% if not daily_data_fatafat.slot8_digit %}<option value="8">Slot - 08</option>{% endif %}
+                  </select>
+                </td>
+                <td class="admin-th-3" data-label="One Digit">
+                  <input type="number" name="one_digit" class="admin-input" min="0" max="9" required>
+                </td>
+                <td class="admin-th-3" data-label="Three Digits">
+                  <input type="number" name="three_digit" class="admin-input" min="0" max="999" required>
+                </td>
+                <td class="admin-th-3" data-label="Action">
+                  <button type="submit" class=" btn-success">Submit</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+
+
+        <table class="numerinput admin-form" style="margin-top: 3rem; justify-self: center;">
+          <thead>
+            <tr class="admin-tr">
+              <th class="admin-th-1">Slotes</th>
+              <th class="admin-th-1" style="background-color: white; color: black;">One Digit</th>
+              <th class="admin-th-1" style="background-color: rgb(2, 115, 2);">Three Digits</th>
+              <th class="admin-th-1" style="background-color: white; color: black;">Edit</th>
+              <th class="admin-th-1" style="background-color: rgb(222, 124, 4); color: white;">Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% if daily_data_fatafat.slot8_digit %}
+            <tr class="admin-tr">
+              <td class="admin-th-2" data-label="Slotes"><b>Slot - 08</b></td>
+              <td class="admin-th-2" data-label="One Digit">{{ daily_data_fatafat.slot8_digit }}</td>
+              <td class="admin-th-2" data-label="Three Digits">{{ daily_data_fatafat.slot8_number }}</td>
+              <td class="admin-th-2" data-label="Edit"><a href="/update/fatafat/8" class="btn-success">Edit</a></td>
+              <td class="admin-th-2" data-label="Delete"><a href="/delete/fatafat/8" class="btn-danger">Delete</a></td>
+            </tr>
+            {% endif %}
+            {% if daily_data_fatafat.slot7_digit %}
+            <tr class="admin-tr">
+              <td class="admin-th-2" data-label="Slotes"><b>Slot - 07</b></td>
+              <td class="admin-th-2" data-label="One Digit">{{ daily_data_fatafat.slot7_digit }}</td>
+              <td class="admin-th-2" data-label="Three Digits">{{ daily_data_fatafat.slot7_number }}</td>
+              <td class="admin-th-2" data-label="Edit"><a href="/update/fatafat/7" class="btn-success">Edit</a></td>
+              <td class="admin-th-2" data-label="Delete"><a href="/delete/fatafat/7" class="btn-danger">Delete</a></td>
+            </tr>
+            {% endif %}
+            {% if daily_data_fatafat.slot6_digit %}
+            <tr class="admin-tr">
+              <td class="admin-th-2" data-label="Slotes"><b>Slot - 06</b></td>
+              <td class="admin-th-2" data-label="One Digit">{{ daily_data_fatafat.slot6_digit }}</td>
+              <td class="admin-th-2" data-label="Three Digits">{{ daily_data_fatafat.slot6_number }}</td>
+              <td class="admin-th-2" data-label="Edit"><a href="/update/fatafat/6" class="btn-success">Edit</a></td>
+              <td class="admin-th-2" data-label="Delete"><a href="/delete/fatafat/6" class="btn-danger">Delete</a></td>
+            </tr>
+            {% endif %}
+            {% if daily_data_fatafat.slot5_digit %}
+            <tr class="admin-tr">
+              <td class="admin-th-2" data-label="Slotes"><b>Slot - 05</b></td>
+              <td class="admin-th-2" data-label="One Digit">{{ daily_data_fatafat.slot5_digit }}</td>
+              <td class="admin-th-2" data-label="Three Digits">{{ daily_data_fatafat.slot5_number }}</td>
+              <td class="admin-th-2" data-label="Edit"><a href="/update/fatafat/5" class="btn-success">Edit</a></td>
+              <td class="admin-th-2" data-label="Delete"><a href="/delete/fatafat/5" class="btn-danger">Delete</a></td>
+            </tr>
+            {% endif %}
+            {% if daily_data_fatafat.slot4_digit %}
+            <tr class="admin-tr">
+              <td class="admin-th-2" data-label="Slotes"><b>Slot - 04</b></td>
+              <td class="admin-th-2" data-label="One Digit">{{ daily_data_fatafat.slot4_digit }}</td>
+              <td class="admin-th-2" data-label="Three Digits">{{ daily_data_fatafat.slot4_number }}</td>
+              <td class="admin-th-2" data-label="Edit"><a href="/update/fatafat/4" class="btn-success">Edit</a></td>
+              <td class="admin-th-2" data-label="Delete"><a href="/delete/fatafat/4" class="btn-danger">Delete</a></td>
+            </tr>
+            {% endif %}
+            {% if daily_data_fatafat.slot3_digit %}
+            <tr class="admin-tr">
+              <td class="admin-th-2" data-label="Slotes"><b>Slot - 03</b></td>
+              <td class="admin-th-2" data-label="One Digit">{{ daily_data_fatafat.slot3_digit }}</td>
+              <td class="admin-th-2" data-label="Three Digits">{{ daily_data_fatafat.slot3_number }}</td>
+              <td class="admin-th-2" data-label="Edit"><a href="/update/fatafat/3" class="btn-success">Edit</a></td>
+              <td class="admin-th-2" data-label="Delete"><a href="/delete/fatafat/3" class="btn-danger">Delete</a></td>
+            </tr>
+            {% endif %}
+            {% if daily_data_fatafat.slot2_digit %}
+            <tr class="admin-tr">
+              <td class="admin-th-2" data-label="Slotes"><b>Slot - 02</b></td>
+              <td class="admin-th-2" data-label="One Digit">{{ daily_data_fatafat.slot2_digit }}</td>
+              <td class="admin-th-2" data-label="Three Digits">{{ daily_data_fatafat.slot2_number }}</td>
+              <td class="admin-th-2" data-label="Edit"><a href="/update/fatafat/2" class="btn-success">Edit</a></td>
+              <td class="admin-th-2" data-label="Delete"><a href="/delete/fatafat/2" class="btn-danger">Delete</a></td>
+            </tr>
+            {% endif %}
+            {% if daily_data_fatafat.slot1_digit %}
+            <tr class="admin-tr">
+              <td class="admin-th-2" data-label="Slotes"><b>Slot - 01</b></td>
+              <td class="admin-th-2" data-label="One Digit">{{ daily_data_fatafat.slot1_digit }}</td>
+              <td class="admin-th-2" data-label="Three Digits">{{ daily_data_fatafat.slot1_number }}</td>
+              <td class="admin-th-2" data-label="Edit"><a href="/update/fatafat/1" class="btn-success">Edit</a></td>
+              <td class="admin-th-2" data-label="Delete"><a href="/delete/fatafat/1" class="btn-danger">Delete</a></td>
+            </tr>
+            {% endif %}
+          </tbody>
+        </table>
+
+
+      </div>
+    </div>
+
+
+
+
+
+    <!-- Script for Mobile Tab Toggle -->
+
+
+    <script>
+      function toggleMobileTab(selected) {
+        const left = document.getElementById('leftTabContent');
+        const right = document.getElementById('rightTabContent');
+        const leftBtn = document.getElementById('leftBtn');
+        const rightBtn = document.getElementById('rightBtn');
+        const slider = document.getElementById('tabSlider');
+
+        if (selected === 'left') {
+          left.classList.add('active-tab');
+          right.classList.remove('active-tab');
+          leftBtn.classList.add('active-btn');
+          rightBtn.classList.remove('active-btn');
+          slider.style.transform = 'translateX(0%)';
+        } else {
+          right.classList.add('active-tab');
+          left.classList.remove('active-tab');
+          rightBtn.classList.add('active-btn');
+          leftBtn.classList.remove('active-btn');
+          slider.style.transform = 'translateX(100%)';
+        }
+      }
+    </script>
+
+
+
+    <form action="/add_marquee" method="post">
+      <div class="input-wrapper">
+        <input type="text" class="admin-input-text" name="marquee_text" placeholder="Add new marquee text..."
+          required />
+        <button class="btn-success-text">Submit</button>
+      </div>
+    </form>
+
+    <center>
+      {% for marquee_text in marquee_texts %}
+
+      <div class="input-group-marque">
+
+        <div class="form-control-marque {% if marquee_text.is_active %}marque-green{% else %}marque-red{% endif %}"
+          readonly id="inputBox">
+          {{ marquee_text.content }}
+        </div>
+
+
+        <a style="text-decoration: none" href="/update/marquee/{{marquee_text.id}}">
+          <button class="btn btn-icon edit" onclick="toggleEdit()" title="Edit"
+            style="width: fit-content; padding: 15px;">
+            <span class="admin-mob-del ">Edit marquee text&nbsp;&nbsp;</span><i class="bi bi-pencil-square"></i>
+          </button>
+        </a>
+        <a style="text-decoration: none" href="/delete/marquee/{{marquee_text.id}}">
+          <button class="btn btn-icon delete" onclick="deleteInput()" title="Delete"
+            style="width: fit-content; padding: 15px;">
+            <span class="admin-mob-del ">Delete marquee text&nbsp;&nbsp;</span> <i class="bi bi-trash"></i>
+          </button>
+        </a>
+      </div>
+      {% endfor %}
+    </center>
+
+
+
+    <br>
+    <div class="button-container">
+      <div class="admin-button-row">
+        <a class="admin-button logout-btn" href="/admin_logout">Logout</a>
+        <a class="admin-button delete-btn" href="/delete_old_results">Delete Old Results</a>
+
+      </div>
+    </div>
+
+    <style>
+      .button-container {
+        display: flex;
+        justify-content: center;
+        margin: 1.5rem 0;
+      }
+
+      .admin-button-row {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .admin-button {
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        font-weight: 500;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        text-align: center;
+        border: none;
+        cursor: pointer;
+        font-size: 1rem;
+      }
+
+      .logout-btn {
+        background-color: #ef4444;
+        color: white;
+      }
+
+      .logout-btn:hover {
+        background-color: #dc2626;
+      }
+
+      .delete-btn {
+        background-color: #f59e0b;
+        color: white;
+      }
+
+      .delete-btn:hover {
+        background-color: #d97706;
+      }
+
+      .marquee-btn {
+        background-color: #3b82f6;
+        color: white;
+      }
+
+      .marquee-btn:hover {
+        background-color: #2563eb;
+      }
+
+      @media (max-width: 980px) {
+        .admin-button-row {
+          flex-direction: column;
+          gap: 1.75rem;
+          width: 70%;
+
+        }
+
+        .admin-button {
+          width: 100%;
+        }
+      }
+    </style>
+
+
+
+
+
+
+    <script>
+
+      function fillInput(number) {
+        var row = document.getElementById("input1");
+        for (var i = 0; i < 9; i++) {
+          var inputId = "input" + (i + 1);
+          var inputValue = number;
+          document.getElementById("input1").value = inputValue;
+
+
+        }
+      }
+
+
+    </script>
+
+    <br><br><br><br><br><br><br>
   </div>
-
-
-
-
-
-  <!-- Script for Mobile Tab Toggle -->
-
-
-<script>
-  function toggleMobileTab(selected) {
-    const left = document.getElementById('leftTabContent');
-    const right = document.getElementById('rightTabContent');
-    const leftBtn = document.getElementById('leftBtn');
-    const rightBtn = document.getElementById('rightBtn');
-    const slider = document.getElementById('tabSlider');
-
-    if (selected === 'left') {
-      left.classList.add('active-tab');
-      right.classList.remove('active-tab');
-      leftBtn.classList.add('active-btn');
-      rightBtn.classList.remove('active-btn');
-      slider.style.transform = 'translateX(0%)';
-    } else {
-      right.classList.add('active-tab');
-      left.classList.remove('active-tab');
-      rightBtn.classList.add('active-btn');
-      leftBtn.classList.remove('active-btn');
-      slider.style.transform = 'translateX(100%)';
-    }
-  }
-</script>
-
-
-
-<form action="/add_marquee" method="post">
-  <div class="input-wrapper">
-    <input type="text" class="admin-input-text" name="marquee_text" placeholder="Add new marquee text..." required/>
-    <button class="btn-success-text">Submit</button>
-  </div>
-</form>
-
-<center>
-  {% for marquee_text in marquee_texts %}
-  <h1>{{marquee_text.content}}({{marquee_text.is_active}})</h1>
-    <div class="input-group-marque">
-    <input type="text" class="form-control-marque" value={{marquee_text.content}} readonly id="inputBox">
-    <a style="text-decoration: none" href="/update/marquee/{{marquee_text.id}}">
-      <button class="btn btn-icon edit" onclick="toggleEdit()" title="Edit" style="width: fit-content; padding: 15px;">
-        <i class="bi bi-pencil-square"></i>
-      </button>
-    </a>
-    <a style="text-decoration: none" href="/delete/marquee/{{marquee_text.id}}">
-      <button class="btn btn-icon delete" onclick="deleteInput()" title="Delete"style="width: fit-content; padding: 15px;">
-        <i class="bi bi-trash"></i>
-      </button>
-    </a>
-  </div>
-  {% endfor %}
-</center>
-
-
-
-      <br>
-<div class="button-container">
-  <div class="admin-button-row">
-    <a class="admin-button logout-btn" href="/admin_logout">Logout</a>
-    <a class="admin-button delete-btn" href="/delete_old_results">Delete Old Results</a>
-    <a class="admin-button marquee-btn" href="/admin/marquee">Manage Marquee Text</a>
-  </div>
-</div>
-
-<style>
-.button-container {
-  display: flex;
-  justify-content: center;
-  margin: 1.5rem 0;
-}
-
-.admin-button-row {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.admin-button {
-  padding: 0.75rem 1.5rem;
-  border-radius: 8px;
-  font-weight: 500;
-  text-decoration: none;
-  transition: all 0.2s ease;
-  text-align: center;
-  border: none;
-  cursor: pointer;
-  font-size: 1rem;
-}
-
-.logout-btn {
-  background-color: #ef4444;
-  color: white;
-}
-
-.logout-btn:hover {
-  background-color: #dc2626;
-}
-
-.delete-btn {
-  background-color: #f59e0b;
-  color: white;
-}
-
-.delete-btn:hover {
-  background-color: #d97706;
-}
-
-.marquee-btn {
-  background-color: #3b82f6;
-  color: white;
-}
-
-.marquee-btn:hover {
-  background-color: #2563eb;
-}
-
-@media (max-width: 980px) {
-  .admin-button-row {
-    flex-direction: column;
-    gap: 1.75rem;
-    width: 70%;
-    
-  }
-  
-  .admin-button {
-    width: 100%;
-  }
-}
-</style>
-    
-
-
-
-
-
-<script>
-
-function fillInput(number) {
-  var row = document.getElementById("input1");
-  for (var i = 0; i < 9; i++) {
-    var inputId = "input" + (i + 1);
-    var inputValue = number ;
-    document.getElementById("input1").value = inputValue;
-
-
-  }
-}
-
-
-</script>
-
-<br><br><br><br><br><br><br> 
-</div>
 
 </body>
 {% endblock body %}
 
 </html>
-
-
-
-    

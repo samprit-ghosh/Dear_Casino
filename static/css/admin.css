@@ -44,7 +44,7 @@
       padding: 0.5rem;
       font-size: 1rem;
       border: 1px solid #ccc;
-     
+      text-align: center;
       border-radius: 4px 0px 0px 4px;
       box-sizing: border-box;
   }
@@ -105,14 +105,24 @@
 
 
   .admin-form {
-      background-image: url('/static/contest-bg.png');
+      background-image: url('/static/contest-bg-about.png');
+      background-position: center;
+      /* width: fit-content; */
+
+  }
+
+
+  .numerinput {
+      background-image: url('/static/contest-bg-about.png');
       background-position: center;
   }
 
 
 
+
   .container-admin {
-      margin-top: 3rem;
+
+      margin-top: 2rem;
   }
 
   @media (max-width: 1068px) {
@@ -131,6 +141,13 @@
           border: 1px solid #ccc;
           border-radius: 4px 0px 0px 4px;
           box-sizing: border-box;
+
+      }
+
+      .input-wrapper {
+
+          margin-top: 0rem;
+
       }
 
       #leftTabContent,
@@ -154,8 +171,12 @@
           display: block;
           margin-bottom: 1.5em;
           border: 1px solid #ddd;
+
       }
 
+      .mob-type {
+          display: none;
+      }
 
       .responsive-form-table td {
           display: flex;
@@ -169,7 +190,7 @@
           content: attr(data-label);
           font-weight: bold;
           margin-bottom: 10px;
-          color: #c30e0e;
+          color: #ffffff;
 
       }
 
@@ -206,78 +227,88 @@
   /* Mobile styles - stack the table */
   @media screen and (max-width: 550px) {
 
-      .numerinput,
-      .numerinput thead,
-      .numerinput tbody,
-      .numerinput th,
-      .numerinput td,
+
+
+      .numerinput {
+          width: 100%;
+          margin: 0;
+          padding: 0;
+          border-spacing: 0;
+          border-collapse: collapse;
+
+      }
+
+      .numerinput thead {
+          display: none;
+      }
+
+      .numerinput {
+          background: none;
+
+      }
+
       .numerinput tr {
           display: block;
-      }
-
-      .numerinput thead tr {
-          position: absolute;
-          top: -9999px;
-          left: -9999px;
-
-      }
-
-      .numerinput tr {
+          width: 100%;
+          margin: 0;
+          margin-bottom: 2rem;
           border: 1px solid #ccc;
-          margin-bottom: 1rem;
-
+          border-radius: 0;
+          overflow: hidden;
+          background-image: url('/static/contest-bg-about.png');
+          background-position: center;
+          background-size: cover;
       }
 
       .numerinput td {
-          /* Behave like a "row" */
-          border: none;
-          border-bottom: 1px solid #eee;
+          display: block;
+          width: 100%;
+          box-sizing: border-box;
           position: relative;
-          padding-left: 50%;
+          padding: 12px 16px 12px 50%;
 
-          text-align: right;
+          border-bottom: 1px solid #eee;
+          color: white;
+          font-weight: 500;
+
       }
 
       .numerinput td:before {
-          /* Now like a table header */
+          content: attr(data-label);
           position: absolute;
-          /* Top/left values mimic padding */
-          top: 22px;
           left: 16px;
-          width: 45%;
-          padding-right: 10px;
-          white-space: nowrap;
-          text-align: left;
+          top: 12px;
           font-weight: bold;
-      }
-
-      /* Label the data */
-      .numerinput td:nth-of-type(1):before {
-          content: "Slotes";
-      }
-
-      .numerinput td:nth-of-type(2):before {
-          content: "One Digit";
-      }
-
-      .numerinput td:nth-of-type(3):before {
-          content: "Three Digits";
-      }
-
-      .numerinput td:nth-of-type(4):before {
-          content: "Edit";
-      }
-
-      .numerinput td:nth-of-type(5):before {
-          content: "Delete";
+          color: #fff;
+          white-space: nowrap;
       }
 
       .numerinput tbody td:nth-of-type(1) {
           background-color: #d18109;
       }
 
-  }
+      .numerinput a.btn-success,
+      .numerinput a.btn-danger {
+          display: block;
+          width: 100%;
+          margin: 8px auto;
+          text-align: center;
+          padding: 8px;
+          border-radius: 5px;
+          font-weight: bold;
+          text-decoration: none;
+      }
 
+      .numerinput a.btn-success {
+          background-color: #218838;
+          color: white;
+      }
+
+      .numerinput a.btn-danger {
+          background-color: #c82333;
+          color: white;
+      }
+  }
 
   /* </style> */
 
@@ -297,6 +328,7 @@
       #leftBtn,
       #rightBtn {
           display: block;
+
       }
 
       .tab-buttons {
@@ -306,15 +338,17 @@
           border-radius: 8px;
           overflow: hidden;
           margin: 2rem;
-          margin-top: 5rem;
+          margin-top: 3rem;
       }
 
       .tab-buttons button {
           flex: 1;
-          padding: 0.75rem 1rem;
+          padding: 1rem 1rem;
           border: none;
           background: white;
           font-weight: bold;
+          font-size: 17px;
+          line-height: 1.5rem;
           cursor: pointer;
           z-index: 1;
           position: relative;
@@ -409,68 +443,144 @@
 
 
 
-  
-    .input-group-marque{
-          display: flex;
-  align-items: center;
-  gap: 10px;
-width: 50%;
 
-  padding: 10px 12px;
-  border-radius: 8px;
-  /* box-shadow: 0 4px 10px rgba(255, 4, 4, 0.3); */
-  margin: 1.5rem auto;
-    }
 
-.form-control-marque {
-  flex: 1;
-  padding: 14px 16px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  text-align: center;
 
-}
+  .input-group-marque {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 50%;
 
-.form-control-marque:read-only {
-  background-color: #f9f9f9;
-}
+      padding: 10px 12px;
+      border-radius: 8px;
+      /* box-shadow: 0 4px 10px rgba(255, 4, 4, 0.3); */
+      margin: 1.5rem auto;
+  }
 
-.btn-icon {
-  width: 36px;             /* smaller width */
-  height: 36px;            /* same as input height */
-  padding: 0;
-  border: none;
-  background: transparent;
-  font-size: 1.2rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 5px;
-  flex-shrink: 0;
-    background-color: #ffda0728;
-}
 
-.btn-icon.edit {
-  color: #0a9c2c;
-    transition: all 0.3s ease;
-}
+  .form-control-marque {
+      flex: 1;
+      padding: 15px;
+      font-size: 16px;
+      border: 1px solid #9c0f0f;
+      border-radius: 5px;
+      /* text-align: center; */
+      background-color: #ffffff;
+      color: black;
+      line-height: 25px;
 
-.btn-icon.edit:hover {
-  color: #1e7e34;  
-  box-shadow: 0 0 12px rgba(40, 167, 69, 0.8), 0 0 20px rgba(40, 167, 69, 0.6);
-       transform: scale(1.05);
 
-}
+  }
 
-.btn-icon.delete {
-  color: #ff031c;
-   transition: all 0.3s ease;
-}
 
-.btn-icon.delete:hover {
-  color: #bd2130;
-        box-shadow: 0 0 12px rgba(225, 6, 6, 0.8), 0 0 20px rgba(214, 7, 7, 0.6);
-       transform: scale(1.05);
-}
+
+  .marque-green {
+      border-color: #4caf50;
+      color: #06880a;
+      font-weight: 600;
+  }
+
+
+
+  /* Red when disabled */
+  .marque-red {
+      border-color: #f44336;
+      color: #a31005;
+      font-weight: 600;
+  }
+
+
+
+
+
+  .btn-icon {
+      width: 36px;
+      /* smaller width */
+      height: 36px;
+      /* same as input height */
+      padding: 0;
+      border: none;
+      background: transparent;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 5px;
+      flex-shrink: 0;
+      background-color: #353330a8;
+  }
+
+  .btn-icon.edit {
+      color: #07ec3d;
+      transition: all 0.3s ease;
+  }
+
+  .btn-icon.edit:hover {
+      color: #0a9c2c;
+      box-shadow: 0 0 12px rgba(40, 167, 69, 0.8), 0 0 20px rgba(40, 167, 69, 0.6);
+      transform: scale(1.05);
+
+  }
+
+  .btn-icon.delete {
+      color: #ff0019;
+      transition: all 0.3s ease;
+  }
+
+  .btn-icon.delete:hover {
+      color: #bd2130;
+      box-shadow: 0 0 12px rgba(225, 6, 6, 0.8), 0 0 20px rgba(214, 7, 7, 0.6);
+      transform: scale(1.05);
+  }
+
+  .admin-mob-del {
+      display: none;
+  }
+
+  @media (max-width:768px) {
+      .input-group-marque {
+
+          width: 90%;
+          gap: 8px;
+          padding: 8px;
+      }
+  }
+
+  @media (max-width: 568px) {
+      .input-group-marque {
+          flex-direction: column;
+          width: 90%;
+          gap: 28px;
+          padding: 8px;
+      }
+
+      .admin-mob-del {
+          display: block;
+      }
+
+      .form-control-marque {
+          width: 100%;
+          font-size: 15px;
+          padding: 12px 14px;
+          text-align: left;
+      }
+
+      .btn-icon {
+          width: 100%;
+          height: 40px;
+          font-size: 1rem;
+          justify-content: flex-start;
+          padding-left: 10px;
+      }
+
+      .btn-icon.edit,
+      .btn-icon.delete {
+          width: 100%;
+          max-width: 100%;
+          justify-content: center;
+          font-size: 1.1rem;
+
+      }
+  }
