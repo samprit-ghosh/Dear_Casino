@@ -1,4 +1,4 @@
-
+  /* <style> */
 
   .admin-body {
       background-image: url('/static/css/bg.jpg');
@@ -12,12 +12,13 @@
       padding-top: 1rem;
   }
 
+  /* Apply equal padding for table cells */
   .admin-th-3 {
       padding: 1rem;
       text-align: center;
   }
 
-
+  /* Make inputs and selects take full width & height of cell */
   .admin-select,
   .admin-input,
   .btn {
@@ -43,7 +44,7 @@
       padding: 0.5rem;
       font-size: 1rem;
       border: 1px solid #ccc;
-
+      text-align: center;
       border-radius: 4px 0px 0px 4px;
       box-sizing: border-box;
   }
@@ -76,9 +77,10 @@
       transform: scale(0.98);
   }
 
- 
+  /* Remove extra spacing in select for better centering */
   .admin-select {
       appearance: none;
+      /* optional: removes default arrow styling */
       background-position: right 0.7rem center;
       background-repeat: no-repeat;
   }
@@ -94,6 +96,7 @@
   }
 
 
+  /* Tab switcher visible only on mobile */
   .tab-switcher {
       display: none;
   }
@@ -102,14 +105,24 @@
 
 
   .admin-form {
-      background-image: url('/static/contest-bg.png');
+      background-image: url('/static/contest-bg-about.png');
+      background-position: center;
+      /* width: fit-content; */
+
+  }
+
+
+  .numerinput {
+      background-image: url('/static/contest-bg-about.png');
       background-position: center;
   }
 
 
 
+
   .container-admin {
-      margin-top: 3rem;
+
+      margin-top: 2rem;
   }
 
   @media (max-width: 1068px) {
@@ -128,6 +141,13 @@
           border: 1px solid #ccc;
           border-radius: 4px 0px 0px 4px;
           box-sizing: border-box;
+
+      }
+
+      .input-wrapper {
+
+          margin-top: 0rem;
+
       }
 
       #leftTabContent,
@@ -151,8 +171,12 @@
           display: block;
           margin-bottom: 1.5em;
           border: 1px solid #ddd;
+
       }
 
+      .mob-type {
+          display: none;
+      }
 
       .responsive-form-table td {
           display: flex;
@@ -198,6 +222,101 @@
 
   }
 
+  /* Default desktop styles */
+
+  /* Mobile styles - stack the table */
+  @media screen and (max-width: 550px) {
+
+
+
+      .numerinput {
+          width: 100%;
+          margin: 0;
+          padding: 0;
+          border-spacing: 0;
+          border-collapse: collapse;
+
+      }
+
+      .numerinput thead {
+          display: none;
+      }
+
+      .numerinput {
+          background: none;
+
+      }
+
+      .numerinput tr {
+          display: block;
+          width: 100%;
+          margin: 0;
+          margin-bottom: 2rem;
+          border: 1px solid #ccc;
+          border-radius: 0;
+          overflow: hidden;
+          background-image: url('/static/contest-bg-about.png');
+          background-position: center;
+          background-size: cover;
+      }
+
+      .numerinput td {
+          display: block;
+          width: 100%;
+          box-sizing: border-box;
+          position: relative;
+          padding: 12px 16px 12px 50%;
+
+          border-bottom: 1px solid #eee;
+          color: white;
+          font-weight: 500;
+
+      }
+
+      .numerinput td:before {
+          content: attr(data-label);
+          position: absolute;
+          left: 16px;
+          top: 12px;
+          font-weight: bold;
+          color: #fff;
+          white-space: nowrap;
+      }
+
+      .numerinput tbody td:nth-of-type(1) {
+          background-color: #d18109;
+      }
+
+      .numerinput a.btn-success,
+      .numerinput a.btn-danger {
+          display: block;
+          width: 100%;
+          margin: 8px auto;
+          text-align: center;
+          padding: 8px;
+          border-radius: 5px;
+          font-weight: bold;
+          text-decoration: none;
+      }
+
+      .numerinput a.btn-success {
+          background-color: #218838;
+          color: white;
+      }
+
+      .numerinput a.btn-danger {
+          background-color: #c82333;
+          color: white;
+      }
+  }
+
+  /* </style> */
+
+
+
+
+  /* <style> */
+
   #leftBtn,
   #rightBtn {
       display: none;
@@ -209,6 +328,7 @@
       #leftBtn,
       #rightBtn {
           display: block;
+
       }
 
       .tab-buttons {
@@ -218,15 +338,17 @@
           border-radius: 8px;
           overflow: hidden;
           margin: 2rem;
-          margin-top: 5rem;
+          margin-top: 3rem;
       }
 
       .tab-buttons button {
           flex: 1;
-          padding: 0.75rem 1rem;
+          padding: 1rem 1rem;
           border: none;
           background: white;
           font-weight: bold;
+          font-size: 17px;
+          line-height: 1.5rem;
           cursor: pointer;
           z-index: 1;
           position: relative;
@@ -322,6 +444,8 @@
 
 
 
+
+
   .input-group-marque {
       display: flex;
       align-items: center;
@@ -337,17 +461,38 @@
 
   .form-control-marque {
       flex: 1;
-      padding: 14px 16px;
+      padding: 15px;
       font-size: 16px;
-      border: 1px solid #ccc;
+      border: 1px solid #9c0f0f;
       border-radius: 5px;
-      text-align: center;
+      /* text-align: center; */
+      background-color: #ffffff;
+      color: black;
+      line-height: 25px;
+
 
   }
 
-  .form-control-marque:read-only {
-      background-color: #f9f9f9;
+
+
+  .marque-green {
+      border-color: #4caf50;
+      color: #06880a;
+      font-weight: 600;
   }
+
+
+
+  /* Red when disabled */
+  .marque-red {
+      border-color: #f44336;
+      color: #a31005;
+      font-weight: 600;
+  }
+
+
+
+
 
   .btn-icon {
       width: 36px;
@@ -364,23 +509,23 @@
       justify-content: center;
       border-radius: 5px;
       flex-shrink: 0;
-      background-color: #ffda0728;
+      background-color: #353330a8;
   }
 
   .btn-icon.edit {
-      color: #0a9c2c;
+      color: #07ec3d;
       transition: all 0.3s ease;
   }
 
   .btn-icon.edit:hover {
-      color: #1e7e34;
+      color: #0a9c2c;
       box-shadow: 0 0 12px rgba(40, 167, 69, 0.8), 0 0 20px rgba(40, 167, 69, 0.6);
       transform: scale(1.05);
 
   }
 
   .btn-icon.delete {
-      color: #ff031c;
+      color: #ff0019;
       transition: all 0.3s ease;
   }
 
@@ -390,35 +535,52 @@
       transform: scale(1.05);
   }
 
-
-
-  @media (max-width: 768px) {
-  .input-group-marque {
-    flex-direction: column;
-    width: 90%;
-    gap: 8px;
-    padding: 8px;
+  .admin-mob-del {
+      display: none;
   }
 
-  .form-control-marque {
-    width: 100%;
-    font-size: 15px;
-    padding: 12px 14px;
-    text-align: left;
+  @media (max-width:768px) {
+      .input-group-marque {
+
+          width: 90%;
+          gap: 8px;
+          padding: 8px;
+      }
   }
 
-  .btn-icon {
-    width: 100%;
-    height: 40px;
-    font-size: 1rem;
-    justify-content: flex-start;
-    padding-left: 10px;
-  }
+  @media (max-width: 568px) {
+      .input-group-marque {
+          flex-direction: column;
+          width: 90%;
+          gap: 28px;
+          padding: 8px;
+      }
 
-  .btn-icon.edit,
-  .btn-icon.delete {
-    width: 100%;
-    justify-content: center;
-    font-size: 1.1rem;
+      .admin-mob-del {
+          display: block;
+      }
+
+      .form-control-marque {
+          width: 100%;
+          font-size: 15px;
+          padding: 12px 14px;
+          text-align: left;
+      }
+
+      .btn-icon {
+          width: 100%;
+          height: 40px;
+          font-size: 1rem;
+          justify-content: flex-start;
+          padding-left: 10px;
+      }
+
+      .btn-icon.edit,
+      .btn-icon.delete {
+          width: 100%;
+          max-width: 100%;
+          justify-content: center;
+          font-size: 1.1rem;
+
+      }
   }
-}
