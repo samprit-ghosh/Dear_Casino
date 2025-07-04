@@ -48,6 +48,8 @@ def inject_globals():
 # 07:00 PM
 # db.create_all()
 
+months_for_old_results = 3
+days_for_results = 7
 
 class Nagaland_Result(db.Model):
     __tablename__ = "nagaland"
@@ -271,12 +273,9 @@ def home():
         Nagaland_Result.created_at >= today_start,
         Nagaland_Result.created_at <= today_end
     ).first()
-    
-    # daily_extra = Extra.query.filter_by(date=now.strftime('%d-%b-%Y(%a)')).first()
-
-    # Matka Results (last 7 days)
-    g_matka_results = []
-    for i in range(7):
+   
+    g_nagaland_results = []
+    for i in range(days_for_results):
         day = now - relativedelta(days=i)
         day_start = day.replace(hour=0, minute=0, second=0, microsecond=0)
         day_end = day.replace(hour=23, minute=59, second=59, microsecond=999999)
@@ -285,15 +284,19 @@ def home():
             Nagaland_Result.created_at >= day_start,
             Nagaland_Result.created_at <= day_end
         ).first()
-        g_matka_results.append(result)
+        g_nagaland_results.append(result)
 
-    # Night Results (last 7 days)
-    g_night_results = []
-    for i in range(7):
+    g_fatafat_results = []
+    for i in range(days_for_results):
         day = now - relativedelta(days=i)
-        formatted_day = day.strftime('%d-%b-%Y(%a)')
-        # result = Extra.query.filter_by(date=formatted_day).first()
-        g_night_results.append(result)
+        day_start = day.replace(hour=0, minute=0, second=0, microsecond=0)
+        day_end = day.replace(hour=23, minute=59, second=59, microsecond=999999)
+        
+        result = Fatafat_Result.query.filter(
+            Fatafat_Result.created_at >= day_start,
+            Fatafat_Result.created_at <= day_end
+        ).first()
+        g_fatafat_results.append(result)
 
     # Slot times
     start_time = {f'slot{i}': now.replace(hour=9+i, minute=0, second=0, microsecond=0) for i in range(1, 11)}
@@ -303,8 +306,8 @@ def home():
     active_marquee = MarqueeText.get_active()
 
     return render_template('index.html',
-                          g_matka_results=g_matka_results,
-                          g_night_results=g_night_results,
+                          g_nagaland_results=g_nagaland_results,
+                          g_fatafat_results=g_fatafat_results,
                           results=results,
                         #   extra=daily_extra,
                           now=now,
@@ -702,25 +705,29 @@ def text():
     'slot10' : now.replace(hour=19, minute=55, second=0, microsecond=0),
     }
 
-    return render_template('text.html', 
-                           
-        results=results, now=now, start_time=start_time, end_time=end_time, daily_data=daily_data, title="Fastest and Live Online Goa Satta Result only at goasatta.in")
-
-
-
-
-# @app.route("/online")
-# def online():
-#     return render_template('online.html', title="Play Online")
+    return render_template('text.html', results=results, now=now, start_time=start_time, end_time=end_time, daily_data=daily_data, title="Fastest and Live Online Goa Satta Result only at goasatta.in")
 
 @app.route("/contact")
 def contact():
     return render_template('Contact.html', title="Contact Us")
 
-@app.route("/old")
-def old():
-      matka_results = Nagaland_Result.query.order_by(Nagaland_Result.created_at.desc()).limit(31).all()
-    #   night_results = Extra.query.order_by(Extra.id.desc()).limit(31).all()
-      return render_template('old.html', matka_results=matka_results, title="Old Result")
+@app.route("/old_nagaland")
+def old_nagaland():
+    now = datetime.now(timezone("Asia/Kolkata"))
+    months_ago = now - relativedelta(months=months_for_old_results)
+    nagaland_results = Nagaland_Result.query.filter(
+        Nagaland_Result.created_at >= months_ago
+    ).order_by(Nagaland_Result.created_at.desc()).all()
+    return render_template('old.html', flag=True,  results=nagaland_results, title="Nagaland Results")
+
+@app.route("/old_fatafat")
+def old_fatafat():
+    now = datetime.now(timezone("Asia/Kolkata"))
+    months_ago = now - relativedelta(months=months_for_old_results)
+    fatafat_results = Fatafat_Result.query.filter(
+        Fatafat_Result.created_at >= months_ago
+    ).order_by(Fatafat_Result.created_at.desc()).all()
+    return render_template('old.html', flag=False,  results=fatafat_results, title="Fatafat Results")
+
 if __name__ == '__main__':
     app.run(debug=True)
