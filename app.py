@@ -164,8 +164,8 @@ def get_current_fatafat_slot(now=None):
         now = datetime.now(timezone("Asia/Kolkata"))
     slot_start = now.replace(hour=10, minute=30, second=0, microsecond=0)
     for i in range(8):
-        start = slot_start + timedelta(hours=i)
-        end = start + timedelta(hours=1)
+        start = slot_start + timedelta(hours=i, minutes=i*30)
+        end = start + timedelta(hours=1, minutes=30)
         show_until = start + timedelta(minutes=40)
         if start <= now < end:
             return {
@@ -179,7 +179,7 @@ def get_current_nagaland_slot(now=None):
     if not now:
         now = datetime.now(timezone("Asia/Kolkata"))
     slot_start = now.replace(hour=10, minute=20, second=0, microsecond=0)
-    for i in range(8):
+    for i in range(10):
         start = slot_start + timedelta(hours=i)
         end = start + timedelta(hours=1)
         show_until = start + timedelta(minutes=40)
@@ -314,7 +314,7 @@ def home():
     fatafat_digit = getattr(fatafat_daily, f"slot{slot_num}_digit", "-") if fatafat_daily else "-"
     fatafat_number = getattr(fatafat_daily, f"slot{slot_num}_number", "---") if fatafat_daily else "---"
 
-    nagaland_slots_info = get_current_fatafat_slot(now)
+    nagaland_slots_info = get_current_nagaland_slot(now)
     nagaland_daily = Nagaland_Result.query.filter(
         Nagaland_Result.created_at >= today_start,
         Nagaland_Result.created_at <= today_end
