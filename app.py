@@ -715,8 +715,10 @@ def contact():
 def old_nagaland():
     now = datetime.now(timezone("Asia/Kolkata"))
     months_ago = now - relativedelta(months=months_for_old_results)
+    today_start = now.replace(hour=0, minute=0, second=0, microsecond=0)
     nagaland_results = Nagaland_Result.query.filter(
-        Nagaland_Result.created_at >= months_ago
+        Nagaland_Result.created_at >= months_ago,
+        Nagaland_Result.created_at < today_start
     ).order_by(Nagaland_Result.created_at.desc()).all()
     return render_template('old.html', flag=True,  results=nagaland_results, title="Nagaland Results")
 
@@ -724,8 +726,10 @@ def old_nagaland():
 def old_fatafat():
     now = datetime.now(timezone("Asia/Kolkata"))
     months_ago = now - relativedelta(months=months_for_old_results)
+    today_start = now.replace(hour=0, minute=0, second=0, microsecond=0)
     fatafat_results = Fatafat_Result.query.filter(
-        Fatafat_Result.created_at >= months_ago
+        Fatafat_Result.created_at >= months_ago,
+        Fatafat_Result.created_at < today_start
     ).order_by(Fatafat_Result.created_at.desc()).all()
     return render_template('old.html', flag=False,  results=fatafat_results, title="Fatafat Results")
 
