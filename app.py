@@ -158,6 +158,39 @@ ADMIN_PASSWORD = os.getenv('ADMIN_PASSWORD')
 #             db.session.delete(data)
 #         db.session.commit()
 
+
+def get_current_fatafat_slot(now=None):
+    if not now:
+        now = datetime.now(timezone("Asia/Kolkata"))
+    slot_start = now.replace(hour=10, minute=30, second=0, microsecond=0)
+    for i in range(8):
+        start = slot_start + timedelta(hours=i)
+        end = start + timedelta(hours=1)
+        show_until = start + timedelta(minutes=40)
+        if start <= now < end:
+            return {
+                "slot_num": i + 1,
+                "show_result": now < show_until
+            }
+    return None
+
+
+def get_current_nagaland_slot(now=None):
+    if not now:
+        now = datetime.now(timezone("Asia/Kolkata"))
+    slot_start = now.replace(hour=10, minute=20, second=0, microsecond=0)
+    for i in range(8):
+        start = slot_start + timedelta(hours=i)
+        end = start + timedelta(hours=1)
+        show_until = start + timedelta(minutes=40)
+        if start <= now < end:
+            return {
+                "slot_num": i + 1,
+                "show_result": now < show_until
+            }
+    return None
+
+
 @app.route('/delete_old_results', methods=['GET', 'POST'])
 def delete_old_results():
     # Calculate the date cutoffs
@@ -268,11 +301,30 @@ def home():
     # Get start and end of today
     today_start = now.replace(hour=0, minute=0, second=0, microsecond=0)
     today_end = now.replace(hour=23, minute=59, second=59, microsecond=999999)
+    fatafat_slots_info = get_current_fatafat_slot(now)
     
-    daily_data = Nagaland_Result.query.filter(
+    fatafat_daily = Fatafat_Result.query.filter(
+        Fatafat_Result.created_at >= today_start,
+        Fatafat_Result.created_at <= today_end
+    ).first()
+
+     # Example: slot1_digit, slot1_number, slot2_digit, etc.
+    slot_num = fatafat_slots_info["slot_num"] if fatafat_slots_info else 1
+    show_fatafat_result = fatafat_slots_info["show_result"] if fatafat_slots_info else False
+    fatafat_digit = getattr(fatafat_daily, f"slot{slot_num}_digit", "-") if fatafat_daily else "-"
+    fatafat_number = getattr(fatafat_daily, f"slot{slot_num}_number", "---") if fatafat_daily else "---"
+
+    nagaland_slots_info = get_current_fatafat_slot(now)
+    nagaland_daily = Nagaland_Result.query.filter(
         Nagaland_Result.created_at >= today_start,
         Nagaland_Result.created_at <= today_end
     ).first()
+
+     # Example: slot1_digit, slot1_number, slot2_digit, etc.
+    slot_num = nagaland_slots_info["slot_num"] if nagaland_slots_info else 1
+    show_nagaland_result = nagaland_slots_info["show_result"] if nagaland_slots_info else False
+    nagaland_digit = getattr(nagaland_daily, f"slot{slot_num}_digit", "-") if nagaland_daily else "-"
+    nagaland_number = getattr(nagaland_daily, f"slot{slot_num}_number", "---") if nagaland_daily else "---"
    
     g_nagaland_results = []
     for i in range(days_for_results):
@@ -306,14 +358,21 @@ def home():
     active_marquees = MarqueeText.get_active()
     
     return render_template('index.html',
+                            nagaland_digit=nagaland_digit,
+                            nagaland_number=nagaland_number,
+                            show_nagaland_result=show_nagaland_result,
                           g_nagaland_results=g_nagaland_results,
+                        #   fatafat_slots=fatafat_slots,
+                            fatafat_digit=fatafat_digit,
+                            fatafat_number=fatafat_number,
+                            show_fatafat_result=show_fatafat_result,
                           g_fatafat_results=g_fatafat_results,
                           results=results,
                         #   extra=daily_extra,
                           now=now,
                           start_time=start_time,
                           end_time=end_time,
-                          daily_data=daily_data,
+                        #   daily_data=daily_data,
                           active_marquees=active_marquees,
                           title="Fastest and Live Online Goa Satta Result only at goasatta.in")
 

@@ -236,7 +236,13 @@
                                 alt="Satta Matka Icon" width="10" height="10"> LIVE</h4>
                         <h1 style="color: #FFEA02;text-shadow: 0 0 5px #ff0000, 0 0 5px #ff0000, 0 0 10px #ff0303;margin-bottom: 15px; font-family: 'Cinzel Decorative', serif; "
                             class="result-name">Dear Fatafat</h1>
-                        <h1 class="main-result-show">3 - 128</h1>
+                        <h1 class="main-result-show">
+                          {% if show_fatafat_result %}
+                            {{ fatafat_digit }} - {{ fatafat_number }}
+                          {% else %}
+                            Soon
+                          {% endif %}
+                        </h1>
                     </div>
 
                     <div style="text-align: center;">
@@ -245,7 +251,13 @@
                                 alt="Satta Matka Icon" width="10" height="10"> LIVE</h4>
                         <h1 style="color: #FFEA02;text-shadow: 0 0 5px #ff0000, 0 0 5px #ff0000, 0 0 10px #ff0303; margin-bottom: 15px;font-family: 'Cinzel Decorative', serif;"
                             class="result-name">Nagaland Satta</h1>
-                        <h1 class="main-result-show">8 - 156</h1>
+                        <h1 class="main-result-show">
+                          {% if show_nagaland_result %}
+                            {{ nagaland_digit }} - {{ nagaland_number }}
+                          {% else %}
+                            Soon
+                          {% endif %}
+                        </h1>
                     </div>
                 </div>
             </div>
