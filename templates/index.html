@@ -19,7 +19,7 @@
     </div>
         <img src="/static/css/logo-removebg-preview.png" alt="Logo" class="main-logo">
     <h1>Dear Casino Official Website</h1>
-    <h3>Dear Fatafat || Nagaland Satta</h3>
+    <h3>Dear Fatafat | Nagaland Satta</h3>
 <div class="button-container">
   <a href="#Fatafat" class="modern-button">Dear Fatafat</a>
   <a href="#NAGALAND" class="modern-button">Nagaland Satta</a>
@@ -197,23 +197,17 @@
 
 
     <div class="inner-background-image">
-
- 
-
-
-  {% if active_marquee %}
-  <div class="marquee">
-    <marquee scrollamount="{{ active_marquee.scroll_speed }}" class="marquee-text">
-      {{ active_marquee.content }}
-    </marquee>
-  </div>
-  {% endif %}
-
+  
+      {% if active_marquees | length > 0 %}
+        <div class="marquee">
+          <marquee scrollamount="{{ active_marquees[0].scroll_speed }}" class="marquee-text">
+            {{ active_marquees | map(attribute='content') | join(' | ') }}
+          </marquee>
+        </div>
+      {% endif %}
 
 
         <section class="hero" style="position: relative;">
-
-            <!-- Background Video -->
             <video autoplay muted loop class="background-video"
                 style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
                 <source src="/static/css/video-1.mp4" type="video/mp4">
@@ -239,19 +233,31 @@
                     <div style="text-align: center;">
                         <h4 style="margin-bottom: 10px; color: #FFEA02;"><img
                                 src="data:image/png;base64,R0lGODlhBwAHAPsAMQAAAP8zM/9mZv8AAN0AAMwAACIAAHcAAFUAAO4AAIgAAP+ZmQAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQJIwAAACwAAAAABwAHAAAEHRCAEYYEQYhAplgbcWTaUCBJoCaKARRE0V4H4gKRACH5BAUjAAAALAAAAAABAAEAAAICRIEAOw=="
-                                alt="Satta Matka Icon" width="10" height="10"> live</h4>
+                                alt="Satta Matka Icon" width="10" height="10"> LIVE</h4>
                         <h1 style="color: #FFEA02;text-shadow: 0 0 5px #ff0000, 0 0 5px #ff0000, 0 0 10px #ff0303;margin-bottom: 15px; font-family: 'Cinzel Decorative', serif; "
                             class="result-name">Dear Fatafat</h1>
-                        <h1 class="main-result-show">3 - 128</h1>
+                        <h1 class="main-result-show">
+                          {% if show_fatafat_result %}
+                            {{ fatafat_digit }} - {{ fatafat_number }}
+                          {% else %}
+                            Soon
+                          {% endif %}
+                        </h1>
                     </div>
 
                     <div style="text-align: center;">
                         <h4 style="margin-bottom: 10px;color: #FFEA02;"><img
                                 src="data:image/png;base64,R0lGODlhBwAHAPsAMQAAAP8zM/9mZv8AAN0AAMwAACIAAHcAAFUAAO4AAIgAAP+ZmQAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQJIwAAACwAAAAABwAHAAAEHRCAEYYEQYhAplgbcWTaUCBJoCaKARRE0V4H4gKRACH5BAUjAAAALAAAAAABAAEAAAICRIEAOw=="
-                                alt="Satta Matka Icon" width="10" height="10"> live</h4>
+                                alt="Satta Matka Icon" width="10" height="10"> LIVE</h4>
                         <h1 style="color: #FFEA02;text-shadow: 0 0 5px #ff0000, 0 0 5px #ff0000, 0 0 10px #ff0303; margin-bottom: 15px;font-family: 'Cinzel Decorative', serif;"
                             class="result-name">Nagaland Satta</h1>
-                        <h1 class="main-result-show">8 - 156</h1>
+                        <h1 class="main-result-show">
+                          {% if show_nagaland_result %}
+                            {{ nagaland_digit }} - {{ nagaland_number }}
+                          {% else %}
+                            Soon
+                          {% endif %}
+                        </h1>
                     </div>
                 </div>
             </div>
@@ -325,6 +331,18 @@
 
         </div>
         <br>
+
+        <h1>Nagaland</h1>
+        {% for nagaland in g_nagaland_results %}
+          <p>{{nagaland.created_at}}</p>
+        {% endfor %}
+
+        <br><br>
+
+        <h1>Fatafat</h1>
+        {% for fatafat in g_fatafat_results %}
+          <p>{{fatafat.created_at}}</p>
+        {% endfor %}
 
 
 
@@ -765,7 +783,9 @@
             </div>
             <br>
 
-
+            {% for g_nagaland_result in g_nagaland_results %}
+              <h1>{g_nagaland_result.content}</h1>
+            {% endfor %}
 
             <div class="table-container">
                 <table class="main-table">

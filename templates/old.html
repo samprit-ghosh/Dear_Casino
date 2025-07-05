@@ -1,198 +1,103 @@
 {% extends 'layout.html' %}
-{% block title %} About Us {% endblock title %}
+{% block title %} {{title}} {% endblock title %}
+
+
 {% block body %}
 
-
-
-
-
-<div class="background-image">
-
-    <div class="inner-background-image">
-
-        <br><br>
-        <div class="table-container">
-            <table class="main-table">
-                <tbody>
-                    <tr style="padding: 0">
-                        <td colspan="13" style="padding:0">
-
-                        </td>
-                    </tr>
-                    <tr class="table-header">
-
-                        <td class="time-head">11:00 am</td>
-                        <td class="time-head">12:30 pm</td>
-                        <td class="time-head">02:00 pm</td>
-                        <td class="time-head">03:30 pm</td>
-                        <td class="time-head">05:00 pm</td>
-                        <td class="time-head">06:30 pm</td>
-                        <td class="time-head">08:00 pm</td>
-                        <td class="time-head">09:30 pm</td>
-                        <td class="time-head">08:00 pm</td>
-                        <td class="time-head">09:30 pm</td>
-                    </tr>
-
-                    <!-- Sample Row -->
-
-                    <h1><span class="main-table-spanGap-time">01-05-2025 Thurs</span></h1>
-                    <tr>
-
-                        <td><span class="main-table-spanGap">267</span><span class="main-table-spanGap">267</span></td>
-                        <td><span class="main-table-spanGap">127</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">239</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">350</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">789</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">369</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">358</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">567</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">567</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">567</span><span class="main-table-spanGap">127</span></td>
-                    </tr>
-
-
-
-                    <!-- Add remaining rows the same way -->
-                </tbody>
-            </table>
+{% if results | length > 0 %}
+    <div class="background-image">
+        <div class="inner-background-image">
             <br><br>
-            <table class="main-table">
-                <tbody>
-                    <tr style="padding: 0">
-                        <td colspan="13" style="padding:0">
-
-                        </td>
-                    </tr>
-                    <tr class="table-header">
-
-                        <td class="time-head">11:00 am</td>
-                        <td class="time-head">12:30 pm</td>
-                        <td class="time-head">02:00 pm</td>
-                        <td class="time-head">03:30 pm</td>
-                        <td class="time-head">05:00 pm</td>
-                        <td class="time-head">06:30 pm</td>
-                        <td class="time-head">08:00 pm</td>
-                        <td class="time-head">09:30 pm</td>
-                        <td class="time-head">08:00 pm</td>
-                        <td class="time-head">09:30 pm</td>
-                    </tr>
-
-                    <!-- Sample Row -->
-
-                    <h1><span class="main-table-spanGap-time">01-05-2025 Thurs</span></h1>
-                    <tr>
-
-                        <td><span class="main-table-spanGap">267</span><span class="main-table-spanGap">267</span></td>
-                        <td><span class="main-table-spanGap">127</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">239</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">350</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">789</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">369</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">358</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">567</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">567</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">567</span><span class="main-table-spanGap">127</span></td>
-                    </tr>
-
-
-
-                    <!-- Add remaining rows the same way -->
-                </tbody>
-            </table>
-            <br><br>
-            <table class="main-table">
-                <tbody>
-                    <tr style="padding: 0">
-                        <td colspan="13" style="padding:0">
-
-                        </td>
-                    </tr>
-                    <tr class="table-header">
-
-                        <td class="time-head">11:00 am</td>
-                        <td class="time-head">12:30 pm</td>
-                        <td class="time-head">02:00 pm</td>
-                        <td class="time-head">03:30 pm</td>
-                        <td class="time-head">05:00 pm</td>
-                        <td class="time-head">06:30 pm</td>
-                        <td class="time-head">08:00 pm</td>
-                        <td class="time-head">09:30 pm</td>
-                        <td class="time-head">08:00 pm</td>
-                        <td class="time-head">09:30 pm</td>
-                    </tr>
-
-                    <!-- Sample Row -->
-
-                    <h1><span class="main-table-spanGap-time">01-05-2025 Thurs</span></h1>
-                    <tr>
-
-                        <td><span class="main-table-spanGap">267</span><span class="main-table-spanGap">267</span></td>
-                        <td><span class="main-table-spanGap">127</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">239</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">350</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">789</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">369</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">358</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">567</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">567</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">567</span><span class="main-table-spanGap">127</span></td>
-                    </tr>
-
-
-
-                    <!-- Add remaining rows the same way -->
-                </tbody>
-            </table>
-            <br><br>
-            <table class="main-table">
-                <tbody>
-                    <tr style="padding: 0">
-                        <td colspan="13" style="padding:0">
-
-                        </td>
-                    </tr>
-                    <tr class="table-header">
-
-                        <td class="time-head">11:00 am</td>
-                        <td class="time-head">12:30 pm</td>
-                        <td class="time-head">02:00 pm</td>
-                        <td class="time-head">03:30 pm</td>
-                        <td class="time-head">05:00 pm</td>
-                        <td class="time-head">06:30 pm</td>
-                        <td class="time-head">08:00 pm</td>
-                        <td class="time-head">09:30 pm</td>
-                        <td class="time-head">08:00 pm</td>
-                        <td class="time-head">09:30 pm</td>
-                    </tr>
-
-                    <!-- Sample Row -->
-
-                    <h1><span class="main-table-spanGap-time">01-05-2025 Thurs</span></h1>
-                    <tr>
-
-                        <td><span class="main-table-spanGap">267</span><span class="main-table-spanGap">267</span></td>
-                        <td><span class="main-table-spanGap">127</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">239</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">350</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">789</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">369</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">358</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">567</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">567</span><span class="main-table-spanGap">127</span></td>
-                        <td><span class="main-table-spanGap">567</span><span class="main-table-spanGap">127</span></td>
-                    </tr>
-
-
-
-                    <!-- Add remaining rows the same way -->
-                </tbody>
-            </table>
+            {% if flag %}
+                {% for result in results %}
+                    <div class="table-container">
+                        <table class="main-table">
+                            <tbody>
+                                <tr style="padding: 0">
+                                    <td colspan="13" style="padding:0">
+        
+                                    </td>
+                                </tr>
+                                <tr class="table-header">
+        
+                                    <td class="time-head">10:20 am</td>
+                                    <td class="time-head">11:20 pm</td>
+                                    <td class="time-head">12:20 pm</td>
+                                    <td class="time-head">01:20 pm</td>
+                                    <td class="time-head">02:20 pm</td>
+                                    <td class="time-head">03:20 pm</td>
+                                    <td class="time-head">04:20 pm</td>
+                                    <td class="time-head">05:20 pm</td>
+                                    <td class="time-head">06:20 pm</td>
+                                    <td class="time-head">07:20 pm</td>
+                                </tr>
+                                <h1><span class="main-table-spanGap-time">{{result.created_at.strftime('%d-%m-%Y (%a)')}}</span></h1>
+                                <tr>
+        
+                                    <td><span class="main-table-spanGap">{% if result.slot1_digit %}{{result.slot1_digit}}{% else %}-{% endif %}</span><span class="main-table-spanGap">{% if result.slot1_number %}{{result.slot1_number}}{% else %}---{% endif %}</span></td>
+                                    <td><span class="main-table-spanGap">{% if result.slot2_digit %}{{result.slot2_digit}}{% else %}-{% endif %}</span><span class="main-table-spanGap">{% if result.slot2_number %}{{result.slot2_number}}{% else %}---{% endif %}</span></td>
+                                    <td><span class="main-table-spanGap">{% if result.slot3_digit %}{{result.slot3_digit}}{% else %}-{% endif %}</span><span class="main-table-spanGap">{% if result.slot3_number %}{{result.slot3_number}}{% else %}---{% endif %}</span></td>
+                                    <td><span class="main-table-spanGap">{% if result.slot4_digit %}{{result.slot4_digit}}{% else %}-{% endif %}</span><span class="main-table-spanGap">{% if result.slot4_number %}{{result.slot4_number}}{% else %}---{% endif %}</span></td>
+                                    <td><span class="main-table-spanGap">{% if result.slot5_digit %}{{result.slot5_digit}}{% else %}-{% endif %}</span><span class="main-table-spanGap">{% if result.slot5_number %}{{result.slot5_number}}{% else %}---{% endif %}</span></td>
+                                    <td><span class="main-table-spanGap">{% if result.slot6_digit %}{{result.slot6_digit}}{% else %}-{% endif %}</span><span class="main-table-spanGap">{% if result.slot6_number %}{{result.slot6_number}}{% else %}---{% endif %}</span></td>
+                                    <td><span class="main-table-spanGap">{% if result.slot7_digit %}{{result.slot7_digit}}{% else %}-{% endif %}</span><span class="main-table-spanGap">{% if result.slot7_number %}{{result.slot7_number}}{% else %}---{% endif %}</span></td>
+                                    <td><span class="main-table-spanGap">{% if result.slot8_digit %}{{result.slot8_digit}}{% else %}-{% endif %}</span><span class="main-table-spanGap">{% if result.slot8_number %}{{result.slot8_number}}{% else %}---{% endif %}</span></td>
+                                    <td><span class="main-table-spanGap">{% if result.slot9_digit %}{{result.slot9_digit}}{% else %}-{% endif %}</span><span class="main-table-spanGap">{% if result.slot9_number %}{{result.slot9_number}}{% else %}---{% endif %}</span></td>
+                                    <td><span class="main-table-spanGap">{% if result.slot10_digit %}{{result.slot10_digit}}{% else %}-{% endif %}</span><span class="main-table-spanGap">{% if result.slot10_number %}{{result.slot10_number}}{% else %}---{% endif %}</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <br><br>
+                {% endfor %}
+            {% else %}
+                {% for result in results %}
+                    <div class="table-container">
+                        <table class="main-table">
+                            <tbody>
+                                <tr style="padding: 0">
+                                    <td colspan="13" style="padding:0">
+        
+                                    </td>
+                                </tr>
+                                <tr class="table-header">
+        
+                                    <td class="time-head">10:30 am</td>
+                                    <td class="time-head">12:00 pm</td>
+                                    <td class="time-head">01:30 pm</td>
+                                    <td class="time-head">03:00 pm</td>
+                                    <td class="time-head">04:30 pm</td>
+                                    <td class="time-head">06:00 pm</td>
+                                    <td class="time-head">07:30 pm</td>
+                                    <td class="time-head">09:00 pm</td>
+                                </tr>
+                                <h1><span class="main-table-spanGap-time">{{result.created_at.strftime('%d-%m-%Y (%a)')}}</span></h1>
+                                <tr>
+        
+                                    <td><span class="main-table-spanGap">{% if result.slot1_digit %}{{result.slot1_digit}}{% else %}-{% endif %}</span><span class="main-table-spanGap">{% if result.slot1_number %}{{result.slot1_number}}{% else %}---{% endif %}</span></td>
+                                    <td><span class="main-table-spanGap">{% if result.slot2_digit %}{{result.slot2_digit}}{% else %}-{% endif %}</span><span class="main-table-spanGap">{% if result.slot2_number %}{{result.slot2_number}}{% else %}---{% endif %}</span></td>
+                                    <td><span class="main-table-spanGap">{% if result.slot3_digit %}{{result.slot3_digit}}{% else %}-{% endif %}</span><span class="main-table-spanGap">{% if result.slot3_number %}{{result.slot3_number}}{% else %}---{% endif %}</span></td>
+                                    <td><span class="main-table-spanGap">{% if result.slot4_digit %}{{result.slot4_digit}}{% else %}-{% endif %}</span><span class="main-table-spanGap">{% if result.slot4_number %}{{result.slot4_number}}{% else %}---{% endif %}</span></td>
+                                    <td><span class="main-table-spanGap">{% if result.slot5_digit %}{{result.slot5_digit}}{% else %}-{% endif %}</span><span class="main-table-spanGap">{% if result.slot5_number %}{{result.slot5_number}}{% else %}---{% endif %}</span></td>
+                                    <td><span class="main-table-spanGap">{% if result.slot6_digit %}{{result.slot6_digit}}{% else %}-{% endif %}</span><span class="main-table-spanGap">{% if result.slot6_number %}{{result.slot6_number}}{% else %}---{% endif %}</span></td>
+                                    <td><span class="main-table-spanGap">{% if result.slot7_digit %}{{result.slot7_digit}}{% else %}-{% endif %}</span><span class="main-table-spanGap">{% if result.slot7_number %}{{result.slot7_number}}{% else %}---{% endif %}</span></td>
+                                    <td><span class="main-table-spanGap">{% if result.slot8_digit %}{{result.slot8_digit}}{% else %}-{% endif %}</span><span class="main-table-spanGap">{% if result.slot8_number %}{{result.slot8_number}}{% else %}---{% endif %}</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <br><br>
+                {% endfor %}
+            {% endif %}
+            
         </div>
-        <br><br><br><br>
     </div>
-
-
-</div>
-
-
+{% else %}
+    <div class="background-image">
+        <div class="inner-background-image" style='min-height: 60vh;'>
+            <p style='font-size: 32px; font-weight: 900; color: gray; min-height: 55vh; display: flex; justify-content: center; align-items: center'>No Data Found!!!</p>
+        </div>
+    </div>
+{% endif %}
+    
 {% endblock body %}

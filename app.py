@@ -48,6 +48,8 @@ def inject_globals():
 # 07:00 PM
 # db.create_all()
 
+months_for_old_results = 3
+days_for_results = 7
 
 class Nagaland_Result(db.Model):
     __tablename__ = "nagaland"
@@ -138,7 +140,7 @@ class MarqueeText(db.Model):
     
     @classmethod
     def get_active(cls):
-        return cls.query.filter_by(is_active=True).first()
+        return cls.query.filter_by(is_active=True).all()
 
 
 # Get the admin password from the environment variable
@@ -155,6 +157,39 @@ ADMIN_PASSWORD = os.getenv('ADMIN_PASSWORD')
 #         for data in old_results:
 #             db.session.delete(data)
 #         db.session.commit()
+
+
+def get_current_fatafat_slot(now=None):
+    if not now:
+        now = datetime.now(timezone("Asia/Kolkata"))
+    slot_start = now.replace(hour=10, minute=30, second=0, microsecond=0)
+    for i in range(8):
+        start = slot_start + timedelta(hours=i)
+        end = start + timedelta(hours=1)
+        show_until = start + timedelta(minutes=40)
+        if start <= now < end:
+            return {
+                "slot_num": i + 1,
+                "show_result": now < show_until
+            }
+    return None
+
+
+def get_current_nagaland_slot(now=None):
+    if not now:
+        now = datetime.now(timezone("Asia/Kolkata"))
+    slot_start = now.replace(hour=10, minute=20, second=0, microsecond=0)
+    for i in range(8):
+        start = slot_start + timedelta(hours=i)
+        end = start + timedelta(hours=1)
+        show_until = start + timedelta(minutes=40)
+        if start <= now < end:
+            return {
+                "slot_num": i + 1,
+                "show_result": now < show_until
+            }
+    return None
+
 
 @app.route('/delete_old_results', methods=['GET', 'POST'])
 def delete_old_results():
@@ -266,17 +301,33 @@ def home():
     # Get start and end of today
     today_start = now.replace(hour=0, minute=0, second=0, microsecond=0)
     today_end = now.replace(hour=23, minute=59, second=59, microsecond=999999)
+    fatafat_slots_info = get_current_fatafat_slot(now)
     
-    daily_data = Nagaland_Result.query.filter(
+    fatafat_daily = Fatafat_Result.query.filter(
+        Fatafat_Result.created_at >= today_start,
+        Fatafat_Result.created_at <= today_end
+    ).first()
+
+     # Example: slot1_digit, slot1_number, slot2_digit, etc.
+    slot_num = fatafat_slots_info["slot_num"] if fatafat_slots_info else 1
+    show_fatafat_result = fatafat_slots_info["show_result"] if fatafat_slots_info else False
+    fatafat_digit = getattr(fatafat_daily, f"slot{slot_num}_digit", "-") if fatafat_daily else "-"
+    fatafat_number = getattr(fatafat_daily, f"slot{slot_num}_number", "---") if fatafat_daily else "---"
+
+    nagaland_slots_info = get_current_fatafat_slot(now)
+    nagaland_daily = Nagaland_Result.query.filter(
         Nagaland_Result.created_at >= today_start,
         Nagaland_Result.created_at <= today_end
     ).first()
-    
-    # daily_extra = Extra.query.filter_by(date=now.strftime('%d-%b-%Y(%a)')).first()
 
-    # Matka Results (last 7 days)
-    g_matka_results = []
-    for i in range(7):
+     # Example: slot1_digit, slot1_number, slot2_digit, etc.
+    slot_num = nagaland_slots_info["slot_num"] if nagaland_slots_info else 1
+    show_nagaland_result = nagaland_slots_info["show_result"] if nagaland_slots_info else False
+    nagaland_digit = getattr(nagaland_daily, f"slot{slot_num}_digit", "-") if nagaland_daily else "-"
+    nagaland_number = getattr(nagaland_daily, f"slot{slot_num}_number", "---") if nagaland_daily else "---"
+   
+    g_nagaland_results = []
+    for i in range(days_for_results):
         day = now - relativedelta(days=i)
         day_start = day.replace(hour=0, minute=0, second=0, microsecond=0)
         day_end = day.replace(hour=23, minute=59, second=59, microsecond=999999)
@@ -285,41 +336,44 @@ def home():
             Nagaland_Result.created_at >= day_start,
             Nagaland_Result.created_at <= day_end
         ).first()
-        g_matka_results.append(result)
+        g_nagaland_results.append(result)
 
-    # Night Results (last 7 days)
-    g_night_results = []
-    for i in range(7):
+    g_fatafat_results = []
+    for i in range(days_for_results):
         day = now - relativedelta(days=i)
-        formatted_day = day.strftime('%d-%b-%Y(%a)')
-        # result = Extra.query.filter_by(date=formatted_day).first()
-        g_night_results.append(result)
+        day_start = day.replace(hour=0, minute=0, second=0, microsecond=0)
+        day_end = day.replace(hour=23, minute=59, second=59, microsecond=999999)
+        
+        result = Fatafat_Result.query.filter(
+            Fatafat_Result.created_at >= day_start,
+            Fatafat_Result.created_at <= day_end
+        ).first()
+        g_fatafat_results.append(result)
 
     # Slot times
     start_time = {f'slot{i}': now.replace(hour=9+i, minute=0, second=0, microsecond=0) for i in range(1, 11)}
     end_time = {f'slot{i}': now.replace(hour=9+i, minute=55, second=0, microsecond=0) for i in range(1, 11)}
 
     # Get active marquee text
-    active_marquee = MarqueeText.get_active()  
-
-
-
-
-
-
-
-
+    active_marquees = MarqueeText.get_active()
+    
     return render_template('index.html',
-                          g_matka_results=g_matka_results,
-                          g_night_results=g_night_results,
-                       
+                            nagaland_digit=nagaland_digit,
+                            nagaland_number=nagaland_number,
+                            show_nagaland_result=show_nagaland_result,
+                          g_nagaland_results=g_nagaland_results,
+                        #   fatafat_slots=fatafat_slots,
+                            fatafat_digit=fatafat_digit,
+                            fatafat_number=fatafat_number,
+                            show_fatafat_result=show_fatafat_result,
+                          g_fatafat_results=g_fatafat_results,
                           results=results,
                         #   extra=daily_extra,
                           now=now,
                           start_time=start_time,
                           end_time=end_time,
-                          daily_data=daily_data,
-                          active_marquee=active_marquee,
+                        #   daily_data=daily_data,
+                          active_marquees=active_marquees,
                           title="Fastest and Live Online Goa Satta Result only at goasatta.in")
 
 
@@ -712,25 +766,33 @@ def text():
     'slot10' : now.replace(hour=19, minute=55, second=0, microsecond=0),
     }
 
-    return render_template('text.html', 
-                           
-        results=results, now=now, start_time=start_time, end_time=end_time, daily_data=daily_data, title="Fastest and Live Online Goa Satta Result only at goasatta.in")
-
-
-
-
-# @app.route("/online")
-# def online():
-#     return render_template('online.html', title="Play Online")
+    return render_template('text.html', results=results, now=now, start_time=start_time, end_time=end_time, daily_data=daily_data, title="Fastest and Live Online Goa Satta Result only at goasatta.in")
 
 @app.route("/contact")
 def contact():
     return render_template('Contact.html', title="Contact Us")
 
-@app.route("/old")
-def old():
-      matka_results = Nagaland_Result.query.order_by(Nagaland_Result.created_at.desc()).limit(31).all()
-    #   night_results = Extra.query.order_by(Extra.id.desc()).limit(31).all()
-      return render_template('old.html', matka_results=matka_results, title="Old Result")
+@app.route("/old_nagaland")
+def old_nagaland():
+    now = datetime.now(timezone("Asia/Kolkata"))
+    months_ago = now - relativedelta(months=months_for_old_results)
+    today_start = now.replace(hour=0, minute=0, second=0, microsecond=0)
+    nagaland_results = Nagaland_Result.query.filter(
+        Nagaland_Result.created_at >= months_ago,
+        Nagaland_Result.created_at < today_start
+    ).order_by(Nagaland_Result.created_at.desc()).all()
+    return render_template('old.html', flag=True,  results=nagaland_results, title="Nagaland Results")
+
+@app.route("/old_fatafat")
+def old_fatafat():
+    now = datetime.now(timezone("Asia/Kolkata"))
+    months_ago = now - relativedelta(months=months_for_old_results)
+    today_start = now.replace(hour=0, minute=0, second=0, microsecond=0)
+    fatafat_results = Fatafat_Result.query.filter(
+        Fatafat_Result.created_at >= months_ago,
+        Fatafat_Result.created_at < today_start
+    ).order_by(Fatafat_Result.created_at.desc()).all()
+    return render_template('old.html', flag=False,  results=fatafat_results, title="Fatafat Results")
+
 if __name__ == '__main__':
     app.run(debug=True)
