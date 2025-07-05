@@ -300,11 +300,19 @@ def home():
     end_time = {f'slot{i}': now.replace(hour=9+i, minute=55, second=0, microsecond=0) for i in range(1, 11)}
 
     # Get active marquee text
-    active_marquee = MarqueeText.get_active()
+    active_marquee = MarqueeText.get_active()  
+
+
+
+
+
+
+
 
     return render_template('index.html',
                           g_matka_results=g_matka_results,
                           g_night_results=g_night_results,
+                       
                           results=results,
                         #   extra=daily_extra,
                           now=now,
@@ -318,6 +326,8 @@ def home():
 def check_password(plain_password: str, hashed_password: str) -> bool:
     # Compare the plain password with the hashed password
     return bcrypt.checkpw(plain_password.encode('utf-8'), hashed_password.encode('utf-8'))
+
+
 
 
 @app.route("/admin_auth", methods=['GET', 'POST'])
