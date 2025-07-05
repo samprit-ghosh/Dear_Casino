@@ -140,7 +140,7 @@ class MarqueeText(db.Model):
     
     @classmethod
     def get_active(cls):
-        return cls.query.filter_by(is_active=True).first()
+        return cls.query.filter_by(is_active=True).all()
 
 
 # Get the admin password from the environment variable
@@ -303,8 +303,8 @@ def home():
     end_time = {f'slot{i}': now.replace(hour=9+i, minute=55, second=0, microsecond=0) for i in range(1, 11)}
 
     # Get active marquee text
-    active_marquee = MarqueeText.get_active()
-
+    active_marquees = MarqueeText.get_active()
+    
     return render_template('index.html',
                           g_nagaland_results=g_nagaland_results,
                           g_fatafat_results=g_fatafat_results,
@@ -314,7 +314,7 @@ def home():
                           start_time=start_time,
                           end_time=end_time,
                           daily_data=daily_data,
-                          active_marquee=active_marquee,
+                          active_marquees=active_marquees,
                           title="Fastest and Live Online Goa Satta Result only at goasatta.in")
 
 

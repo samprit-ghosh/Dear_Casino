@@ -19,7 +19,7 @@
     </div>
         <img src="/static/css/logo-removebg-preview.png" alt="Logo" class="main-logo">
     <h1>Dear Casino Official Website</h1>
-    <h3>Dear Fatafat || Nagaland Satta</h3>
+    <h3>Dear Fatafat | Nagaland Satta</h3>
 <div class="button-container">
   <a href="#Fatafat" class="modern-button">Dear Fatafat</a>
   <a href="#NAGALAND" class="modern-button">Nagaland Satta</a>
@@ -197,23 +197,17 @@
 
 
     <div class="inner-background-image">
-
- 
-
-
-  {% if active_marquee %}
-  <div class="marquee">
-    <marquee scrollamount="{{ active_marquee.scroll_speed }}" class="marquee-text">
-      {{ active_marquee.content }}
-    </marquee>
-  </div>
-  {% endif %}
-
+  
+      {% if active_marquees | length > 0 %}
+        <div class="marquee">
+          <marquee scrollamount="{{ active_marquees[0].scroll_speed }}" class="marquee-text">
+            {{ active_marquees | map(attribute='content') | join(' | ') }}
+          </marquee>
+        </div>
+      {% endif %}
 
 
         <section class="hero" style="position: relative;">
-
-            <!-- Background Video -->
             <video autoplay muted loop class="background-video"
                 style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
                 <source src="/static/css/video-1.mp4" type="video/mp4">
