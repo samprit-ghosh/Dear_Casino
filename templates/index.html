@@ -17,7 +17,7 @@
       <div class="fireworks-wrapper">
         <canvas id="birthday"></canvas>
       </div>
-      <img src="/static/css/logo-removebg-preview.png" alt="Logo" class="main-logo">
+     <a href="/admin"> <img src="/static/css/logo-removebg-preview.png" alt="Logo" class="main-logo"></a>
       <h1>Dear Casino Official Website</h1>
       <h3>Dear Fatafat | Nagaland Satta</h3>
       <div class="button-container">
@@ -227,41 +227,58 @@
         </div>
       </div>
 
-      <div style="position: relative; z-index: 2; padding: 0.4rem;">
-        <div style="display: flex; justify-content: space-evenly; align-items: center; flex-wrap: wrap; gap: 1rem;">
-          <div style="text-align: center;">
-            <h4 style="margin-bottom: 10px; color: #FFEA02;"><img
-                src="data:image/png;base64,R0lGODlhBwAHAPsAMQAAAP8zM/9mZv8AAN0AAMwAACIAAHcAAFUAAO4AAIgAAP+ZmQAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQJIwAAACwAAAAABwAHAAAEHRCAEYYEQYhAplgbcWTaUCBJoCaKARRE0V4H4gKRACH5BAUjAAAALAAAAAABAAEAAAICRIEAOw=="
-                alt="Satta Matka Icon" width="10" height="10"> LIVE</h4>
-            <h1
-              style="color: #FFEA02;text-shadow: 0 0 5px #ff0000, 0 0 5px #ff0000, 0 0 10px #ff0303;margin-bottom: 15px; font-family: 'Cinzel Decorative', serif; "
-              class="result-name">Dear Fatafat</h1>
-            <h1 class="main-result-show">
-              {% if show_fatafat_result %}
-              {{ fatafat_digit }} - {{ fatafat_number }}
-              {% else %}
-              Soon
-              {% endif %}
-            </h1>
-          </div>
 
-          <div style="text-align: center;">
-            <h4 style="margin-bottom: 10px;color: #FFEA02;"><img
-                src="data:image/png;base64,R0lGODlhBwAHAPsAMQAAAP8zM/9mZv8AAN0AAMwAACIAAHcAAFUAAO4AAIgAAP+ZmQAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQJIwAAACwAAAAABwAHAAAEHRCAEYYEQYhAplgbcWTaUCBJoCaKARRE0V4H4gKRACH5BAUjAAAALAAAAAABAAEAAAICRIEAOw=="
-                alt="Satta Matka Icon" width="10" height="10"> LIVE</h4>
-            <h1
-              style="color: #FFEA02;text-shadow: 0 0 5px #ff0000, 0 0 5px #ff0000, 0 0 10px #ff0303; margin-bottom: 15px;font-family: 'Cinzel Decorative', serif;"
-              class="result-name">Nagaland Satta</h1>
-            <h1 class="main-result-show">
-              {% if show_nagaland_result %}
-              {{ nagaland_digit }} - {{ nagaland_number }}
+        <div style="position: relative; z-index: 2; padding: 0.4rem;">
+          <div style="display: flex; justify-content: space-evenly; align-items: center; flex-wrap: wrap; gap: 1rem;">
+            <div style="text-align: center;">
+              <h4 style="margin-bottom: 10px;color: #FFEA02;">
+
+               {% if show_fatafat_result %}
+                
+                <img
+                  src="data:image/png;base64,R0lGODlhBwAHAPsAMQAAAP8zM/9mZv8AAN0AAMwAACIAAHcAAFUAAO4AAIgAAP+ZmQAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQJIwAAACwAAAAABwAHAAAEHRCAEYYEQYhAplgbcWTaUCBJoCaKARRE0V4H4gKRACH5BAUjAAAALAAAAAABAAEAAAICRIEAOw=="
+                  alt="Satta Matka Icon" width="10" height="10"> LIVE
+                {% else %}
+
+                {% endif %}
+              </h4>
+              <h1
+                style="color: #FFEA02;text-shadow: 0 0 5px #ff0000, 0 0 5px #ff0000, 0 0 10px #ff0303;margin-bottom: 15px; font-family: 'Cinzel Decorative', serif; "
+                class="result-name">Dear Fatafat</h1>
+              <h1 class="main-result-show">
+              {% if show_fatafat_result %}
+           {{ fatafat_digit or '--' }} - {{ fatafat_number or '--' }}
               {% else %}
-              Soon
+              Soon 
               {% endif %}
-            </h1>
+              </h1>
+            </div>
+
+            <div style="text-align: center;">
+              <h4 style="margin-bottom: 10px;color: #FFEA02;">
+
+                {% if show_nagaland_result %}
+               
+                <img
+                  src="data:image/png;base64,R0lGODlhBwAHAPsAMQAAAP8zM/9mZv8AAN0AAMwAACIAAHcAAFUAAO4AAIgAAP+ZmQAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQJIwAAACwAAAAABwAHAAAEHRCAEYYEQYhAplgbcWTaUCBJoCaKARRE0V4H4gKRACH5BAUjAAAALAAAAAABAAEAAAICRIEAOw=="
+                  alt="Satta Matka Icon" width="10" height="10"> LIVE
+                {% else %}
+
+                {% endif %}
+              </h4>
+              <h1
+                style="color: #FFEA02;text-shadow: 0 0 5px #ff0000, 0 0 5px #ff0000, 0 0 10px #ff0303; margin-bottom: 15px;font-family: 'Cinzel Decorative', serif;"
+                class="result-name">Nagaland Satta</h1>
+              <h1 class="main-result-show">
+                {% if show_nagaland_result %}
+                {{ nagaland_digit or '--'}} - {{ nagaland_number or '--'}}
+                {% else %}
+                Soon
+                {% endif %}
+              </h1>
+            </div>
           </div>
         </div>
-      </div>
       <br>
     </section>
 
@@ -304,6 +321,7 @@
       @media(max-width:900px) {
         .sub-table td {
           padding: 0.4rem;
+          line-height: 2rem;
         }
 
         .time-table-game {
@@ -347,14 +365,14 @@
           </tr>
           <tr class="table-header">
 
-            <td class="time-head">11:00 AM</td>
-            <td class="time-head">12:30 PM</td>
-            <td class="time-head">02:00 PM</td>
-            <td class="time-head">03:30 PM</td>
-            <td class="time-head">05:00 PM</td>
-            <td class="time-head">06:30 PM</td>
-            <td class="time-head">08:00 PM</td>
-            <td class="time-head">09:30 PM</td>
+            <td class="time-head">10:30 AM</td>
+            <td class="time-head">12:00 PM</td>
+            <td class="time-head">01:30 PM</td>
+            <td class="time-head">03:00 PM</td>
+            <td class="time-head">04:30 PM</td>
+            <td class="time-head">06:00 PM</td>
+            <td class="time-head">07:30 PM</td>
+            <td class="time-head">09:00 PM</td>
 
           </tr>
 
@@ -627,31 +645,47 @@
         <div style="position: relative; z-index: 2; padding: 0.4rem;">
           <div style="display: flex; justify-content: space-evenly; align-items: center; flex-wrap: wrap; gap: 1rem;">
             <div style="text-align: center;">
-              <h4 style="margin-bottom: 10px; color: #FFEA02;"><img
+              <h4 style="margin-bottom: 10px;color: #FFEA02;">
+
+               {% if show_fatafat_result %}
+                
+                <img
                   src="data:image/png;base64,R0lGODlhBwAHAPsAMQAAAP8zM/9mZv8AAN0AAMwAACIAAHcAAFUAAO4AAIgAAP+ZmQAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQJIwAAACwAAAAABwAHAAAEHRCAEYYEQYhAplgbcWTaUCBJoCaKARRE0V4H4gKRACH5BAUjAAAALAAAAAABAAEAAAICRIEAOw=="
-                  alt="Satta Matka Icon" width="10" height="10"> live</h4>
+                  alt="Satta Matka Icon" width="10" height="10"> LIVE
+                {% else %}
+
+                {% endif %}
+              </h4>
               <h1
                 style="color: #FFEA02;text-shadow: 0 0 5px #ff0000, 0 0 5px #ff0000, 0 0 10px #ff0303;margin-bottom: 15px; font-family: 'Cinzel Decorative', serif; "
                 class="result-name">Dear Fatafat</h1>
               <h1 class="main-result-show">
-                {% if show_fatafat_result %}
-                {{ fatafat_digit }} - {{ fatafat_number }}
-                {% else %}
-                Soon
-                {% endif %}
+              {% if show_fatafat_result %}
+           {{ fatafat_digit or '--' }} - {{ fatafat_number or '--' }}
+              {% else %}
+              Soon 
+              {% endif %}
               </h1>
             </div>
 
             <div style="text-align: center;">
-              <h4 style="margin-bottom: 10px;color: #FFEA02;"><img
+              <h4 style="margin-bottom: 10px;color: #FFEA02;">
+
+                {% if show_nagaland_result %}
+               
+                <img
                   src="data:image/png;base64,R0lGODlhBwAHAPsAMQAAAP8zM/9mZv8AAN0AAMwAACIAAHcAAFUAAO4AAIgAAP+ZmQAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQJIwAAACwAAAAABwAHAAAEHRCAEYYEQYhAplgbcWTaUCBJoCaKARRE0V4H4gKRACH5BAUjAAAALAAAAAABAAEAAAICRIEAOw=="
-                  alt="Satta Matka Icon" width="10" height="10"> live</h4>
+                  alt="Satta Matka Icon" width="10" height="10"> LIVE
+                {% else %}
+
+                {% endif %}
+              </h4>
               <h1
                 style="color: #FFEA02;text-shadow: 0 0 5px #ff0000, 0 0 5px #ff0000, 0 0 10px #ff0303; margin-bottom: 15px;font-family: 'Cinzel Decorative', serif;"
                 class="result-name">Nagaland Satta</h1>
               <h1 class="main-result-show">
                 {% if show_nagaland_result %}
-                {{ nagaland_digit }} - {{ nagaland_number }}
+                {{ nagaland_digit or '--'}} - {{ nagaland_number or '--'}}
                 {% else %}
                 Soon
                 {% endif %}
@@ -664,7 +698,7 @@
 
       <div class="bg4">
 
-        <h2 id="NAGALAND">LATEST LAST SEVEN DAY RECORD CHART NAGALAND SATTA</h2>
+        <h2 id="NAGALAND">LATEST LAST FOUR DAYS RECORD CHART NAGALAND SATTA</h2>
 
       </div>
       <br>
@@ -684,16 +718,16 @@
             </tr>
             <tr class="table-header">
 
-              <td class="time-head">11:00 AM</td>
-              <td class="time-head">12:30 PM</td>
-              <td class="time-head">02:00 PM</td>
-              <td class="time-head">03:30 PM</td>
-              <td class="time-head">05:00 PM</td>
-              <td class="time-head">06:30 PM</td>
-              <td class="time-head">08:00 PM</td>
-              <td class="time-head">09:30 PM</td>
-              <td class="time-head">08:00 PM</td>
-              <td class="time-head">09:30 PM</td>
+              <td class="time-head">10:20 AM</td>
+              <td class="time-head">11:20 PM</td>
+              <td class="time-head">12:20 PM</td>
+              <td class="time-head">01:20 PM</td>
+              <td class="time-head">02:20 PM</td>
+              <td class="time-head">03:20 PM</td>
+              <td class="time-head">04:20 PM</td>
+              <td class="time-head">05:20 PM</td>
+              <td class="time-head">06:20 PM</td>
+              <td class="time-head">07:20 PM</td>
             </tr>
 
 
@@ -704,23 +738,32 @@
               <td><span class="main-table-spanGap">{{ nagaland.slot1_digit or '--' }}</span><span
                   class="main-table-spanGap">{{ nagaland.slot1_number or '--' }}</span>
               </td>
-              <td><span class="main-table-spanGap">{{ nagaland.slot2_digit or '--' }}</span><span class="main-table-spanGap">{{ nagaland.slot2_number or '--' }}</span>
+              <td><span class="main-table-spanGap">{{ nagaland.slot2_digit or '--' }}</span><span
+                  class="main-table-spanGap">{{ nagaland.slot2_number or '--' }}</span>
               </td>
-              <td><span class="main-table-spanGap">{{ nagaland.slot3_digit or '--' }}</span><span class="main-table-spanGap">{{ nagaland.slot3_number or '--' }}</span>
+              <td><span class="main-table-spanGap">{{ nagaland.slot3_digit or '--' }}</span><span
+                  class="main-table-spanGap">{{ nagaland.slot3_number or '--' }}</span>
               </td>
-              <td><span class="main-table-spanGap">{{ nagaland.slot4_digit or '--' }}</span><span class="main-table-spanGap">{{ nagaland.slot4_number or '--' }}</span>
+              <td><span class="main-table-spanGap">{{ nagaland.slot4_digit or '--' }}</span><span
+                  class="main-table-spanGap">{{ nagaland.slot4_number or '--' }}</span>
               </td>
-              <td><span class="main-table-spanGap">{{ nagaland.slot5_digit or '--' }}</span><span class="main-table-spanGap">{{ nagaland.slot5_number or '--' }}</span>
+              <td><span class="main-table-spanGap">{{ nagaland.slot5_digit or '--' }}</span><span
+                  class="main-table-spanGap">{{ nagaland.slot5_number or '--' }}</span>
               </td>
-              <td><span class="main-table-spanGap">{{ nagaland.slot6_digit or '--' }}</span><span class="main-table-spanGap">{{ nagaland.slot6_number or '--' }}</span>
+              <td><span class="main-table-spanGap">{{ nagaland.slot6_digit or '--' }}</span><span
+                  class="main-table-spanGap">{{ nagaland.slot6_number or '--' }}</span>
               </td>
-              <td><span class="main-table-spanGap">{{ nagaland.slot7_digit or '--' }}</span><span class="main-table-spanGap">{{ nagaland.slot7_number or '--' }}</span>
+              <td><span class="main-table-spanGap">{{ nagaland.slot7_digit or '--' }}</span><span
+                  class="main-table-spanGap">{{ nagaland.slot7_number or '--' }}</span>
               </td>
-              <td><span class="main-table-spanGap">{{ nagaland.slot8_digit or '--' }}</span><span class="main-table-spanGap">{{ nagaland.slot8_number or '--' }}</span>
+              <td><span class="main-table-spanGap">{{ nagaland.slot8_digit or '--' }}</span><span
+                  class="main-table-spanGap">{{ nagaland.slot8_number or '--' }}</span>
               </td>
-              <td><span class="main-table-spanGap">{{ nagaland.slot9_digit or '--' }}</span><span class="main-table-spanGap">{{ nagaland.slot9_number or '--' }}</span>
+              <td><span class="main-table-spanGap">{{ nagaland.slot9_digit or '--' }}</span><span
+                  class="main-table-spanGap">{{ nagaland.slot9_number or '--' }}</span>
               </td>
-              <td><span class="main-table-spanGap">{{ nagaland.slot10_digit or '--' }}</span><span class="main-table-spanGap">{{ nagaland.slot10_number or '--' }}</span>
+              <td><span class="main-table-spanGap">{{ nagaland.slot10_digit or '--' }}</span><span
+                  class="main-table-spanGap">{{ nagaland.slot10_number or '--' }}</span>
               </td>
             </tr>
 
@@ -770,149 +813,28 @@
               <th>
                 <center>Time</center>
               </th>
-              <th>
-                <center>Result</center>
-              </th>
+          
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>Nagaland Satta</td>
-              <td>1st Baji</td>
-              <td>01:00 PM</td>
-              <td>***-*</td>
+              <td>Dear Fatafat</td>
+              <td>1st Baji - 8th Baji</td>
+              <td>10:30 AM - 9:00 PM</td>
+             
             </tr>
             <tr>
               <td>Nagaland Satta</td>
-              <td>2nd Baji</td>
-              <td>06:00 PM</td>
-              <td>***-*</td>
+              <td>1st Baji - 10th Baji</td>
+              <td>10:20 AM - 7:20 PM</td>
+            
             </tr>
-            <tr>
-              <td>Nagaland Satta</td>
-              <td>3rd Baji</td>
-              <td>08:00 PM</td>
-              <td>***-*</td>
-            </tr>
-            <tr>
-              <td>Nagaland Satta</td>
-              <td>3rd Baji</td>
-              <td>08:00 PM</td>
-              <td>***-*</td>
-            </tr>
-            <tr>
-              <td>Nagaland Satta</td>
-              <td>3rd Baji</td>
-              <td>08:00 PM</td>
-              <td>***-*</td>
-            </tr>
-            <tr>
-              <td>Nagaland Satta</td>
-              <td>3rd Baji</td>
-              <td>08:00 PM</td>
-              <td>***-*</td>
-            </tr>
-            <tr>
-              <td>Nagaland Satta</td>
-              <td>3rd Baji</td>
-              <td>08:00 PM</td>
-              <td>***-*</td>
-            </tr>
-            <tr>
-              <td>Nagaland Satta</td>
-              <td>3rd Baji</td>
-              <td>08:00 PM</td>
-              <td>***-*</td>
-            </tr>
-
+           
 
 
           </tbody>
         </table>
 
-
-        <table class="sub-table" style="color: #fffb00;">
-          <thead>
-            <tr>
-              <th>
-                <center>Game Name </center>
-              </th>
-              <th>
-                <center>Game Round's</center>
-              </th>
-              <th>
-                <center>Time</center>
-              </th>
-              <th>
-                <center>Result</center>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Nagaland Satta</td>
-              <td>1st Baji</td>
-              <td>01:00 PM</td>
-              <td>***-*</td>
-            </tr>
-            <tr>
-              <td>Nagaland Satta</td>
-              <td>2nd Baji</td>
-              <td>06:00 PM</td>
-              <td>***-*</td>
-            </tr>
-            <tr>
-              <td>Nagaland Satta</td>
-              <td>3rd Baji</td>
-              <td>08:00 PM</td>
-              <td>***-*</td>
-            </tr>
-            <tr>
-              <td>Nagaland Satta</td>
-              <td>3rd Baji</td>
-              <td>08:00 PM</td>
-              <td>***-*</td>
-            </tr>
-            <tr>
-              <td>Nagaland Satta</td>
-              <td>3rd Baji</td>
-              <td>08:00 PM</td>
-              <td>***-*</td>
-            </tr>
-            <tr>
-              <td>Nagaland Satta</td>
-              <td>3rd Baji</td>
-              <td>08:00 PM</td>
-              <td>***-*</td>
-            </tr>
-            <tr>
-              <td>Nagaland Satta</td>
-              <td>3rd Baji</td>
-              <td>08:00 PM</td>
-              <td>***-*</td>
-            </tr>
-            <tr>
-              <td>Nagaland Satta</td>
-              <td>3rd Baji</td>
-              <td>08:00 PM</td>
-              <td>***-*</td>
-            </tr>
-            <tr>
-              <td>Nagaland Satta</td>
-              <td>3rd Baji</td>
-              <td>08:00 PM</td>
-              <td>***-*</td>
-            </tr>
-            <tr>
-              <td>Nagaland Satta</td>
-              <td>3rd Baji</td>
-              <td>08:00 PM</td>
-              <td>***-*</td>
-            </tr>
-
-
-          </tbody>
-        </table>
 
 
       </div>
