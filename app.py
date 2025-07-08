@@ -49,7 +49,7 @@ def inject_globals():
 # db.create_all()
 
 months_for_old_results = 3
-days_for_results = 7
+days_for_results = 4
 
 class Nagaland_Result(db.Model):
     __tablename__ = "nagaland"
