@@ -50,6 +50,7 @@ def inject_globals():
 
 months_for_old_results = 3
 days_for_results = 4
+to_months_delete_results = 4
 
 class Nagaland_Result(db.Model):
     __tablename__ = "nagaland"
@@ -193,102 +194,22 @@ def get_current_nagaland_slot(now=None):
 
 @app.route('/delete_old_results', methods=['GET', 'POST'])
 def delete_old_results():
-    # Calculate the date cutoffs
     now = datetime.now(timezone("Asia/Kolkata"))
-    cutoff_1 = now - relativedelta(months=1)
-    cutoff_2 = now - relativedelta(months=2)
-    cutoff_3 = now - relativedelta(months=3)
-    cutoff_4 = now - relativedelta(months=4)
-    cutoff_5 = now - relativedelta(months=5)
-    cutoff_6 = now - relativedelta(months=6)
+    cutoff = now - relativedelta(months=to_months_delete_results)
 
-    # Query records older than the cutoff dates
-    old_results_1 = Nagaland_Result.query.filter(Nagaland_Result.created_at < cutoff_1).all()
-    old_results_2 = Nagaland_Result.query.filter(Nagaland_Result.created_at < cutoff_2).all()
-    old_results_3 = Nagaland_Result.query.filter(Nagaland_Result.created_at < cutoff_3).all()
-    old_results_4 = Nagaland_Result.query.filter(Nagaland_Result.created_at < cutoff_4).all()
-    old_results_5 = Nagaland_Result.query.filter(Nagaland_Result.created_at < cutoff_5).all()
-    old_results_6 = Nagaland_Result.query.filter(Nagaland_Result.created_at < cutoff_6).all()
+    # Delete Nagaland_Result older than 4 months
+    old_nagaland = Nagaland_Result.query.filter(Nagaland_Result.created_at < cutoff).all()
+    for data in old_nagaland:
+        db.session.delete(data)
 
-    # Delete the old records
-    if old_results_1:
-        for data in old_results_1:
-            db.session.delete(data)
-        db.session.commit()
+    # Delete Fatafat_Result older than 4 months
+    old_fatafat = Fatafat_Result.query.filter(Fatafat_Result.created_at < cutoff).all()
+    for data in old_fatafat:
+        db.session.delete(data)
 
-    if old_results_2:
-        for data in old_results_2:
-            db.session.delete(data)
-        db.session.commit()
-
-    if old_results_3:
-        for data in old_results_3:
-            db.session.delete(data)
-        db.session.commit()
-
-    if old_results_4:
-        for data in old_results_4:
-            db.session.delete(data)
-        db.session.commit()
-
-    if old_results_5:
-        for data in old_results_5:
-            db.session.delete(data)
-        db.session.commit()
-
-    if old_results_6:
-        for data in old_results_6:
-            db.session.delete(data)
-        db.session.commit()
-
-    # Similarly update for Extra table queries using date field - not changing yet
-    cutoff_1_str = cutoff_1.strftime('%b-%Y')
-    cutoff_2_str = cutoff_2.strftime('%b-%Y')  
-    cutoff_3_str = cutoff_3.strftime('%b-%Y')
-    cutoff_4_str = cutoff_4.strftime('%b-%Y')
-    cutoff_5_str = cutoff_5.strftime('%b-%Y')
-    cutoff_6_str = cutoff_6.strftime('%b-%Y')
-
-    # old_extras_1 = Extra.query.filter(Extra.date.like(f"%{cutoff_1_str}%")).all()
-    # old_extras_2 = Extra.query.filter(Extra.date.like(f"%{cutoff_2_str}%")).all()
-    # old_extras_3 = Extra.query.filter(Extra.date.like(f"%{cutoff_3_str}%")).all()
-    # old_extras_4 = Extra.query.filter(Extra.date.like(f"%{cutoff_4_str}%")).all()
-    # old_extras_5 = Extra.query.filter(Extra.date.like(f"%{cutoff_5_str}%")).all()
-    # old_extras_6 = Extra.query.filter(Extra.date.like(f"%{cutoff_6_str}%")).all()
-
-    # # Delete the old records
-    # if old_extras_1:
-    #     for data in old_extras_1:
-    #         db.session.delete(data)
-    #     db.session.commit()
-
-    # if old_extras_2:
-    #     for data in old_extras_2:
-    #         db.session.delete(data)
-    #     db.session.commit()
-
-    # if old_extras_3:
-    #     for data in old_extras_3:
-    #         db.session.delete(data)
-    #     db.session.commit()
-
-    # if old_extras_4:
-    #     for data in old_extras_4:
-    #         db.session.delete(data)
-    #     db.session.commit()
-
-    # if old_extras_5:
-    #     for data in old_extras_5:
-    #         db.session.delete(data)
-    #     db.session.commit()
-
-    # if old_extras_6:
-    #     for data in old_extras_6:
-    #         db.session.delete(data)
-    #     db.session.commit()
-
+    db.session.commit()
+    flash("All results older than 4 months have been deleted.", "success")
     return redirect(url_for('home'))
-
 
 
 @app.route("/")
