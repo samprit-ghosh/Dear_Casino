@@ -312,7 +312,7 @@ def admin_auth():
             flash("Password is required")
             return redirect(url_for('admin_auth'))
         
-        if username == "admin" and check_password(password, ADMIN_PASSWORD):
+        if username == "Dearcasino" and check_password(password, ADMIN_PASSWORD):
             session['admin'] = True
             return redirect(url_for('admin'))
         else:
