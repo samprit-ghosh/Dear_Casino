@@ -710,7 +710,7 @@ block body %}
           >
             <div style="text-align: center">
               <h4 style="margin-bottom: 10px; color: #ffea02">
-                {% if show_fatafat_result %}
+                {% if show_fatafat_result and fatafat_digit %}
 
                 <img
                   src="data:image/png;base64,R0lGODlhBwAHAPsAMQAAAP8zM/9mZv8AAN0AAMwAACIAAHcAAFUAAO4AAIgAAP+ZmQAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQJIwAAACwAAAAABwAHAAAEHRCAEYYEQYhAplgbcWTaUCBJoCaKARRE0V4H4gKRACH5BAUjAAAALAAAAAABAAEAAAICRIEAOw=="
@@ -733,14 +733,14 @@ block body %}
                 Dear Fatafat
               </h1>
               <h1 class="main-result-show">
-                {% if show_fatafat_result %} {{ fatafat_digit or '--' }} - {{
+                {% if show_fatafat_result and fatafat_digit %} {{ fatafat_digit or '--' }} - {{
                 fatafat_number or '--' }} {% else %} Soon {% endif %}
               </h1>
             </div>
 
             <div style="text-align: center">
               <h4 style="margin-bottom: 10px; color: #ffea02">
-                {% if show_nagaland_result %}
+                {% if show_nagaland_result and fatafat_digit %}
 
                 <img
                   src="data:image/png;base64,R0lGODlhBwAHAPsAMQAAAP8zM/9mZv8AAN0AAMwAACIAAHcAAFUAAO4AAIgAAP+ZmQAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQJIwAAACwAAAAABwAHAAAEHRCAEYYEQYhAplgbcWTaUCBJoCaKARRE0V4H4gKRACH5BAUjAAAALAAAAAABAAEAAAICRIEAOw=="
@@ -763,7 +763,7 @@ block body %}
                 Nagaland Satta
               </h1>
               <h1 class="main-result-show">
-                {% if show_nagaland_result %} {{ nagaland_digit or '--'}} - {{
+                {% if show_nagaland_result and fatafat_digit %} {{ nagaland_digit or '--'}} - {{
                 nagaland_number or '--'}} {% else %} Soon {% endif %}
               </h1>
             </div>
