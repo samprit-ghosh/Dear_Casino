@@ -263,15 +263,21 @@ block body %}
         >
           <div style="text-align: center">
             <h4 style="margin-bottom: 10px; color: #ffea02">
-              {% if show_fatafat_result and fatafat_digit %}
+{% if show_fatafat_result 
+      and fatafat_digit is defined 
+      and fatafat_number is defined 
+      and fatafat_digit not in ['--', '', None] 
+      and fatafat_number not in ['---', '', None] %}
+    <img
+      src="data:image/png;base64,R0lGODlhBwAHAPsAMQAAAP8zM/9mZv8AAN0AAMwAACIAAHcAAFUAAO4AAIgAAP+ZmQAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQJIwAAACwAAAAABwAHAAAEHRCAEYYEQYhAplgbcWTaUCBJoCaKARRE0V4H4gKRACH5BAUjAAAALAAAAAABAAEAAAICRIEAOw=="
+      alt="Satta Matka Icon"
+      width="10"
+      height="10"
+    />
+    LIVE
 
-              <img
-                src="data:image/png;base64,R0lGODlhBwAHAPsAMQAAAP8zM/9mZv8AAN0AAMwAACIAAHcAAFUAAO4AAIgAAP+ZmQAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQJIwAAACwAAAAABwAHAAAEHRCAEYYEQYhAplgbcWTaUCBJoCaKARRE0V4H4gKRACH5BAUjAAAALAAAAAABAAEAAAICRIEAOw=="
-                alt="Satta Matka Icon"
-                width="10"
-                height="10"
-              />
-              LIVE {% else %} {% endif %}
+{% endif %}
+
             </h4>
             <h1
               style="
@@ -282,7 +288,7 @@ block body %}
               "
               class="result-name"
             >
-              Dear Fatafat
+              Dear Fatafat 
             </h1>
             <h1 class="main-result-show">
               {% if show_fatafat_result and fatafat_digit %} {{ fatafat_digit or '--' }} - {{
@@ -292,15 +298,21 @@ block body %}
 
           <div style="text-align: center">
             <h4 style="margin-bottom: 10px; color: #ffea02">
-              {% if show_nagaland_result and nagaland_digit %}
+{% if show_nagaland_result 
+      and nagaland_digit is defined 
+      and nagaland_number is defined 
+      and nagaland_digit not in ['--', '', None] 
+      and nagaland_number not in ['---', '', None] %}
+ 
+    <img
+      src="data:image/png;base64,R0lGODlhBwAHAPsAMQAAAP8zM/9mZv8AAN0AAMwAACIAAHcAAFUAAO4AAIgAAP+ZmQAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQJIwAAACwAAAAABwAHAAAEHRCAEYYEQYhAplgbcWTaUCBJoCaKARRE0V4H4gKRACH5BAUjAAAALAAAAAABAAEAAAICRIEAOw=="
+      alt="Satta Matka Icon"
+      width="10"
+      height="10"
+    />
+    LIVE
+{% endif %}
 
-              <img
-                src="data:image/png;base64,R0lGODlhBwAHAPsAMQAAAP8zM/9mZv8AAN0AAMwAACIAAHcAAFUAAO4AAIgAAP+ZmQAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQJIwAAACwAAAAABwAHAAAEHRCAEYYEQYhAplgbcWTaUCBJoCaKARRE0V4H4gKRACH5BAUjAAAALAAAAAABAAEAAAICRIEAOw=="
-                alt="Satta Matka Icon"
-                width="10"
-                height="10"
-              />
-              LIVE  {% else %} {% endif %}
             </h4>
             <h1
               style="
@@ -311,13 +323,15 @@ block body %}
               "
               class="result-name"
             >
-              Nagaland Satta nn
+              Nagaland Satta
             </h1>
             <h1 class="main-result-show">
               {% if show_nagaland_result and nagaland_digit %} {{ nagaland_digit or '--'}} - {{
               nagaland_number or '--'}} {% else %} Soon {% endif %}
             </h1>
           </div>
+
+
         </div>
       </div>
       <br />
@@ -415,13 +429,14 @@ block body %}
               <span class="main-table-spanGap">--</span>
               <span class="main-table-spanGap">--</span>
               {% else %}
-              <span class="main-table-spanGap"
-                >{{ fatafat['slot' ~ i ~ '_digit'] if fatafat['slot' ~ i ~
-                '_digit'] else '--' }}</span
-              >
+
               <span class="main-table-spanGap"
                 >{{ fatafat['slot' ~ i ~ '_number'] if fatafat['slot' ~ i ~
                 '_number'] else '--' }}</span
+              >
+                            <span class="main-table-spanGap"
+                >{{ fatafat['slot' ~ i ~ '_digit'] if fatafat['slot' ~ i ~
+                '_digit'] else '--' }}</span
               >
               {% endif %}
             </td>
@@ -818,13 +833,14 @@ block body %}
                 <span class="main-table-spanGap">--</span>
                 <span class="main-table-spanGap">--</span>
                 {% else %}
-                <span class="main-table-spanGap"
-                  >{{ nagaland['slot' ~ i ~ '_digit'] if nagaland['slot' ~ i ~
-                  '_digit'] else '--' }}</span
-                >
+ 
                 <span class="main-table-spanGap"
                   >{{ nagaland['slot' ~ i ~ '_number'] if nagaland['slot' ~ i ~
                   '_number'] else '--' }}</span
+                >
+                               <span class="main-table-spanGap"
+                  >{{ nagaland['slot' ~ i ~ '_digit'] if nagaland['slot' ~ i ~
+                  '_digit'] else '--' }}</span
                 >
                 {% endif %}
               </td>
