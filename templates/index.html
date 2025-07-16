@@ -725,15 +725,20 @@ block body %}
           >
             <div style="text-align: center">
               <h4 style="margin-bottom: 10px; color: #ffea02">
-                {% if show_fatafat_result and fatafat_digit %}
+  {% if show_fatafat_result 
+      and fatafat_digit is defined 
+      and fatafat_number is defined 
+      and fatafat_digit not in ['--', '', None] 
+      and fatafat_number not in ['---', '', None] %}
+    <img
+      src="data:image/png;base64,R0lGODlhBwAHAPsAMQAAAP8zM/9mZv8AAN0AAMwAACIAAHcAAFUAAO4AAIgAAP+ZmQAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQJIwAAACwAAAAABwAHAAAEHRCAEYYEQYhAplgbcWTaUCBJoCaKARRE0V4H4gKRACH5BAUjAAAALAAAAAABAAEAAAICRIEAOw=="
+      alt="Satta Matka Icon"
+      width="10"
+      height="10"
+    />
+    LIVE
 
-                <img
-                  src="data:image/png;base64,R0lGODlhBwAHAPsAMQAAAP8zM/9mZv8AAN0AAMwAACIAAHcAAFUAAO4AAIgAAP+ZmQAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQJIwAAACwAAAAABwAHAAAEHRCAEYYEQYhAplgbcWTaUCBJoCaKARRE0V4H4gKRACH5BAUjAAAALAAAAAABAAEAAAICRIEAOw=="
-                  alt="Satta Matka Icon"
-                  width="10"
-                  height="10"
-                />
-                LIVE {% else %} {% endif %}
+{% endif %}
               </h4>
               <h1
                 style="
@@ -755,15 +760,20 @@ block body %}
 
             <div style="text-align: center">
               <h4 style="margin-bottom: 10px; color: #ffea02">
-                {% if show_nagaland_result and fatafat_digit %}
-
-                <img
-                  src="data:image/png;base64,R0lGODlhBwAHAPsAMQAAAP8zM/9mZv8AAN0AAMwAACIAAHcAAFUAAO4AAIgAAP+ZmQAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQJIwAAACwAAAAABwAHAAAEHRCAEYYEQYhAplgbcWTaUCBJoCaKARRE0V4H4gKRACH5BAUjAAAALAAAAAABAAEAAAICRIEAOw=="
-                  alt="Satta Matka Icon"
-                  width="10"
-                  height="10"
-                />
-                LIVE {% else %} {% endif %}
+        {% if show_nagaland_result 
+      and nagaland_digit is defined 
+      and nagaland_number is defined 
+      and nagaland_digit not in ['--', '', None] 
+      and nagaland_number not in ['---', '', None] %}
+ 
+    <img
+      src="data:image/png;base64,R0lGODlhBwAHAPsAMQAAAP8zM/9mZv8AAN0AAMwAACIAAHcAAFUAAO4AAIgAAP+ZmQAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQJIwAAACwAAAAABwAHAAAEHRCAEYYEQYhAplgbcWTaUCBJoCaKARRE0V4H4gKRACH5BAUjAAAALAAAAAABAAEAAAICRIEAOw=="
+      alt="Satta Matka Icon"
+      width="10"
+      height="10"
+    />
+    LIVE
+{% endif %}
               </h4>
               <h1
                 style="
@@ -867,7 +877,7 @@ block body %}
             style="color: #ffffff; margin: 0; padding: 15px"
             class="Full-pannel-record"
           >
-            Nagaland satta full pannel record
+          Click here to show Nagaland satta full pannel record
           </h1>
         </a>
       </center>
