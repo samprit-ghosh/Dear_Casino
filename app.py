@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session, flash
+from flask import Flask, render_template, request, redirect, url_for, session, flash,send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
 import os
@@ -32,7 +32,9 @@ global_array = [10, "Apple", 20, "Banana", 30, "Cherry"]
 @app.context_processor
 def inject_globals():
     return dict(global_array=global_array)
-
+@app.route('/googlee5a35d73d550fdce.html')
+def google_verification():
+    return send_from_directory(os.path.abspath('.'), 'googlee5a35d73d550fdce.html')
 # Nagaland Satta -> 10 Slots -> 10:20-7:20 (1 hr)
 # Dear Fatafat -> 8 Slots -> 10:30-9:00 (1.5 hr)
 
@@ -158,6 +160,7 @@ ADMIN_PASSWORD = os.getenv('ADMIN_PASSWORD')
 #         for data in old_results:
 #             db.session.delete(data)
 #         db.session.commit()
+
 
 
 def get_current_fatafat_slot(now=None):
