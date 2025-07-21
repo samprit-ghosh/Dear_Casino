@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en-US" prefix="">
+<html ⚡ lang="en-US">
 
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="../static/logo.png" type="image/x-icon">
-<title id="title">Dear Casino | {% block title %}{% endblock title %}</title>
+
 <link rel="shortcut icon" href="../static/logo.png" type="image/x-icon">
 
 <!-- Basic Meta -->
@@ -16,17 +16,40 @@
   <meta name="robots" content="noindex, nofollow">
 
   <!-- Branding & Metadata -->
-  <title>Admin Panel - Dear Casino</title>
-  <meta name="description" content="Admin panel for Dear Casino. Restricted area for authorized personnel only.">
-  <meta name="author" content="Dear Casino">
-  <meta name="language" content="EN">
-  <meta name="application-name" content="Dear Casino Admin Panel">
-  <meta name="theme-color" content="#000000">
-  <meta name="msapplication-TileColor" content="#000000">
-  <meta name="copyright" content="Dear Casino">
-  <link rel="canonical" href="https://dearcasino.in/about" />
-  <link rel="canonical" href="https://dearcasino.in/contact" />
-  <link rel="canonical" href="https://dearcasino.in/" />
+  
+<!-- Primary Meta Tags -->
+<title>Dear Casino | {% block title %}{% endblock %}</title>
+<!-- Primary Meta Tags (For Google) -->
+
+<meta name="description" content="{% block description %}Win real money at Dear Casino 🎰 100% Legal | Instant Withdrawals | 24/7 Live Games | Get ₹500 Bonus on First Deposit!{% endblock %}">
+<meta name="keywords" content="online casino india, real money games, cricket betting, live roulette, secure gambling">
+
+<!-- Open Graph (For Social Sharing) -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="{% block og_url %}https://dearcasino.in/{% endblock %}">
+<meta property="og:title" content="{% block og_title %}Dear Casino | Play Now & Get ₹500 Free!{% endblock %}">
+<meta property="og:description" content="{% block og_description %}Join 1M+ Players Winning Daily! ⚡ Fast Payouts | Live Teen Patti & Andar Bahar | 100% Secure{% endblock %}">
+<meta property="og:image" content="https://dearcasino.in/static/css/logo-with-promo.png"> <!-- Add a promo image -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",  // ← Keep this exact URL
+  "@type": "FAQPage",
+  "mainEntity": [{
+    "@type": "Question",
+    "name": "Is Dear Casino legal in India?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes! We operate under international gaming licenses..."
+    }
+  }]
+}
+</script>
+<!-- Twitter (For Viral Traffic) -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="{% block twitter_url %}https://dearcasino.in/{% endblock %}">
+<meta property="twitter:title" content="{% block twitter_title %}Hot Today: Win ₹50,000 in Dear Casino's Diwali Jackpot!{% endblock %}">
+<meta property="twitter:description" content="{% block twitter_description %}Limited Time Offer 🔥 Register Now & Get 200% Bonus + Free Spin!{% endblock %}">
+<meta property="twitter:image" content="https://dearcasino.in/static/css/diwali-jackpot-banner.png">
   <!-- Icons -->
   <link rel="icon" href="/static/css/logo-removebg-preview.png" type="image/x-icon">
   <link rel="shortcut icon" href="/static/css/logo-removebg-preview.png" type="image/x-icon">

@@ -51,7 +51,7 @@ def google_verification():
 # db.create_all()
 
 months_for_old_results = 3
-days_for_results = 4
+days_for_results = 7
 to_months_delete_results = 4
 
 class Nagaland_Result(db.Model):
@@ -717,4 +717,4 @@ def old_fatafat():
     return render_template('old.html', flag=False,  results=fatafat_results, title="Fatafat Results")
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(debug=True)
