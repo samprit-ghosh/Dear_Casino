@@ -717,4 +717,4 @@ def old_fatafat():
     return render_template('old.html', flag=False,  results=fatafat_results, title="Fatafat Results")
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
