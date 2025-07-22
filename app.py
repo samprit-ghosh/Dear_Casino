@@ -35,6 +35,14 @@ def inject_globals():
 @app.route('/googlee5a35d73d550fdce.html')
 def google_verification():
     return send_from_directory(os.path.abspath('.'), 'googlee5a35d73d550fdce.html')
+
+from flask import send_from_directory
+
+@app.route('/robots.txt')
+def robots_txt():
+    return send_from_directory('static', 'robots.txt')
+
+
 # Nagaland Satta -> 10 Slots -> 10:20-7:20 (1 hr)
 # Dear Fatafat -> 8 Slots -> 10:30-9:00 (1.5 hr)
 

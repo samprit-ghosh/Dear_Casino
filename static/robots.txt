@@ -4,4 +4,11 @@ Disallow: /login
 Disallow: /admin_auth
 Disallow: /nogooglebot/
 
+Allow: /
+Allow: /about
+Allow: /contact
+Allow: /old_nagaland
+Allow: /old_fatafat
+
+
 Sitemap: https://dearcasino.in/sitemap.xml
