@@ -713,6 +713,7 @@ def old_nagaland():
     ).order_by(Nagaland_Result.created_at.desc()).all()
     return render_template('old.html', flag=True,  results=nagaland_results, title="Nagaland Results")
 
+
 @app.route("/old_fatafat")
 def old_fatafat():
     now = datetime.now(timezone("Asia/Kolkata"))
@@ -725,4 +726,4 @@ def old_fatafat():
     return render_template('old.html', flag=False,  results=fatafat_results, title="Fatafat Results")
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(debug=True)
