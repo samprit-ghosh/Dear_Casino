@@ -8,7 +8,7 @@ from dateutil.relativedelta import relativedelta
 import bcrypt
 import requests
 import re
-
+from sqlalchemy.sql import func
 
 
 # Create a timezone-aware UTC datetime
@@ -90,7 +90,7 @@ class Nagaland_Result(db.Model):
     slot9_number = db.Column(db.String(3), nullable=True)
     slot10_number = db.Column(db.String(3), nullable=True)
     
-    created_at = db.Column(db.DateTime, default=datetime.now(timezone("Asia/Kolkata")))
+    created_at = db.Column(db.DateTime, default=lambda: datetime.now(timezone("Asia/Kolkata")))
     
     # Helper method to get formatted date string
     def get_formatted_date(self):
@@ -127,7 +127,7 @@ class Fatafat_Result(db.Model):
     slot7_number = db.Column(db.String(3), nullable=True)
     slot8_number = db.Column(db.String(3), nullable=True)
     
-    created_at = db.Column(db.DateTime, default=datetime.now(timezone("Asia/Kolkata")))
+    created_at = db.Column(db.DateTime, default=lambda: datetime.now(timezone("Asia/Kolkata")))
     
     # Helper method to get formatted date string
     def get_formatted_date(self):
@@ -370,7 +370,7 @@ def add_nagaland():
 
     if not daily_data:
         # Create a new record - the created_at will have default value
-        daily_data = Nagaland_Result()
+        daily_data = Nagaland_Result(created_at=now)
 
     slot = request.form['slots']
     value_digit = request.form['one_digit']
@@ -425,7 +425,7 @@ def add_fatafat():
 
     if not daily_data:
         # Create a new record - the created_at will have default value
-        daily_data = Fatafat_Result()
+        daily_data = Fatafat_Result(created_at=now)
 
     slot = request.form['slots']
     value_digit = request.form['one_digit']
