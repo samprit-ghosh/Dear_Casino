@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -5,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
   <title>Hostinger Admin Panel</title>
   <!-- Tailwind CSS CDN (for quick styling) -->
+   <link rel="icon" href="/static/css/logo-removebg-preview.png" type="image/x-icon">
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Chart.js for graphs -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -52,8 +55,8 @@
     }
   </style>
 </head>
-<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-200">
-  <div class="max-w-7xl mx-auto p-4 sm:p-6">
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-200 ">
+  <div class="max-w-7xl mx-auto p-4 sm:p-6 mt-20">
     <!-- Header -->
     <header class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
       <div>
@@ -129,7 +132,7 @@
     </section>
 
     <!-- Table -->
-    <section class="mt-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm">
+    <section class="mt-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm mb-20">
       <div class="overflow-x-auto scroll-shadow rounded-2xl">
         <table id="grid" class="min-w-full text-sm">
           <thead class="bg-slate-50/70 dark:bg-slate-700/50 sticky top-0 z-10">
@@ -143,8 +146,8 @@
               <th data-key="memory" class="px-4 py-3 font-semibold text-left text-slate-600 dark:text-slate-300 mobile-p-2 mobile-hidden">Memory</th>
               <th data-key="disk" class="px-4 py-3 font-semibold text-left text-slate-600 dark:text-slate-300 mobile-p-2 mobile-hidden">Disk</th>
               <th data-key="ipv4" class="px-4 py-3 font-semibold text-left text-slate-600 dark:text-slate-300 mobile-p-2">IPv4</th>
-              <th data-key="os_template" class="px-4 py-3 font-semibold text-left text-slate-600 dark:text-slate-300 mobile-p-2 mobile-hidden">OS</th>
-              <th class="px-4 py-3 mobile-p-2 mobile-hidden"></th>
+             
+              <th class="px-4 py-3 mobile-p-2 mobile-hidden">Controls</th>
             </tr>
           </thead>
           <tbody id="gridBody" class="divide-y divide-slate-100 dark:divide-slate-700">
@@ -152,13 +155,13 @@
               {% for row in hosting_data %}
                 <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50">
                   <td class="px-4 py-3 whitespace-nowrap mobile-p-2 mobile-text-sm">
-                    <span class="font-medium text-slate-800 dark:text-slate-200">{{ row.subscription_id }}</span>
+                    <span class="font-medium text-slate-800 dark:text-slate-200">*****</span>
                   </td>
                   <td class="px-4 py-3 whitespace-nowrap mobile-p-2 mobile-text-sm mobile-hidden">
                     <span class="inline-flex items-center rounded-full bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 px-2.5 py-0.5 text-xs font-medium border border-indigo-100 dark:border-indigo-900">{{ row.plan }}</span>
                   </td>
                   <td class="px-4 py-3 mobile-p-2 mobile-text-sm">
-                    <div class="font-medium">{{ row.hostname }}</div>
+                 
                   </td>
                   <td class="px-4 py-3 mobile-p-2 mobile-text-sm">
                     {% set stateColor = 'bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 border-emerald-100 dark:border-emerald-900' if row.state == 'running' else 'bg-amber-50 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 border-amber-100 dark:border-amber-900' %}
@@ -170,14 +173,14 @@
                   <td class="px-4 py-3 mobile-p-2 mobile-text-sm">
                     {% if row.ipv4 %}
                       <div class="flex items-center gap-2">
-                        <code class="text-slate-700 dark:text-slate-300">{{ row.ipv4 }}</code>
+        
                         <button class="copy-btn text-slate-500 hover:text-slate-700 dark:hover:text-slate-300" data-copy="{{ row.ipv4 }}" title="Copy IPv4">
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5"><path d="M9 7a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-7a2 2 0 0 1-2-2V7Z"/><path d="M5 9a2 2 0 0 1 2-2h1v9a3 3 0 0 0 3 3h7v1a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V9Z"/></svg>
                         </button>
                       </div>
                     {% else %}—{% endif %}
                   </td>
-                  <td class="px-4 py-3 mobile-p-2 mobile-text-sm mobile-hidden">{{ row.os_template or '—' }}</td>
+     
                   <td class="px-4 py-3 text-right mobile-p-2 mobile-text-sm mobile-hidden">
                     <div class="flex gap-2 justify-end">
                       <a href="#" class="rounded-lg border border-slate-200 dark:border-slate-600 px-3 py-1.5 text-xs hover:bg-slate-50 dark:hover:bg-slate-700">Details</a>
@@ -476,4 +479,5 @@
     window.addEventListener('resize', handleResize);
   </script>
 </body>
-</html>
+</html> 
+
