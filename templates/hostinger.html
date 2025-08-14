@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+  <title>Hostinger Admin Panel</title>
+  <!-- Tailwind CSS CDN (for quick styling) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js for graphs -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    /* Smooth table scrolling */
+    .scroll-shadow { box-shadow: inset 0 8px 8px -8px rgb(0 0 0 / 0.15); }
+    th { cursor: pointer; }
+    
+    /* Mobile optimizations */
+    @media (max-width: 640px) {
+      .mobile-stack { flex-direction: column; }
+      .mobile-full-width { width: 100% !important; }
+      .mobile-text-sm { font-size: 0.875rem; }
+      .mobile-p-2 { padding: 0.5rem; }
+      .mobile-hidden { display: none; }
+      .mobile-show { display: block !important; }
+    }
+    
+    /* Dark mode toggle */
+    .dark-toggle {
+      position: relative;
+      width: 50px;
+      height: 26px;
+      border-radius: 13px;
+      background-color: #e2e8f0;
+      transition: background-color 0.3s;
+    }
+    .dark-toggle::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background-color: white;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+      transition: transform 0.3s;
+    }
+    .dark-mode .dark-toggle {
+      background-color: #4f46e5;
+    }
+    .dark-mode .dark-toggle::after {
+      transform: translateX(24px);
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-200">
+  <div class="max-w-7xl mx-auto p-4 sm:p-6">
+    <!-- Header -->
+    <header class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+      <div>
+        <div class="flex items-center justify-between">
+          <h1 class="text-2xl sm:text-3xl font-bold tracking-tight">Hosting Overview</h1>
+          <button id="darkModeToggle" class="ml-4 flex items-center">
+            <span class="dark-toggle"></span>
+          </button>
+        </div>
+        <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Data fetched from Hostinger KMV2 API and rendered server-side.</p>
+      </div>
+
+      <!-- Controls -->
+      <div class="flex items-center gap-3 mobile-stack">
+        <div class="relative mobile-full-width">
+          <input id="search" type="text" placeholder="Search hostname, IP, plan…" class="w-72 max-w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 py-2.5 pl-10 pr-3 text-sm shadow-sm outline-none focus:ring-2 focus:ring-indigo-500" />
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 absolute left-3 top-2.5 text-slate-400 dark:text-slate-500">
+            <path fill-rule="evenodd" d="M10.5 3.75a6.75 6.75 0 1 0 4.243 11.93l4.289 4.288a.75.75 0 1 0 1.06-1.06l-4.288-4.29A6.75 6.75 0 0 0 10.5 3.75Zm-5.25 6.75a5.25 5.25 0 1 1 10.5 0 5.25 5.25 0 0 1-10.5 0Z" clip-rule="evenodd" />
+          </svg>
+        </div>
+        <button id="refreshBtn" class="inline-flex items-center gap-2 rounded-xl bg-indigo-600 px-3 py-2 text-white text-sm font-medium shadow-sm hover:bg-indigo-700 active:scale-[.99] mobile-full-width justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5"><path d="M12 6V3L8 7l4 4V8a4 4 0 1 1-4 4H6a6 6 0 1 0 6-6Z"/></svg>
+          Refresh
+        </button>
+      </div>
+    </header>
+
+    <!-- Summary cards -->
+    <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
+      <div class="rounded-2xl bg-white dark:bg-slate-800 p-4 shadow-sm border border-slate-200 dark:border-slate-700">
+        <h3 class="text-xs uppercase tracking-wide text-slate-500 dark:text-slate-400">Total Instances</h3>
+        <p class="text-2xl font-semibold mt-1">{{ hosting_data|length }}</p>
+      </div>
+      <div class="rounded-2xl bg-white dark:bg-slate-800 p-4 shadow-sm border border-slate-200 dark:border-slate-700">
+        <h3 class="text-xs uppercase tracking-wide text-slate-500 dark:text-slate-400">Running</h3>
+        <p class="text-2xl font-semibold mt-1">{{ hosting_data|selectattr('state','equalto','running')|list|length }}</p>
+      </div>
+      <div class="rounded-2xl bg-white dark:bg-slate-800 p-4 shadow-sm border border-slate-200 dark:border-slate-700">
+        <h3 class="text-xs uppercase tracking-wide text-slate-500 dark:text-slate-400">vCPU</h3>
+        <p class="text-2xl font-semibold mt-1">{{ hosting_data|map(attribute='cpus')|sum }}</p>
+      </div>
+      <div class="rounded-2xl bg-white dark:bg-slate-800 p-4 shadow-sm border border-slate-200 dark:border-slate-700">
+        <h3 class="text-xs uppercase tracking-wide text-slate-500 dark:text-slate-400">Public IPv4</h3>
+        <p class="text-2xl font-semibold mt-1">{{ hosting_data|map(attribute='ipv4')|reject('equalto', None)|list|length }}</p>
+      </div>
+    </section>
+
+    <!-- Graphs Section -->
+    <section class="mt-6 grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <!-- Plan Distribution Chart -->
+      <div class="rounded-2xl bg-white dark:bg-slate-800 p-4 shadow-sm border border-slate-200 dark:border-slate-700">
+        <h3 class="text-sm font-semibold text-slate-800 dark:text-slate-200 mb-4">Plan Distribution</h3>
+        <div class="h-64">
+          <canvas id="planChart"></canvas>
+        </div>
+      </div>
+      
+      <!-- State Distribution Chart -->
+      <div class="rounded-2xl bg-white dark:bg-slate-800 p-4 shadow-sm border border-slate-200 dark:border-slate-700">
+        <h3 class="text-sm font-semibold text-slate-800 dark:text-slate-200 mb-4">Instance States</h3>
+        <div class="h-64">
+          <canvas id="stateChart"></canvas>
+        </div>
+      </div>
+      
+      <!-- Resource Allocation Chart -->
+      <div class="rounded-2xl bg-white dark:bg-slate-800 p-4 shadow-sm border border-slate-200 dark:border-slate-700 lg:col-span-2">
+        <h3 class="text-sm font-semibold text-slate-800 dark:text-slate-200 mb-4">Resource Allocation</h3>
+        <div class="h-64">
+          <canvas id="resourceChart"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- Table -->
+    <section class="mt-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm">
+      <div class="overflow-x-auto scroll-shadow rounded-2xl">
+        <table id="grid" class="min-w-full text-sm">
+          <thead class="bg-slate-50/70 dark:bg-slate-700/50 sticky top-0 z-10">
+            <tr>
+              <!-- Click headers to sort -->
+              <th data-key="subscription_id" class="px-4 py-3 font-semibold text-left text-slate-600 dark:text-slate-300 mobile-p-2">Subscription</th>
+              <th data-key="plan" class="px-4 py-3 font-semibold text-left text-slate-600 dark:text-slate-300 mobile-p-2 mobile-hidden">Plan</th>
+              <th data-key="hostname" class="px-4 py-3 font-semibold text-left text-slate-600 dark:text-slate-300 mobile-p-2">Hostname</th>
+              <th data-key="state" class="px-4 py-3 font-semibold text-left text-slate-600 dark:text-slate-300 mobile-p-2">State</th>
+              <th data-key="cpus" class="px-4 py-3 font-semibold text-left text-slate-600 dark:text-slate-300 mobile-p-2 mobile-hidden">CPU</th>
+              <th data-key="memory" class="px-4 py-3 font-semibold text-left text-slate-600 dark:text-slate-300 mobile-p-2 mobile-hidden">Memory</th>
+              <th data-key="disk" class="px-4 py-3 font-semibold text-left text-slate-600 dark:text-slate-300 mobile-p-2 mobile-hidden">Disk</th>
+              <th data-key="ipv4" class="px-4 py-3 font-semibold text-left text-slate-600 dark:text-slate-300 mobile-p-2">IPv4</th>
+              <th data-key="os_template" class="px-4 py-3 font-semibold text-left text-slate-600 dark:text-slate-300 mobile-p-2 mobile-hidden">OS</th>
+              <th class="px-4 py-3 mobile-p-2 mobile-hidden"></th>
+            </tr>
+          </thead>
+          <tbody id="gridBody" class="divide-y divide-slate-100 dark:divide-slate-700">
+            {% if hosting_data and hosting_data|length > 0 %}
+              {% for row in hosting_data %}
+                <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50">
+                  <td class="px-4 py-3 whitespace-nowrap mobile-p-2 mobile-text-sm">
+                    <span class="font-medium text-slate-800 dark:text-slate-200">{{ row.subscription_id }}</span>
+                  </td>
+                  <td class="px-4 py-3 whitespace-nowrap mobile-p-2 mobile-text-sm mobile-hidden">
+                    <span class="inline-flex items-center rounded-full bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 px-2.5 py-0.5 text-xs font-medium border border-indigo-100 dark:border-indigo-900">{{ row.plan }}</span>
+                  </td>
+                  <td class="px-4 py-3 mobile-p-2 mobile-text-sm">
+                    <div class="font-medium">{{ row.hostname }}</div>
+                  </td>
+                  <td class="px-4 py-3 mobile-p-2 mobile-text-sm">
+                    {% set stateColor = 'bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 border-emerald-100 dark:border-emerald-900' if row.state == 'running' else 'bg-amber-50 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 border-amber-100 dark:border-amber-900' %}
+                    <span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium border {{ stateColor }}">{{ row.state or '—' }}</span>
+                  </td>
+                  <td class="px-4 py-3 mobile-p-2 mobile-text-sm mobile-hidden">{{ row.cpus or '—' }}</td>
+                  <td class="px-4 py-3 mobile-p-2 mobile-text-sm mobile-hidden">{{ row.memory or '—' }}</td>
+                  <td class="px-4 py-3 mobile-p-2 mobile-text-sm mobile-hidden">{{ row.disk or '—' }}</td>
+                  <td class="px-4 py-3 mobile-p-2 mobile-text-sm">
+                    {% if row.ipv4 %}
+                      <div class="flex items-center gap-2">
+                        <code class="text-slate-700 dark:text-slate-300">{{ row.ipv4 }}</code>
+                        <button class="copy-btn text-slate-500 hover:text-slate-700 dark:hover:text-slate-300" data-copy="{{ row.ipv4 }}" title="Copy IPv4">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5"><path d="M9 7a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-7a2 2 0 0 1-2-2V7Z"/><path d="M5 9a2 2 0 0 1 2-2h1v9a3 3 0 0 0 3 3h7v1a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V9Z"/></svg>
+                        </button>
+                      </div>
+                    {% else %}—{% endif %}
+                  </td>
+                  <td class="px-4 py-3 mobile-p-2 mobile-text-sm mobile-hidden">{{ row.os_template or '—' }}</td>
+                  <td class="px-4 py-3 text-right mobile-p-2 mobile-text-sm mobile-hidden">
+                    <div class="flex gap-2 justify-end">
+                      <a href="#" class="rounded-lg border border-slate-200 dark:border-slate-600 px-3 py-1.5 text-xs hover:bg-slate-50 dark:hover:bg-slate-700">Details</a>
+                      <button class="rounded-lg bg-slate-900 dark:bg-slate-600 text-white px-3 py-1.5 text-xs hover:bg-black dark:hover:bg-slate-700">Manage</button>
+                    </div>
+                  </td>
+                </tr>
+              {% endfor %}
+            {% else %}
+              <tr>
+                <td colspan="12" class="px-4 py-10 text-center text-slate-500 dark:text-slate-400">No data available.</td>
+              </tr>
+            {% endif %}
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Footer note -->
+      <div class="px-4 py-3 text-xs text-slate-500 dark:text-slate-400 flex items-center justify-between mobile-stack mobile-text-sm">
+        <span>Showing {{ hosting_data|length }} record(s).</span>
+        <span class="mobile-hidden">Click a column header to sort • Use search to filter.</span>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // --- Dark Mode Toggle ---
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const html = document.documentElement;
+    
+    // Check for saved user preference or system preference
+    const userPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const savedMode = localStorage.getItem('darkMode');
+    
+    if (savedMode === 'dark' || (!savedMode && userPrefersDark)) {
+      html.classList.add('dark-mode');
+      html.classList.add('dark');
+    }
+    
+    darkModeToggle.addEventListener('click', () => {
+      html.classList.toggle('dark');
+      html.classList.toggle('dark-mode');
+      
+      // Save user preference
+      const isDark = html.classList.contains('dark');
+      localStorage.setItem('darkMode', isDark ? 'dark' : 'light');
+    });
+
+    // --- Initialize Charts ---
+    function initCharts() {
+      // Sample data - replace with your actual data
+      const planData = {
+        'Premium': 12,
+        'Business': 8,
+        'Cloud Startup': 5,
+        'Enterprise': 3
+      };
+      
+      const stateData = {
+        'running': {{ hosting_data|selectattr('state','equalto','running')|list|length }},
+        'stopped': {{ hosting_data|selectattr('state','equalto','stopped')|list|length }},
+        'paused': {{ hosting_data|selectattr('state','equalto','paused')|list|length }},
+        'error': {{ hosting_data|selectattr('state','equalto','error')|list|length }}
+      };
+      
+      // Plan Distribution Chart
+      const planCtx = document.getElementById('planChart').getContext('2d');
+      new Chart(planCtx, {
+        type: 'doughnut',
+        data: {
+          labels: Object.keys(planData),
+          datasets: [{
+            data: Object.values(planData),
+            backgroundColor: [
+              '#6366f1',
+              '#8b5cf6',
+              '#ec4899',
+              '#f43f5e'
+            ],
+            borderWidth: 0
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'right',
+              labels: {
+                color: html.classList.contains('dark') ? '#e2e8f0' : '#64748b'
+              }
+            },
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  const label = context.label || '';
+                  const value = context.raw || 0;
+                  const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                  const percentage = Math.round((value / total) * 100);
+                  return `${label}: ${value} (${percentage}%)`;
+                }
+              }
+            }
+          }
+        }
+      });
+      
+      // State Distribution Chart
+      const stateCtx = document.getElementById('stateChart').getContext('2d');
+      new Chart(stateCtx, {
+        type: 'bar',
+        data: {
+          labels: Object.keys(stateData),
+          datasets: [{
+            data: Object.values(stateData),
+            backgroundColor: [
+              '#10b981',
+              '#f59e0b',
+              '#3b82f6',
+              '#ef4444'
+            ],
+            borderWidth: 0
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: {
+                color: html.classList.contains('dark') ? '#94a3b8' : '#64748b'
+              },
+              grid: {
+                color: html.classList.contains('dark') ? '#334155' : '#e2e8f0'
+              }
+            },
+            x: {
+              ticks: {
+                color: html.classList.contains('dark') ? '#94a3b8' : '#64748b'
+              },
+              grid: {
+                display: false
+              }
+            }
+          },
+          plugins: {
+            legend: {
+              display: false
+            }
+          }
+        }
+      });
+      
+      // Resource Allocation Chart
+      const resourceCtx = document.getElementById('resourceChart').getContext('2d');
+      new Chart(resourceCtx, {
+        type: 'radar',
+        data: {
+          labels: ['CPU Cores', 'Memory (GB)', 'Disk (GB)', 'Bandwidth (TB)', 'IPv4 Addresses'],
+          datasets: [
+            {
+              label: 'Allocated',
+              data: [28, 112, 2048, 15, 28],
+              backgroundColor: 'rgba(99, 102, 241, 0.2)',
+              borderColor: '#6366f1',
+              borderWidth: 2,
+              pointBackgroundColor: '#6366f1'
+            },
+            {
+              label: 'Used',
+              data: [18, 84, 1536, 8, 28],
+              backgroundColor: 'rgba(236, 72, 153, 0.2)',
+              borderColor: '#ec4899',
+              borderWidth: 2,
+              pointBackgroundColor: '#ec4899'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            r: {
+              angleLines: {
+                color: html.classList.contains('dark') ? '#334155' : '#e2e8f0'
+              },
+              grid: {
+                color: html.classList.contains('dark') ? '#334155' : '#e2e8f0'
+              },
+              ticks: {
+                color: html.classList.contains('dark') ? '#94a3b8' : '#64748b',
+                backdropColor: 'transparent'
+              },
+              pointLabels: {
+                color: html.classList.contains('dark') ? '#e2e8f0' : '#64748b'
+              }
+            }
+          },
+          plugins: {
+            legend: {
+              labels: {
+                color: html.classList.contains('dark') ? '#e2e8f0' : '#64748b'
+              }
+            }
+          }
+        }
+      });
+    }
+    
+    // Initialize charts when DOM is loaded
+    document.addEventListener('DOMContentLoaded', initCharts);
+
+    // --- Client-side search ---
+    const searchInput = document.getElementById('search');
+    const rows = Array.from(document.querySelectorAll('#gridBody tr'));
+
+    function normalize(t){ return (t||'').toString().toLowerCase(); }
+    function rowText(tr){ return normalize(tr.innerText); }
+
+    searchInput.addEventListener('input', e => {
+      const q = normalize(e.target.value);
+      rows.forEach(tr => {
+        tr.style.display = rowText(tr).includes(q) ? '' : 'none';
+      });
+    });
+
+    // --- Click-to-copy buttons ---
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const val = btn.getAttribute('data-copy');
+        try {
+          await navigator.clipboard.writeText(val);
+          btn.classList.add('text-emerald-600');
+          setTimeout(() => btn.classList.remove('text-emerald-600'), 900);
+        } catch (e) { alert('Copy failed'); }
+      });
+    });
+
+    // --- Sort by column (simple, text-aware) ---
+    const grid = document.getElementById('grid');
+    const tbody = document.getElementById('gridBody');
+    const headers = grid.querySelectorAll('th[data-key]');
+
+    let sortState = { key: null, asc: true };
+
+    headers.forEach((th, idx) => {
+      th.addEventListener('click', () => {
+        const key = th.getAttribute('data-key');
+        const asc = sortState.key === key ? !sortState.asc : true;
+        sortState = { key, asc };
+
+        const sorted = Array.from(tbody.querySelectorAll('tr')).sort((a, b) => {
+          const ta = a.children[idx].innerText.trim();
+          const tb = b.children[idx].innerText.trim();
+
+          // if looks like number with GB, compare numerically
+          const na = parseFloat(ta.replace(/[^0-9.]/g, ''));
+          const nb = parseFloat(tb.replace(/[^0-9.]/g, ''));
+          const numeric = !Number.isNaN(na) && !Number.isNaN(nb);
+
+          if (numeric) return asc ? na - nb : nb - na;
+          return asc ? ta.localeCompare(tb) : tb.localeCompare(ta);
+        });
+
+        tbody.innerHTML = '';
+        sorted.forEach(tr => tbody.appendChild(tr));
+
+        headers.forEach(h => h.classList.remove('text-indigo-700'));
+        th.classList.add('text-indigo-700');
+      });
+    });
+
+    // --- Refresh button (client-side reload) ---
+    document.getElementById('refreshBtn').addEventListener('click', () => {
+      window.location.reload();
+    });
+    
+    // --- Responsive table adjustments ---
+    function handleResize() {
+      const isMobile = window.innerWidth < 640;
+      const hiddenCols = document.querySelectorAll('.mobile-hidden');
+      const shownCols = document.querySelectorAll('.mobile-show');
+      
+      if (isMobile) {
+        hiddenCols.forEach(el => el.style.display = 'none');
+        shownCols.forEach(el => el.style.display = 'block');
+      } else {
+        hiddenCols.forEach(el => el.style.display = '');
+        shownCols.forEach(el => el.style.display = 'none');
+      }
+    }
+    
+    // Initial check and listener for resize
+    handleResize();
+    window.addEventListener('resize', handleResize);
+  </script>
+</body>
+</html>

@@ -10,7 +10,8 @@ import requests
 import re
 from sqlalchemy.sql import func
 
-
+import hostinger_api
+from hostinger_api.rest import ApiException
 # Create a timezone-aware UTC datetime
 
 
@@ -25,6 +26,9 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+API_KEY = "rGOvrqnunrjzhI3rsg6E0dm30jaKI414QDOgjt1z09d59e0c"
+
+
 
 db = SQLAlchemy(app)
 global_array = [10, "Apple", 20, "Banana", 30, "Cherry"]
@@ -724,6 +728,57 @@ def old_fatafat():
         Fatafat_Result.created_at < today_start
     ).order_by(Fatafat_Result.created_at.desc()).all()
     return render_template('old.html', flag=False,  results=fatafat_results, title="Fatafat Results")
+
+
+
+
+configuration = hostinger_api.Configuration(access_token=API_KEY)
+
+@app.route("/hostinger")
+def hostinger_data():
+    url = "https://developers.hostinger.com/api/vps/v1/virtual-machines"
+    headers = {
+        "Authorization": f"Bearer {API_KEY}",
+        "Content-Type": "application/json"
+    }
+    response = requests.get(url, headers=headers)
+
+    try:
+        raw_data = response.json()
+    except:
+        raw_data = []
+
+    # Handle both formats
+    if isinstance(raw_data, dict) and "data" in raw_data:
+        data = raw_data["data"]
+    elif isinstance(raw_data, list):
+        data = raw_data
+    else:
+        data = []
+
+    # Clean & format
+    cleaned_data = []
+    for item in data:
+        cleaned_data.append({
+            "subscription_id": item.get("subscription_id"),
+            "plan": item.get("plan"),
+            "hostname": item.get("hostname"),
+            "state": item.get("state"),
+            "cpus": item.get("cpus"),
+            "memory": f"{item.get('memory',0)//1024} GB" if item.get("memory") else None,
+            "disk": f"{item.get('disk',0)//1024} GB" if item.get("disk") else None,
+            "bandwidth": f"{item.get('bandwidth',0)//1024} GB" if item.get("bandwidth") else None,
+            "ipv4": item["ipv4"][0]["address"] if item.get("ipv4") and isinstance(item["ipv4"], list) and item["ipv4"] else None,
+            "ipv6": item["ipv6"][0]["address"] if item.get("ipv6") and isinstance(item["ipv6"], list) and item["ipv6"] else None,
+            "os_template": item.get("template", {}).get("name") if isinstance(item.get("template"), dict) else None
+        })
+
+    return render_template("hostinger.html", hosting_data=cleaned_data)
+
+
+
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
